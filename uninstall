@@ -2,6 +2,6 @@ apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
 apt-get --yes purge puppetlabs-release
 apt-get --yes autoremove
 
-rm -Rf /var/lib/puppet
-rm puppet*.deb
-rm -Rf j11t
+rm -Rf /var/lib/puppet # kept after the purge of the puppet-common package
+
+rm -Rf g10b

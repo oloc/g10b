@@ -1,1 +1,5 @@
 puppetlabs-ntp
+puppetlabs-apt
+puppetlabs-git
+puppetlabs-nginx
+puppetlabs-dashboard

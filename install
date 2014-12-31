@@ -4,12 +4,16 @@ set -e
 pushd $(dirname $0)
 . $(basename $0).cfg
 
-echo "Server naming..."
+_echo() {
+	echo "$(date +%Y%m%d-%H%M%S) - $1" | tee -a ${LogFile}
+}
+
+_echo "Server naming..."
 echo "${ServerName}" > /etc/hostname
 echo -e "127.0.0.1\tlocalhost" > /etc/hosts
 echo -e "127.0.1.1\t${ServerName}" >> /etc/hosts
 
-echo "Enable the Puppet Labs Package Repository..."
+_echo "Enable the Puppet Labs Package Repository..."
 wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
 dpkg -i puppetlabs-release-precise.deb
 apt-get update
@@ -18,7 +22,7 @@ apt-get --yes autoremove
 apt-get --yes install puppetmaster puppet
 apt-get --yes --fix-broken install
 
-echo "User ${DftUser} control..."
+_echo "User ${DftUser} control..."
 if [ X"${DftUser}" == X"$(awk -F":" -v var=${DftUser} '{ if ($1 == var) print $1; }' /etc/passwd)" ] ; then
 	echo "User ${DftUser} is declared and will be the owner of this installation."
 else
@@ -26,18 +30,19 @@ else
 	exit 1
 fi
 
-echo "Sourcing the directories of the configuration..."
+_echo "Sourcing the directories of the configuration..."
 grep "dir=" ${confdir}/puppet.conf | while read Line
 do
 	eval chown -R ${DftUser}:${DftUser} $(echo $Line | awk -F"=" '{print $2}')
 done
 
-echo "Puppet $(puppet --version) is installed on server $(hostname)."
+_echo "Puppet $(puppet --version) is installed on server $(hostname)."
 
-echo "Adding some modules..."
+_echo "Adding some modules..."
 grep -v '^#' modules.lst |
 while read Module
 do
+	_echo "puppet module install ${Module}"
 	puppet module install ${Module}
 done
 
