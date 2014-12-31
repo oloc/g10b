@@ -1,0 +1,7 @@
+apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
+apt-get --yes purge puppetlabs-release
+apt-get --yes autoremove
+
+rm -Rf /var/lib/puppet
+rm puppet*.deb
+rm -Rf j11t
