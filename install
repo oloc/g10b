@@ -33,7 +33,7 @@ fi
 _echo "Sourcing the directories of the configuration..."
 grep "dir=" ${confdir}/puppet.conf | while read Line
 do
-	eval chown -R ${DftUser}:${DftUser} $(echo $Line | awk -F"=" '{print $2}')
+	eval chown -R ${DftUser}:${DftUser} $(echo ${Line} | awk -F"=" '{print $2}')
 done
 
 _echo "Puppet $(puppet --version) is installed on server $(hostname)."
@@ -45,5 +45,8 @@ do
 	_echo "puppet module install ${Module}"
 	puppet module install ${Module}
 done
+
+_echo "Importing manifests..."
+cp ./manifests/* ${confdir}/manifests/
 
 popd
