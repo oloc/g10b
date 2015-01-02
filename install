@@ -11,7 +11,7 @@ _echo() {
 _echo "Server naming..."
 echo "${ServerName}" > /etc/hostname
 echo -e "127.0.0.1\tlocalhost" > /etc/hosts
-echo -e "127.0.1.1\t${ServerName}" >> /etc/hosts
+echo -e "127.0.1.1\t${ServerName}.${DomainName} ${ServerName}" >> /etc/hosts
 
 _echo "Enable the Puppet Labs Package Repository..."
 wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
