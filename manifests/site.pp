@@ -1,18 +1,4 @@
-group { 'opt':
-	ensure => 'present',
-}
+filebucket { main: server => "puppet" }
+File { backup => main }
 
-user { 'admin account':
-	name => 'oloc',
-	ensure => 'present',
-	groups => [sudo, adm, opt],
-	home => '/home/oloc',
-	uid => 1000,
-}
-
-file { 'admin home':
-	path => '/home/oloc',
-	ensure => 'directory' ,
-	mode => 640,
-	owner => 'oloc',
-}
+Exec { path => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" }

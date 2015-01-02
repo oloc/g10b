@@ -16,6 +16,7 @@ echo -e "127.0.1.1\t${ServerName}" >> /etc/hosts
 _echo "Enable the Puppet Labs Package Repository..."
 wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
 dpkg -i puppetlabs-release-precise.deb
+rm puppetlabs-release-precise.deb
 apt-get update
 
 apt-get --yes autoremove 
@@ -46,7 +47,11 @@ do
 	puppet module install ${Module}
 done
 
-_echo "Importing manifests..."
-cp ./manifests/* ${confdir}/manifests/
+for Thingy in modules manifests
+do
+	_echo "Importing ${Name} ${Thingy}..."
+	cp -R ./${Thingy}/* ${confdir}/${Thingy}/           | tee -a ${LogFile}
+	chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy} | tee -a ${LogFIle}
+done
 
 popd
