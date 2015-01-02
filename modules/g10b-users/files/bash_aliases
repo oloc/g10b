@@ -1,0 +1,8 @@
+alias ll="ls -l"
+alias ls="ls --color=auto"
+alias lof='sudo lsof -nP -p'
+alias log="cd /var/log; ls"
+alias sc="cd ~/scripts"
+alias si="sudo vi"
+alias smod="sudo chmod"
+alias sown="sudo chown"
