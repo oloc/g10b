@@ -58,4 +58,9 @@ do
 	chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}  | tee -a ${LogFIle}
 done
 
+_echo "Starting Puppet Client..."
+puppet resource service puppet       ensure=running enable=true
+_echo "Starting Puppet Server..."
+puppet resource service puppetmaster ensure=running enable=true
+
 popd
