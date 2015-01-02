@@ -3,7 +3,7 @@ class g10b-ssh{
 		ensure => latest,
 	}
 
-	service{ ssh:
+	service{ g10b-ssh:
 		ensure => running,
 		hasrestart => true,
 	}
