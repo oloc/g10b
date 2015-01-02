@@ -1,5 +1,7 @@
 node puppet {
-	include g10b-users
-	include ssh
-	include ntp
+	include g10b-node
+}
+
+node octopussy {
+	include g10b-node
 }
