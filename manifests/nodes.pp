@@ -3,6 +3,12 @@ node puppet {
 	include mysql
 	include dashboard
 
+	class {'mysql::server':
+	}
+
+	class {'mysql::client':
+	}
+
 	class {'dashboard':
 		dashboard_ensure          => 'present',
 		dashboard_user            => 'puppet-dbuser',
