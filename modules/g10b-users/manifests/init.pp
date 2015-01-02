@@ -11,6 +11,7 @@ class g10b-users {
 		ensure => 'present',
 		groups => [sudo, adm, opt],
 		home => "/home/$admuser",
+		shell => '/bin/bash',
 	}
 	
 	file { 'admin home':
