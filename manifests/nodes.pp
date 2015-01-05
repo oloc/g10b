@@ -1,11 +1,15 @@
 node puppet {
 	include g10b-node
 
+	$dashboard_user = pp-dbuser
+	$dashboard_group = pp-dbgroup
+	$dashboard_db = dashboard_prod
+
 	class {'mysql::server':
 		root_password    => 'strongpassword',
 		override_options => {
 			users => {
-	  			'someuser@localhost' => {
+	  			"$dashboard_user@localhost" => {
 			    ensure                   => 'present',
 			    max_connections_per_hour => '0',
 			    max_queries_per_hour     => '0',
@@ -15,18 +19,19 @@ node puppet {
 		  		},
 			},
 			grants => {
-				'someuser@localhost/somedb.*' => {
+				"$dashboard_user@localhost/$dashboard_db.*" => {
 				ensure     => 'present',
 				options    => ['GRANT'],
 				privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
-				table      => 'somedb.*',
-				user       => 'someuser@localhost',
+				table      => "$dashboard_db.*",
+				user       => "$dashboard_user@localhost",
 				},
 			},
 			databases => {
-				'somedb' => {
+				"$dashboard_db" => {
 				ensure  => 'present',
 				charset => 'utf8',
+				host => 'localhost',
 				},
 			},
 		}
@@ -34,14 +39,14 @@ node puppet {
 
 	class {'dashboard':
 		dashboard_ensure          => 'present',
-		dashboard_user            => 'puppet-dbuser',
-		dashboard_group           => 'puppet-dbgroup',
+		dashboard_user            => $dashboard_user,
+		dashboard_group           => $dashboard_group,
 		dashboard_password        => 'changeme',
-		dashboard_db              => 'dashboard_prod',
+		dashboard_db              => $dashboard_db,
 		dashboard_charset         => 'utf8',
 		dashboard_site            => $fqdn,
 		dashboard_port            => '8080',
-		mysql_root_pw             => 'changemetoo',
+		mysql_root_pw             => 'strongpassword',
 		passenger                 => true,
            }
 }
