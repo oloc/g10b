@@ -1,9 +1,25 @@
-class g10b-users {
+class g10b-security {
 
 	$admuser='oloc'
 
+	group { 'admin account group':
+		name => $admuser,
+1		ensure => 'present',
+	}
+
+	group { 'adm':
+		ensure => 'present',
+	}
+
 	group { 'opt':
 		ensure => 'present',
+	}
+
+	file { '/opt':
+		ensure => directory,
+		group => "opt",
+		mode => 775,
+		owner => "root",
 	}
 	
 	user { 'admin account':
@@ -16,7 +32,7 @@ class g10b-users {
 	
 	file { 'admin home':
 		path => "/home/$admuser",
-		ensure => 'directory' ,
+		ensure => directory ,
 		group => $admuser,
 		mode => 640,
 		owner => $admuser,

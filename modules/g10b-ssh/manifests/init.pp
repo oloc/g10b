@@ -9,8 +9,10 @@ class g10b-ssh{
 		mode => 644,
 	}
 
-	service{ g10b-ssh:
+	service{ 'g10b-ssh':
+		enable => true,
 		ensure => running,
 		hasrestart => true,
 	}
+
 }
