@@ -1,9 +1,14 @@
-class mysql {
+class g10b-mysql::mysql {
   
   package { "mysql-server": ensure => installed }
-  package { "mysql": ensure => installed }
 
-  service { "mysqld":
+  user { 'mysql':
+    comment => 'MySQL Server',
+    ensure  => present,
+	user  => '/bin/false',
+  }
+
+  service { "mysql":
     enable => true,
     ensure => running,
     require => Package["mysql-server"],
@@ -11,8 +16,8 @@ class mysql {
 
   file { "/var/lib/mysql/my.cnf":
     owner => "mysql", group => "mysql",
-    source => "puppet:///mysql/my.cnf",
-    notify => Service["mysqld"],
+    source => "puppet:///modules/g10b-mysql/my.cnf",
+    notify => Service["mysql"],
     require => Package["mysql-server"],
   }
  
@@ -25,6 +30,6 @@ class mysql {
     unless => "mysqladmin -uroot -p$mysql_password status",
     path => ["/bin", "/usr/bin"],
     command => "mysqladmin -uroot password $mysql_password",
-    require => Service["mysqld"],
+    require => Service["mysql"],
   }
 }
