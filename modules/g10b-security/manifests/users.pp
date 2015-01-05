@@ -15,13 +15,6 @@ class g10b-security::users {
 		ensure => 'present',
 	}
 
-	file { '/opt':
-		ensure => directory,
-		group => "opt",
-		mode => 775,
-		owner => "root",
-	}
-	
 	user { 'admin account':
 		name => $admuser,
 		ensure => 'present',
