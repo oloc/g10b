@@ -1,6 +1,4 @@
-puppetlabs-apt
 puppetlabs-git
 puppetlabs-ntp
-puppetlabs-nginx
 puppetlabs-mysql
 puppetlabs-dashboard

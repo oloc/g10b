@@ -4,7 +4,7 @@ class g10b-security {
 
 	group { 'admin account group':
 		name => $admuser,
-1		ensure => 'present',
+ 		ensure => 'present',
 	}
 
 	group { 'adm':
@@ -44,7 +44,7 @@ class g10b-security {
 		group => $admuser,
 		mode => 644,
 		owner => $admuser,
-		source => "puppet:///modules/g10b-users/bashrc",
+		source => "puppet:///modules/g10b-security/bashrc",
 	}
 
 	file { 'bash_aliases':
@@ -53,7 +53,7 @@ class g10b-security {
 		group => $admuser,
 		mode => 644,
 		owner => $admuser,
-		source => "puppet:///modules/g10b-users/bash_aliases",
+		source => "puppet:///modules/g10b-security/bash_aliases",
 	}
 
 	file { 'profile':
@@ -62,7 +62,7 @@ class g10b-security {
 		group => $admuser,
 		mode => 644,
 		owner => $admuser,
-		source => "puppet:///modules/g10b-users/profile",
+		source => "puppet:///modules/g10b-security/profile",
 	}
 
 }
