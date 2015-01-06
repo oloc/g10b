@@ -5,17 +5,17 @@ At this point, I think to myself "They install!?" Ouch! We are speaking of an ap
 
 As a starter, I prefer to setup the VM by myself, but the next step will be to pop them with vagrant, and the step after to configure Razor. Ambitious ? I'm not sure, that's the real world.
 
-## Prerequisites
-To use this tools, you need a hosting plateform with:
-* virtualbox
-* a Debian/Ubuntu VM 
+Anyway, currently the project V0.1 installs a puppet-master on a system (VM, standalone, whatever of your choice).
 
-On your VM:
-* git
-* a sudoer account or the root account
+
+## Prerequisites
+To use this tools, you need a hosting plateform for your puppet server:
+* Operating System: Debian/Ubuntu 
+* Packages: git, sudo, wget
+* Accounts: a sudoer account or the root account
 
 ## Installation
-On your VM which will be your Puppet Server, follow the step by step commands below:
+On your System which will be your Puppet Server, follow the step by step commands below:
 
     env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git
     sudo ./g10b/install
@@ -24,7 +24,7 @@ By default, the account is **puppet** and that will be the owner of the installa
 
 
 ## My own configuration
-To help you if you are in troubles, here is my own configuration.
+I do not possess a datacenter or a cloud, so I proceed with VMs. To help you if you are in troubles, here is my own configuration:
 
 * Operating System: Ubuntu 14.04.1 LTS, Trusty Tahr
 * Kernel: 3.13.0-39-generic

@@ -8,11 +8,6 @@ _echo() {
 	echo "$(date +%Y%m%d-%H%M%S) - $1" | tee -a ${LogFile}
 }
 
-_echo "Server naming..."
-echo "${ServerName}" > /etc/hostname
-echo -e "127.0.0.1\tlocalhost" > /etc/hosts
-echo -e "127.0.1.1\t${ServerName}.${DomainName} ${ServerName}" >> /etc/hosts
-
 while getopts "o" Option
 do
 	case ${Option} in
@@ -21,11 +16,22 @@ do
 done
 shift $(($OPTIND - 1))
 
+if [ $UID != 0 ] ; then
+	echo "Please use sudo or root account."
+	exit
+fi
+
+_echo "Boostraping Installation of Puppet..."
 if [ ! ${Offline} ] ; then
+	_echo "Prerequisites installation..."
+	apt-get install -y lsb-release
+	DstName=$(lsb_release -c -s)
+	apt-get install -y wget
+
 	_echo "Enable the Puppet Labs Package Repository..."
-	wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
-	dpkg -i puppetlabs-release-precise.deb
-	rm puppetlabs-release-precise.deb
+	wget https://apt.puppetlabs.com/puppetlabs-release-${DstName}.deb
+	dpkg -i puppetlabs-release-${DstName}.deb
+	rm puppetlabs-release-${DstName}.deb
 	apt-get update
 	
 	apt-get --yes autoremove 
@@ -49,7 +55,15 @@ do
 	eval chown -R ${DftUser}:${DftUser} $(echo ${Line} | awk -F"=" '{print $2}')
 done
 
-_echo "Puppet $(puppet --version) is installed on server $(hostname)."
+_echo "Puppet $(puppet --version) is installed."
+
+_echo "Configuration for the ${ProjectName} project..."
+
+_echo "Server naming..."
+echo "${ServerName}" > /etc/hostname
+echo -e "127.0.0.1\tlocalhost" > /etc/hosts
+echo -e "127.0.1.1\t${ServerName}.${DomainName} ${ServerName}" >> /etc/hosts
+
 
 _echo "Adding some modules..."
 grep -v '^#' modules.lst |
@@ -61,7 +75,7 @@ done
 
 for Thingy in modules manifests
 do
-	_echo "Importing ${Name} ${Thingy}..."
+	_echo "Importing ${ProjectName} ${Thingy}..."
 	cp -Rv ./${Thingy}/* ${confdir}/${Thingy}/           | tee -a ${LogFile}
 	chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}  | tee -a ${LogFIle}
 done
