@@ -1,4 +1,4 @@
 puppetlabs-git
 puppetlabs-ntp
-puppetlabs-mysql
+# puppetlabs-mysql - Not relevant for dashboard, broken dependencies
 puppetlabs-dashboard

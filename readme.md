@@ -5,7 +5,7 @@ At this point, I think to myself "They install!?" Ouch! We are speaking of an ap
 
 As a starter, I prefer to setup the VM by myself, but the next step will be to pop them with vagrant, and the step after to configure Razor. Ambitious ? I'm not sure, that's the real world.
 
-Anyway, currently the project V0.1 installs a puppet-master on a system (VM, standalone, whatever of your choice).
+Anyway, currently the project V0.1 installs a puppet-master on a system (VM, standalone, whatever of your choice). It's more than a bootstrap. It's a bootstrap installing puppet-master and a feeder of modules and manifests needed to configure puppet itself by itself.
 
 
 ## Prerequisites
