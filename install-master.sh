@@ -1,12 +1,13 @@
 #!/bin/bash 
 set -e
 
-pushd $(dirname $0)
-. $(basename $0).cfg
-
 _echo() {
 	echo "$(date +%Y%m%d-%H%M%S) - $1" | tee -a ${LogFile}
 }
+
+pushd $(dirname $0)
+_echo "Loading configuration..."
+. ./install.cfg
 
 while getopts "o" Option
 do
