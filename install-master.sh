@@ -68,6 +68,9 @@ _echo "Puppet $(puppet --version) is installed."
 
 _echo "Configuration for the ${ProjectName} project..."
 
+_echo "Importing configuration..."
+cp ./etc/* ${confdir}/ | tee -a ${LogFile}
+
 _echo "Adding some modules..."
 grep -v '^#' modules.lst |
 while read Module
@@ -83,8 +86,6 @@ do
 	chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}  | tee -a ${LogFIle}
 done
 
-_echo "Importing configuration..."
-cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 popd
 
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
