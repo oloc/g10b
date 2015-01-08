@@ -48,10 +48,16 @@ do
 	eval chown -R ${DftUser}:${DftUser} ${CfgDir} 2>/dev/null
 done
 
-_echo "Puppet $(puppet --version) is installed."
+_echo "Importing configuration..."
+cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 
+_echo "chown -R ${DftUser}:${DftUser} ${confdir}"
+chown -R ${DftUser}:${DftUser} ${confdir}
 
 popd
+
+_echo "Puppet $(puppet --version) is installed."
+
 
 _echo "Starting Puppet Client..."
 puppet resource service puppet       ensure=running enable=true
