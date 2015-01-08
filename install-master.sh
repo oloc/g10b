@@ -53,7 +53,9 @@ fi
 _echo "Sourcing the directories of the configuration..."
 grep "dir=" ${confdir}/puppet.conf | while read Line
 do
-	eval chown -R ${DftUser}:${DftUser} $(echo ${Line} | awk -F"=" '{print $2}')
+	CfgDir=$(echo ${Line} | awk -F"=" '{print $2}')
+	_echo "chown -R ${DftUser}:${DftUser} ${CfgDir}"
+	chown -R ${DftUser}:${DftUser} ${CfgDir}
 done
 
 _echo "Puppet $(puppet --version) is installed."
@@ -62,12 +64,6 @@ _echo "Puppet $(puppet --version) is installed."
 # The following part is the configuration of the modules and manifests for the project itself
 
 _echo "Configuration for the ${ProjectName} project..."
-
-_echo "Server naming..."
-echo "${ServerName}" > /etc/hostname
-echo -e "127.0.0.1\tlocalhost" > /etc/hosts
-echo -e "127.0.1.1\t${ServerName}.${DomainName} ${ServerName}" >> /etc/hosts
-
 
 _echo "Adding some modules..."
 grep -v '^#' modules.lst |

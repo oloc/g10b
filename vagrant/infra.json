@@ -1,0 +1,16 @@
+[
+	{
+	"node": "puppet-master",
+	"iplastdigit": "50",
+	"host": "puppet",
+	"memory": 1024,
+	"cpu": 2
+	},
+	{
+	"node": "gateway",
+	"iplastdigit": "55",
+	"host": "octopussy",
+	"memory": 1024,
+	"cpu": 1
+	}
+]

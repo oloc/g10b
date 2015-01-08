@@ -9,19 +9,20 @@ Anyway, currently the project V0.1 installs a puppet-master on a system (VM, sta
 
 
 ## Prerequisites
-To use this tools, you need a hosting plateform for your puppet server:
-* Operating System: Debian/Ubuntu 
-* Packages: git, sudo, wget
-* Accounts: a sudoer account or the root account
+To use this tools, you need a hosting plateform with:
+* git
+* Vagrant 
+* VirtualBox
 
 ## Installation
 On your System which will be your Puppet Server, follow the step by step commands below:
 
     env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git
-    sudo ./g10b/install
+    cd ./g10b/vagrant
+    sudo vagrant up
 
-By default, the account is **puppet** and that will be the owner of the installation. In another way, 
-
+This commands will pop the needed VMs in virtualbox and install the stuff.
+If you possess a datacenter or a cloud and if you want to test the installation you have to launch the *install* scripts in the appropriate machines.
 
 ## My own configuration
 I do not possess a datacenter or a cloud, so I proceed with VMs. To help you if you are in troubles, here is my own configuration:

@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+SubNet="192.168.10"
+
+fileContent = JSON.parse(File.read("infra.json"), symbolize_names: true)
+
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+
+
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box     = "g10b"
+  config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
+
+  fileContent.each do |node|
+    config.vm.define node[:node] do |config|
+      config.vm.hostname = node[:host] 
+      config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
+
+      config.vm.provider "virtualbox" do |vb|
+        vb.customize ["modifyvm", :id, "--memory", node[:memory]]
+        vb.customize ["modifyvm", :id, "--name", node[:node]]
+      end
+    end
+  end
+
+
+end
