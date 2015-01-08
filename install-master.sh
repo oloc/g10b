@@ -7,7 +7,10 @@ _echo() {
 
 pushd $(dirname $0)
 _echo "Loading configuration..."
-. ./install.cfg
+ProjectName=g10b
+DftUser='puppet'
+confdir='/etc/puppet'
+LogFile=./install.$(date +%Y%m%d.%H%M%S).log
 
 while getopts "o" Option
 do

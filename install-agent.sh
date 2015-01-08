@@ -7,7 +7,9 @@ _echo() {
 
 pushd $(dirname $0)
 _echo "Loading configuration..."
-. ./install.cfg
+DftUser='puppet'
+confdir='/etc/puppet'
+LogFile=./install.$(date +%Y%m%d.%H%M%S).log
 
 if [ $UID != 0 ] ; then
 	echo "Please use sudo or root account."

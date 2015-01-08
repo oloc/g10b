@@ -25,6 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define node[:node] do |config|
       config.vm.hostname = node[:host] 
       config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
+      config.vm.provision :shell, :path => "../#{node[:bootstrap]}"
 
       config.vm.provider "virtualbox" do |vb|
         vb.customize ["modifyvm", :id, "--memory", node[:memory]]
