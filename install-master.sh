@@ -95,7 +95,3 @@ _echo "Starting Puppet Client..."
 puppet resource service puppet       ensure=running enable=true
 _echo "Starting Puppet Server..."
 puppet resource service puppetmaster ensure=running enable=true
-
-_echo "Puppet is configuring itself..."
-puppet agent --verbose --test
-
