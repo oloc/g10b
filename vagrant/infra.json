@@ -1,6 +1,6 @@
 [
 	{
-	"node": "puppet-master",
+	"node": "g10b-puppet-master",
 	"iplastdigit": "50",
 	"host": "puppet",
 	"memory": 1024,
@@ -8,7 +8,7 @@
 	"bootstrap": "install-master.sh"
 	},
 	{
-	"node": "gateway",
+	"node": "g10b-gateway",
 	"iplastdigit": "55",
 	"host": "octopussy",
 	"memory": 1024,

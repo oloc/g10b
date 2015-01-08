@@ -58,7 +58,7 @@ grep "dir=" ${confdir}/puppet.conf | while read Line
 do
 	CfgDir=$(echo ${Line} | awk -F"=" '{print $2}')
 	_echo "chown -R ${DftUser}:${DftUser} ${CfgDir}"
-	chown -R ${DftUser}:${DftUser} ${CfgDir}
+	eval chown -R ${DftUser}:${DftUser} ${CfgDir} 2>/dev/null
 done
 
 _echo "Puppet $(puppet --version) is installed."
