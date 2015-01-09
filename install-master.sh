@@ -97,4 +97,5 @@ _echo "Starting Puppet Server..."
 puppet resource service puppetmaster ensure=running enable=true
 
 _echo "Puppet is configuring itself..."
-puppet apply ${config}/manifests/nodes/puppet.pp
+_echo "puppet apply ${confdir}/manifests --modulepath=${confdir}/modules"
+  sudo puppet apply ${confdir}/manifests --modulepath=${confdir}/modules

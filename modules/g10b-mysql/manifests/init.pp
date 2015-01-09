@@ -5,7 +5,7 @@ class g10b-mysql::mysql {
   user { 'mysql':
     comment => 'MySQL Server',
     ensure  => present,
-	user  => '/bin/false',
+    shell => '/bin/false',
   }
 
   service { "mysql":
