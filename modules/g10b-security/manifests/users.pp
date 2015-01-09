@@ -20,6 +20,7 @@ class g10b-security::users {
 		ensure => 'present',
 		groups => [sudo, adm, opt],
 		home => "/home/$admuser",
+		password => '8f91640bb5850b0d7d49276cb5728f9e76fb1629',
 		shell => '/bin/bash',
 	}
 	

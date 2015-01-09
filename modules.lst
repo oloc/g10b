@@ -1,4 +1,11 @@
+# Supported modules
 puppetlabs-git
 puppetlabs-ntp
 # puppetlabs-mysql - Not relevant for dashboard, broken dependencies
 puppetlabs-dashboard
+# Approved modules
+rtyler-jenkins
+opentable-rundeck
+# Any
+jfryman-nginx
+sbadia-gitlab

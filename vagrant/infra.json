@@ -1,18 +1,42 @@
 [
 	{
-	"node": "g10b-gateway",
-	"iplastdigit": "55",
-	"host": "octopussy",
-	"memory": 1024,
-	"cpu": 1,
-	"bootstrap": "install-agent.sh"
+		"node": "g10b-gateway",
+		"iplastdigit": "55",
+		"host": "octopussy",
+		"memory": 1024,
+		"cpu": 1,
+		"bootstrap": "install-agent.sh"
 	},
 	{
-	"node": "g10b-puppet-master",
-	"iplastdigit": "50",
-	"host": "puppet",
-	"memory": 1024,
-	"cpu": 2,
-	"bootstrap": "install-master.sh"
+		"node": "g10b-orchestration",
+		"iplastdigit": "56",
+		"host": "rundeck",
+		"memory": 1024,
+		"cpu": 2,
+		"bootstrap": "install-agent.sh"
+	},
+	{
+		"node": "g10b-git-repository",
+		"iplastdigit": "57",
+		"host": "gitlab",
+		"memory": 1024,
+		"cpu": 1,
+		"bootstrap": "install-agent.sh"
+	},	
+	{
+		"node": "g10b-Continuous-Integration",
+		"iplastdigit": "58",
+		"host": "jenkins",
+		"memory": 2048,
+		"cpu": 2,
+		"bootstrap": "install-agent.sh"
+	},		
+	{
+		"node": "g10b-puppet-master",
+		"iplastdigit": "50",
+		"host": "puppet",
+		"memory": 1024,
+		"cpu": 2,
+		"bootstrap": "install-master.sh"
 	}
 ]

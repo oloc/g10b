@@ -34,6 +34,7 @@ The infrastructure is described in the **vagrant/infra.json** file.
 The configuration of the servers is described in the puppet manifests and modules.
 
 ## Versions
+* _V0.3 - Add Rundeck, Gitlab and Jenkins (Work in progress)_
 * V0.2 - Vagrant pops the infra, and bootstap the installation of Puppet-master. Puppet-master feeds and configures itself.
 * V0.1 - script of installation of puppet-master on a system. It's more than a bootstrap. It's a bootstrap installing puppet-master and a feeder of modules and manifests needed to configure puppet itself by itself.
 
