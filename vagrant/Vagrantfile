@@ -24,13 +24,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
 
   fileContent.each do |node|
-    config.vm.define node[:node] do |def|
+    config.vm.define node[:node] do |config|
       $hostsupdate="echo -e \"127.0.0.1\tlocalhost\n127.0.1.1\t#{node[:host]} #{node[:host]}.#{Domain}\" > /etc/hosts"
 
-      def.vm.hostname = node[:host] 
-      def.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
-      def.vm.provision :shell, :inline => $hostsupdate
-      def.vm.provision :shell, :path => "bootstrap #{node[:bootstrap]}"
+      config.vm.hostname = node[:host] 
+      config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
+      config.vm.provision :shell, :inline => $hostsupdate
+      config.vm.provision :shell, :path => "#{node[:bootstrap]}"
 
       config.vm.provider "virtualbox" do |vb|
         vb.customize ["modifyvm", :id, "--memory", node[:memory]]

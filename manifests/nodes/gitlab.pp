@@ -1,4 +1,4 @@
-node octopussy {
+node gitlab {
 	include g10b-node
 	include mysql
 	include nginx
