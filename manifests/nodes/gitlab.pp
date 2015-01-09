@@ -7,7 +7,7 @@ node octopussy {
 	$gitlab_dbuser = 'gitlab'
 	$gitlab_dbpwd  = $mysql_password
 
-	class name {'gitlab_db':
+	class {'gitlab_db':
 		gitlab_dbname => $gitlab_dbname,
 		gitlab_dbuser => $gitlab_dbuser,
 		gitlab_dbpwd  => $gitlab_dbpwd,

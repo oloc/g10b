@@ -5,7 +5,7 @@
 		"host": "octopussy",
 		"memory": 1024,
 		"cpu": 1,
-		"bootstrap": "install-agent.sh"
+		"bootstrap": "agent"
 	},
 	{
 		"node": "g10b-orchestration",
@@ -13,7 +13,7 @@
 		"host": "rundeck",
 		"memory": 1024,
 		"cpu": 2,
-		"bootstrap": "install-agent.sh"
+		"bootstrap": "agent"
 	},
 	{
 		"node": "g10b-git-repository",
@@ -21,7 +21,7 @@
 		"host": "gitlab",
 		"memory": 1024,
 		"cpu": 1,
-		"bootstrap": "install-agent.sh"
+		"bootstrap": "agent"
 	},	
 	{
 		"node": "g10b-Continuous-Integration",
@@ -29,7 +29,7 @@
 		"host": "jenkins",
 		"memory": 2048,
 		"cpu": 2,
-		"bootstrap": "install-agent.sh"
+		"bootstrap": "agent"
 	},		
 	{
 		"node": "g10b-puppet-master",
@@ -37,6 +37,6 @@
 		"host": "puppet",
 		"memory": 1024,
 		"cpu": 2,
-		"bootstrap": "install-master.sh"
+		"bootstrap": "master"
 	}
 ]
