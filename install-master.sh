@@ -70,6 +70,7 @@ _echo "Configuration for the ${ProjectName} project..."
 
 _echo "Importing configuration..."
 cp ./etc/* ${confdir}/ | tee -a ${LogFile}
+echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
 
 _echo "Adding some modules..."
 grep -v '^#' modules.lst |
@@ -99,3 +100,4 @@ puppet resource service puppetmaster ensure=running enable=true
 _echo "Puppet is configuring itself..."
 _echo "puppet apply ${confdir}/manifests --modulepath=${confdir}/modules"
   sudo puppet apply ${confdir}/manifests --modulepath=${confdir}/modules
+  sudo puppet cert sign --all
