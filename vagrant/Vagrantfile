@@ -9,7 +9,7 @@ fileContent = JSON.parse(File.read("infra.json"), symbolize_names: true)
 
 fileContent.each do |node|
   if node[:bootstrap] == 'master' 
-    HostMaster = "#{SubNet}.#{node[:iplastdigit]}\t#{node[:host]}.#{Domain} #{node[:host]}"
+    HostMaster="#{SubNet}.#{node[:iplastdigit]}\t#{node[:host]}.#{Domain} #{node[:host]}"
   end
 end
 
@@ -30,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   fileContent.each do |node|
     config.vm.define node[:node] do |config|
-      hostsupdate="echo -e \"127.0.0.1\tlocalhost\n127.0.1.1\t#{node[:host]}.#{Domain} #{node[:host]}\n\n#{HostMaster}" > /etc/hosts"
+      hostsupdate="echo -e \"127.0.0.1\tlocalhost\n127.0.1.1\t#{node[:host]}.#{Domain} #{node[:host]}\n\n#{HostMaster}\" > /etc/hosts"
 
       config.vm.hostname = node[:host] 
       config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
