@@ -100,4 +100,3 @@ puppet resource service puppetmaster ensure=running enable=true
 _echo "Puppet is configuring itself..."
 _echo "puppet apply ${confdir}/manifests --modulepath=${confdir}/modules"
   sudo puppet apply ${confdir}/manifests --modulepath=${confdir}/modules
-  sudo puppet cert sign --all
