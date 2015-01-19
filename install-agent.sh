@@ -61,5 +61,6 @@ _echo "Puppet $(puppet --version) is installed."
 
 _echo "Starting Puppet Client..."
 #puppet resource service puppet       ensure=running enable=true
+sudo puppet agent --enable
 sudo puppet agent --verbose --test --debug --waitforcert 5
-sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
+sudo puppet resource cron puppet-agent ensure=present user=root minute=05 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
