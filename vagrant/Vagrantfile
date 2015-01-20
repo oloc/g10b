@@ -36,6 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
       config.vm.provision :shell, :inline => hostsupdate
       config.vm.provision :shell, :inline => "sudo apt-get install -y git"
+      config.vm.provision :shell, :inline => "rm -Rf ./g10b"
       config.vm.provision :shell, :inline => GitClone
       config.vm.provision :shell, :inline => "sudo ./g10b/install-#{node[:bootstrap]}.sh"
 

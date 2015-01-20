@@ -31,6 +31,7 @@ apt-get update
 apt-get --yes autoremove 
 apt-get --yes install puppet
 apt-get --yes --fix-broken install
+apt-get --yes autoremove
 
 _echo "User ${DftUser} control..."
 if [ X"${DftUser}" == X"$(awk -F":" -v var=${DftUser} '{ if ($1 == var) print $1; }' /etc/passwd)" ] ; then
@@ -62,5 +63,7 @@ _echo "Puppet $(puppet --version) is installed."
 _echo "Starting Puppet Client..."
 #puppet resource service puppet       ensure=running enable=true
 sudo puppet agent --enable
-sudo puppet agent --verbose --test --debug --waitforcert 5
+#sudo puppet agent --verbose --test --waitforcert 5
 sudo puppet resource cron puppet-agent ensure=present user=root minute=05 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
+_echo "Puppet agent scheduled."
+_echo "Server ready."

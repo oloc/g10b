@@ -41,6 +41,7 @@ if [ ! ${Offline} ] ; then
 	apt-get --yes autoremove 
 	apt-get --yes install puppetmaster puppet
 	apt-get --yes --fix-broken install
+	apt-get --yes autoremove 
 else
 	_echo "Installation offline"
 fi
@@ -100,3 +101,7 @@ puppet resource service puppetmaster ensure=running enable=true
 _echo "Puppet is configuring itself..."
 _echo "puppet apply ${confdir}/manifests --modulepath=${confdir}/modules"
   sudo puppet apply ${confdir}/manifests --modulepath=${confdir}/modules
+
+sudo puppet resource cron puppet-agent ensure=present user=root minute=05 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
+_echo "Puppet agent scheduled."
+_echo "Server ready."
