@@ -1,4 +1,4 @@
-class g10b-mysql::mysql {
+class g10b-mysql{
   
   package { "mysql-server": ensure => installed }
 
