@@ -28,6 +28,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box     = "g10b"
   config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
 
+  # to avoid 'stdin: is not a tty'
+  # See details : https://github.com/mitchellh/vagrant/issues/1673
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+
   fileContent.each do |node|
     config.vm.define node[:node] do |config|
       hostsupdate="echo -e \"127.0.0.1\tlocalhost\n127.0.1.1\t#{node[:host]}.#{Domain} #{node[:host]}\n\n#{HostMaster}\" > /etc/hosts"
