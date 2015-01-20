@@ -10,7 +10,7 @@ class g10b-node {
 		month    => '*',
 		monthday => '*',
 		hour     => '*',
-		minute   => '05',
+		minute   => '*/05',
 	}
 
 	package { "logrotate":
@@ -22,7 +22,7 @@ class g10b-node {
 		user     => 'root',
 		month    => '*',
 		monthday => '*',
-		hour     => '2',
+		hour     => '*/2',
 		minute   => '0',
 	}
 

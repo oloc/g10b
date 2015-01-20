@@ -37,7 +37,7 @@ if [ ! ${Offline} ] ; then
 	dpkg -i puppetlabs-release-${DstName}.deb
 	rm puppetlabs-release-${DstName}.deb
 	apt-get update
-	
+
 	apt-get --yes autoremove 
 	apt-get --yes install puppetmaster puppet
 	apt-get --yes --fix-broken install
@@ -102,6 +102,4 @@ _echo "Puppet is configuring itself..."
 _echo "puppet apply ${confdir}/manifests --modulepath=${confdir}/modules"
   sudo puppet apply ${confdir}/manifests --modulepath=${confdir}/modules
 
-sudo puppet resource cron puppet-agent ensure=present user=root minute=05 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
-_echo "Puppet agent scheduled."
 _echo "Server $(hostname -f) ready."
