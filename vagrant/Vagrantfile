@@ -43,6 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.provision :shell, :inline => "rm -Rf ./g10b"
       config.vm.provision :shell, :inline => GitClone
       config.vm.provision :shell, :inline => "sudo ./g10b/install-#{node[:bootstrap]}.sh"
+      config.vm.provision :shell, :inline => "sudo reboot"
 
       config.vm.provider "virtualbox" do |vb|
         vb.customize ["modifyvm", :id, "--memory", node[:memory]]

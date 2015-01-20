@@ -1,17 +1,17 @@
 node gitlab {
 	include g10b-node
-	include mysql
-	include nginx
+	include g10b-mysql
+	#include nginx
 
 	$gitlab_dbname = 'gitlab'
 	$gitlab_dbuser = 'gitlab'
 	$gitlab_dbpwd  = $mysql_password
 
-	class {'gitlab_db':
-		gitlab_dbname => $gitlab_dbname,
-		gitlab_dbuser => $gitlab_dbuser,
-		gitlab_dbpwd  => $gitlab_dbpwd,
-	}
+	#class {'gitlab_db':
+	#	gitlab_dbname => $gitlab_dbname,
+	#	gitlab_dbuser => $gitlab_dbuser,
+	#	gitlab_dbpwd  => $gitlab_dbpwd,
+	#}
 
 	class {'gitlab':
 		git_user          => 'gitlab',
@@ -25,10 +25,10 @@ node gitlab {
 	    ldap_enabled      => false,
 	}
 
-	Class['gitlab_db'] -> Class['gitlab'] ->
-	file { '/etc/nginx/conf.d/default.conf':
-		ensure => absent,
-	} ->
-	exec { '/usr/sbin/service nginx reload': }
+	#Class['gitlab_db'] -> Class['gitlab'] ->
+	#file { '/etc/nginx/conf.d/default.conf':
+	#	ensure => absent,
+	#} ->
+	#exec { '/usr/sbin/service nginx reload': }
 
 }
