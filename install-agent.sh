@@ -66,4 +66,4 @@ sudo puppet agent --enable
 #sudo puppet agent --verbose --test --waitforcert 5
 sudo puppet resource cron puppet-agent ensure=present user=root minute=05 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
 _echo "Puppet agent scheduled."
-_echo "Server ready."
+_echo "Server $(hostname -f) ready."

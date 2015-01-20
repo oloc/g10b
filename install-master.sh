@@ -104,4 +104,4 @@ _echo "puppet apply ${confdir}/manifests --modulepath=${confdir}/modules"
 
 sudo puppet resource cron puppet-agent ensure=present user=root minute=05 command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
 _echo "Puppet agent scheduled."
-_echo "Server ready."
+_echo "Server $(hostname -f) ready."
