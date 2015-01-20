@@ -3,7 +3,7 @@
 
 SubNet="192.168.10"
 Domain='oloc'
-RootBootstrap='env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git && ./g10b/'
+GitClone='env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git'
 
 fileContent = JSON.parse(File.read("infra.json"), symbolize_names: true)
 
@@ -35,7 +35,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.hostname = node[:host] 
       config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
       config.vm.provision :shell, :inline => hostsupdate
-      config.vm.provision :shell, :path => "#{node[:bootstrap]}"
+      config.vm.provision :shell, :inline => "sudo apt-get install -y git"
+      config.vm.provision :shell, :inline => GitClone
+      config.vm.provision :shell, :inline => "sudo ./g10b/install-#{node[:bootstrap]}.sh"
 
       config.vm.provider "virtualbox" do |vb|
         vb.customize ["modifyvm", :id, "--memory", node[:memory]]

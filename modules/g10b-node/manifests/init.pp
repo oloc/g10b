@@ -16,7 +16,7 @@ class g10b-node {
 	package { "logrotate":
 		ensure => installed,
 	}
-
+	
 	cron { 'logrotate':
 		command  => '/usr/sbin/logrotate',
 		user     => 'root',
