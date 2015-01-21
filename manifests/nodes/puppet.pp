@@ -1,13 +1,14 @@
 node puppet {
 	include g10b-node
+	include '::mysql::server'
 
 	$dshbrd_usr='dshbrd'
 	$dshbrd_grp='dshgrp'
 	$dshbrd_pwd='dshpwd'
 
-	class { '::mysql::server':
-		root_password => $mysql_password,
-	}
+#	class { '::mysql::server':
+#		root_password => $mysql_password,
+#	}
 
 	class { 'dashboard':
 		dashboard_ensure   => 'present',
@@ -16,6 +17,10 @@ node puppet {
 		dashboard_password => $dshbrd_pwd,
 		dashboard_db       => 'dashboard_prod',
 		mysql_root_pw      => $mysql_password,
+		dashboard_charset  => 'utf8',
+        dashboard_site     => $fqdn,
+        dashboard_port     => '8080',
+        passenger          => true,
 	}
 
 	cron{ 'Puppet Apply':
