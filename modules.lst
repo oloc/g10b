@@ -1,7 +1,7 @@
 # Supported modules
 puppetlabs-git
 puppetlabs-ntp
-# puppetlabs-mysql - Not relevant for dashboard, broken dependencies
+puppetlabs-mysql
 puppetlabs-dashboard
 # Approved modules
 rtyler-jenkins
