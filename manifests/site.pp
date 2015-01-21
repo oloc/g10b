@@ -7,4 +7,3 @@ $mysql_password = "myT0pS3cretPa55worD"
 
 
 node default {}
-import "nodes/*.pp"
