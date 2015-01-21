@@ -7,3 +7,6 @@ $mysql_password = "myT0pS3cretPa55worD"
 
 
 node default {}
+
+# ToDo: Import is deprecated
+import "nodes/*.pp"
