@@ -10,7 +10,7 @@ _echo "Loading configuration..."
 ProjectName=g10b
 DftUser='puppet'
 confdir='/etc/puppet'
-LogFile=./install.$(date +%Y%m%d.%H%M%S).log
+LogFile=./install.${ProjectName}.$(date +%Y%m%d.%H%M%S).log
 
 while getopts "o" Option
 do
@@ -48,9 +48,9 @@ fi
 
 _echo "User ${DftUser} control..."
 if [ X"${DftUser}" == X"$(awk -F":" -v var=${DftUser} '{ if ($1 == var) print $1; }' /etc/passwd)" ] ; then
-	echo "User ${DftUser} is declared and will be the owner of this installation."
+	_echo "User ${DftUser} is declared and will be the owner of this installation."
 else
-	echo "User ${DftUser} is not declared: Something went wrong."
+	_echo "User ${DftUser} is not declared: Something went wrong."
 	exit 1
 fi
 
