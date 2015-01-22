@@ -1,6 +1,6 @@
 node gitlab {
 	include g10b-node
-	include g10b-mysql
+#	include g10b-mysql
 	#include nginx
 
 	$gitlab_dbname = 'gitlab'
@@ -13,6 +13,10 @@ node gitlab {
 	#	gitlab_dbpwd  => $gitlab_dbpwd,
 	#}
 
+	class { '::mysql::server':
+    	root_password  =>  $mysql_password,
+    	databases => { $gitlab_dbname => { ensure => 'present' } }
+  	} ->
 	class {'gitlab':
 		git_user          => 'gitlab',
 	    git_email         => 'notifs@foobar.fr',
