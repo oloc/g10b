@@ -11,7 +11,7 @@ node puppet {
 	}
 
 # Modules-1575 is declared resolved - Details: https://tickets.puppetlabs.com/browse/MODULES-1575
-# but it's still do not work
+# but it still does not work
 #	class { 'dashboard':
 #		dashboard_ensure   => 'present',
 #		dashboard_user     => $dshbrd_usr,
