@@ -30,13 +30,27 @@ On your host (for example your laptop with virtualBox), follow the step by step 
 This commands will pop the needed VMs in virtualbox and install the stuff.
 If you possess a datacenter or a cloud and if you want to test the installation you have to launch the *install* scripts in the appropriate machines.
 
+## Usage
+You have modify the **/etc/hosts** of your host (for example your laptop with virtualBox) to add the different servers regarding the IP addresses you configure in the _Vagrantfile_ and in the _infra.json_ (as the iplastdigit parameter). As default, you have to add these lines:
+
+    192.168.10.50 puppet puppet.oloc
+    192.168.10.55 octopussy octopussy.oloc
+    192.168.10.56 rundeck rundeck.oloc
+    192.168.10.57 gitlab gitlab.oloc
+    192.168.10.58 jenkins jenkins.oloc
+
+At this stage you can have access to the Jenkins and the Rundeck in your browser at:
+    http://jenkins.oloc:8080/
+    http://rundeck.oloc:4440/
+
+
 ## Configuration
 The infrastructure is described in the **vagrant/infra.json** file. 
 
 The configuration of the servers is described in the puppet manifests and modules.
 
 ## Versions
-* _V0.3 - Add Rundeck, Gitlab and Jenkins (Work in progress)_
+* V0.3 - Add Rundeck and Jenkins
 * V0.2 - Vagrant pops the infra, and bootstap the installation of Puppet-master. Puppet-master feeds and configures itself.
 * V0.1 - script of installation of puppet-master on a system. It's more than a bootstrap. It's a bootstrap installing puppet-master and a feeder of modules and manifests needed to configure puppet itself by itself.
 
