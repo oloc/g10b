@@ -8,4 +8,5 @@ rtyler-jenkins
 opentable-rundeck
 # Any
 jfryman-nginx
-sbadia-gitlab
+#sbadia-gitlab - too many needed adds to make it available
+spuder-gitlab
