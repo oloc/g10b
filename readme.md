@@ -10,9 +10,9 @@ Anyway, currently the project V0.3 allows you automatically to:
 * Bootstap installation of Puppet agents and puppet master
 * Feed Puppet-master with modules and manifests for itself
 * Puppet-master configures itself
+* Puppet configures all machines
 
-WIP:
-* Configure puppet to abble agents updates
+Then Jenkins, GitLab, Rundeck and Puppet are ready!
 
 ## Prerequisites
 To use this tools, you need a hosting plateform with:
