@@ -1,4 +1,4 @@
-class g10b-security::directories {
+class g10b::directories {
 
         file { '/opt':
                 ensure => directory,

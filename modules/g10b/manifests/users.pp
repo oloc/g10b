@@ -1,4 +1,4 @@
-class g10b-security::users {
+class g10b::users {
 
 	$admuser='oloc'
 
