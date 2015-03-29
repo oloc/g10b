@@ -1,5 +1,5 @@
 node rundeck {
-	include g10b-node
+	include g10b
 
 	$rd_usr='rundeck'
 	$rd_grp='rundeck'

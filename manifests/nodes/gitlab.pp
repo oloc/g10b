@@ -1,5 +1,9 @@
 node gitlab {
-	include g10b-node
+	include git
+	include ntp
+	include g10b::users
+	include g10b::directories
+	include g10b::cron
 
 	class { 'gitlab' : 
 		puppet_manage_config => true,

@@ -39,7 +39,7 @@ class g10b::users {
 		group  => $admuser,
 		mode   => 644,
 		owner  => $admuser,
-		source => "puppet:///modules/g10b-security/bashrc",
+		source => "puppet:///modules/g10b/bashrc",
 	}
 
 	file { 'bash_aliases':
@@ -48,7 +48,7 @@ class g10b::users {
 		group  => $admuser,
 		mode   => 644,
 		owner  => $admuser,
-		source => "puppet:///modules/g10b-security/bash_aliases",
+		source => "puppet:///modules/g10b/bash_aliases",
 	}
 
 	file { 'profile':
@@ -57,7 +57,7 @@ class g10b::users {
 		group  => $admuser,
 		mode   => 644,
 		owner  => $admuser,
-		source => "puppet:///modules/g10b-security/profile",
+		source => "puppet:///modules/g10b/profile",
 	}
 
 }

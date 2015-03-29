@@ -1,5 +1,5 @@
 node puppet {
-	include g10b-node
+	include g10b
 
 	$dshbrd_usr='dshbrd'
 	$dshbrd_grp='dshgrp'
