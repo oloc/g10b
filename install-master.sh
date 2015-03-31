@@ -12,10 +12,11 @@ DftUser='puppet'
 confdir='/etc/puppet'
 LogFile=./install.${ProjectName}.$(date +%Y%m%d.%H%M%S).log
 
-while getopts "o" Option
+while getopts "ou" Option
 do
 	case ${Option} in
 	o|O) typeset -i Offline=1 ;;
+	u|U) typeset -i Update=1 ;;
 	esac
 done
 shift $(($OPTIND - 1))
@@ -67,10 +68,15 @@ _echo "Puppet $(puppet --version) is installed."
 # End of the bootstrap
 # The following part is the configuration of the modules and manifests for the project itself
 
-_echo "Configuration for the ${ProjectName} project..."
-
+_echo "Puppet configuration for the ${ProjectName} project..."
+FromDir='.'
+if [ ${Update} ] ; then
+	env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/${ProjectName}.git /tmp/${ProjectName}
+	FromDir=/tmp/${ProjectName}
+fi
+pushd ${FromDir}
 _echo "Importing configuration..."
-cp ./etc/* ${confdir}/ | tee -a ${LogFile}
+cp ${FromDir}/etc/* ${confdir}/ | tee -a ${LogFile}
 echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
 
 _echo "Adding some modules..."
@@ -84,11 +90,12 @@ done
 for Thingy in modules manifests
 do
 	_echo "Importing ${ProjectName} ${Thingy}..."
-	cp -Rv ./${Thingy}/* ${confdir}/${Thingy}/           | tee -a ${LogFile}
+	cp -Rv ${FromDir}/${Thingy}/* ${confdir}/${Thingy}/           | tee -a ${LogFile}
 	chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}  | tee -a ${LogFIle}
 done
 
-popd
+popd # pushd ${FromDir}
+popd # pushd $(dirname $0)
 
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
 chown -R ${DftUser}:${DftUser} ${confdir}
