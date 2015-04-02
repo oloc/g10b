@@ -4,7 +4,7 @@
 SubNet="192.168.10"
 Domain='oloc'
 Project='g10b'
-GitClone='env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git -b $(git branch | grep '*' | cut -c3-)'
+GitClone='env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git -b $(git branch | grep \'*\' | cut -c3-)'
 
 fileContent = JSON.parse(File.read("infra.json"), symbolize_names: true)
 
