@@ -3,6 +3,7 @@
 
 SubNet="192.168.10"
 Domain='oloc'
+Project='g10b'
 GitClone='env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git'
 
 fileContent = JSON.parse(File.read("infra.json"), symbolize_names: true)
@@ -10,6 +11,9 @@ fileContent = JSON.parse(File.read("infra.json"), symbolize_names: true)
 fileContent.each do |node|
   if node[:bootstrap] == 'master' 
     HostMaster="#{SubNet}.#{node[:iplastdigit]}\t#{node[:host]}.#{Domain} #{node[:host]}"
+  end
+  if node[:node] == 'g10b-gateway'
+    Gateway="#{SubNet}.#{node[:iplastdigit]}\t#{Project}.#{Domain} #{Project}"
   end
 end
 
@@ -23,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box     = "g10b"
+  config.vm.box     = "#{Project}"
   config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
 
   # to avoid 'stdin: is not a tty'
@@ -32,15 +36,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   fileContent.each do |node|
     config.vm.define node[:node] do |config|
-      hostsupdate="echo -e \"127.0.0.1\tlocalhost\n127.0.1.1\t#{node[:host]}.#{Domain} #{node[:host]}\n\n#{HostMaster}\" > /etc/hosts"
+      hostsupdate="echo -e \"127.0.0.1\tlocalhost\n127.0.1.1\t#{node[:host]}.#{Domain} #{node[:host]}\n\n#{HostMaster}\n#{Gateway}\" > /etc/hosts"
 
       config.vm.hostname = node[:host] 
       config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
       config.vm.provision :shell, :inline => hostsupdate
       config.vm.provision :shell, :inline => "sudo apt-get install -y git"
-      config.vm.provision :shell, :inline => "rm -Rf ./g10b"
+      config.vm.provision :shell, :inline => "rm -Rf ./#{Project}"
       config.vm.provision :shell, :inline => GitClone
-      config.vm.provision :shell, :inline => "sudo ./g10b/install-#{node[:bootstrap]}.sh"
+      config.vm.provision :shell, :inline => "sudo ./#{Project}/install-#{node[:bootstrap]}.sh"
       config.vm.provision :shell, :inline => "sudo reboot"
 
       config.vm.provider "virtualbox" do |vb|
@@ -51,3 +55,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 end
+
+puts "Add these lines in your /etc/hosts :"
+puts "#{Gateway}"

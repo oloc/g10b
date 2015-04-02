@@ -1,4 +1,4 @@
-node gitlab {
+node repositories {
 	include git
 	include ntp
 	include g10b::users

@@ -1,8 +1,10 @@
-node rundeck {
+node karajan {
 	include g10b
 
 	$rd_usr='rundeck'
 	$rd_grp='rundeck'
+
+	class { 'jenkins': }
 
 	group { 'Rundeck Group':
 		name => $rd_grp,

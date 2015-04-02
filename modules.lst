@@ -2,6 +2,7 @@
 puppetlabs-git
 puppetlabs-ntp
 puppetlabs-mysql
+puppetlabs-apache
 puppetlabs-dashboard
 # Approved modules
 rtyler-jenkins
