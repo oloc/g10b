@@ -71,6 +71,8 @@ _echo "Puppet $(puppet --version) is installed."
 _echo "Puppet configuration for the ${ProjectName} project..."
 FromDir='.'
 if [ ${Update} ] ; then
+	_echo "Update in progress..."
+	rm -Rf /tmp/${ProjectName} 2>/dev/null
 	env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/${ProjectName}.git /tmp/${ProjectName}
 	FromDir=/tmp/${ProjectName}
 fi

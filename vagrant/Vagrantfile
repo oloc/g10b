@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 SubNet="192.168.10"
-Domain='oloc'
-Project='g10b'
+Domain="oloc"
+Project="g10b"
 GitClone='env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git'
 
 fileContent = JSON.parse(File.read("infra.json"), symbolize_names: true)

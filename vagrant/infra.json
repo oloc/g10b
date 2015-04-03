@@ -4,7 +4,7 @@
 		"iplastdigit": "50",
 		"host": "octopussy",
 		"memory": 512,
-		"cpu": 1,
+		"cpu": 0.5,
 		"bootstrap": "agent"
 	},
 	{
@@ -12,22 +12,22 @@
 		"iplastdigit": "55",
 		"host": "puppet",
 		"memory": 1024,
-		"cpu": 2,
+		"cpu": 1,
 		"bootstrap": "master"
 	},
 	{
 		"node": "g10b-orchestration",
 		"iplastdigit": "56",
 		"host": "karajan",
-		"memory": 2048,
-		"cpu": 2,
+		"memory": 1024,
+		"cpu": 1,
 		"bootstrap": "agent"
 	},
 	{
 		"node": "g10b-repositories",
 		"iplastdigit": "57",
 		"host": "repositories",
-		"memory": 512,
+		"memory": 1024,
 		"cpu": 1,
 		"bootstrap": "agent"
 	},

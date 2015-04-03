@@ -7,6 +7,8 @@ puppetlabs-dashboard
 # Approved modules
 rtyler-jenkins
 opentable-rundeck
+ghoneycutt-dnsclient
 # Any
 jfryman-nginx
 spuder-gitlab
+ajjahn-dns
