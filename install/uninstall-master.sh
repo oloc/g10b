@@ -1,8 +1,13 @@
 #!/bin/bash 
 set -e
 
+if [ $UID != 0 ] ; then
+	echo "Please use sudo or root account."
+	exit
+fi
+
 pushd $(dirname $0)
-. $(basename $0).cfg
+. ./install.cfg
 
 apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
 apt-get --yes purge puppetlabs-release
