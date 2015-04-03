@@ -12,7 +12,7 @@ fileContent.each do |node|
   if node[:bootstrap] == 'master' 
     HostMaster="#{SubNet}.#{node[:iplastdigit]}\t#{node[:host]}.#{Domain} #{node[:host]}"
   end
-  if node[:node] == 'pouet-gateway'
+  if node[:node] == "#{Project}-gateway"
     Gateway="#{SubNet}.#{node[:iplastdigit]}\t#{Project}.#{Domain} #{Project}"
   end
 end
@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  #config.vm.box     = "#{Project}"
+  #config.vm.box     = "ubuntu/trusty64"
   #config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
   config.vm.box     = "oloc/ubuntu-14.04-64-puppet-agent"
   config.vm.box_url = "https://vagrantcloud.com/oloc/boxes/ubuntu-14.04-64-puppet-agent/versions/0.0.4/providers/virtualbox.box"
@@ -45,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.provision :shell, :inline => hostsupdate
       config.vm.provision :shell, :inline => "rm -Rf ./#{Project}"
       config.vm.provision :shell, :inline => GitClone
-      if #{node[:bootstrap]} == 'master'
+      if node[:bootstrap] == 'master'
         config.vm.provision :shell, :inline => "sudo ./#{Project}/install/install.sh #{node[:bootstrap]}"
         config.vm.provision :shell, :inline => "sudo reboot"
       end
@@ -58,6 +58,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 end
-
-puts "Add these lines in your /etc/hosts :"
-puts "#{Gateway}"

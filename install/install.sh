@@ -27,12 +27,13 @@ else
 fi
 
 pushd $(dirname $0)
-. ./install.cfg
+./install.cfg
 
 _echo "Boostraping Installation of Puppet..."
 	_echo "Prerequisites installation..."
 	apt-get install -y lsb-release
 	DstName=$(lsb_release -c -s)
+	_echo "lsb_release=${DstName}"
 	apt-get install -y wget
 
 	_echo "Enable the Puppet Labs Package Repository..."
@@ -41,7 +42,11 @@ _echo "Boostraping Installation of Puppet..."
 	rm puppetlabs-release-${DstName}.deb
 	apt-get update
 
+	_echo "Clean-up potential old version of puppet and puppetmaster..."
+	apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
+	apt-get --yes purge puppetlabs-release
 	apt-get --yes autoremove 
+	_echo "apt-get install ${Package}"
 	apt-get --yes install ${Package}
 	apt-get --yes --fix-broken install
 	apt-get --yes autoremove 
