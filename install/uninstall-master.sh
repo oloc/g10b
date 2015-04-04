@@ -15,8 +15,8 @@ apt-get --yes autoremove
 
 grep "dir=" ${confdir}/puppet.conf | while read Line
 do
-	eval rm -Rf $(echo ${Line} | awk -F"=" '{print $2}')
+	echo "rm -Rf $(echo ${Line} | awk -F"=" '{print $2}')"
+	 eval rm -Rf $(echo ${Line} | awk -F"=" '{print $2}')
 done
 
 popd
-rm -Rf $(dirname $0)
