@@ -2,19 +2,14 @@
 # Due to: invoke-rc.d: initscript puppetmaster, action "start" failed. 
 set +e
 
-_echo() {
-	echo "$(date +%Y%m%d-%H%M%S) - $1" | tee -a ${LogFile}
-}
-
-_usage(){
-	echo "Usage: $(basename) <master | agent>\nPuppet master will be installed with the puppet agent."
-	exit
-}
-
 if [ $UID != 0 ] ; then
 	echo "Please use sudo or root account."
 	exit
 fi
+
+pushd $(dirname $0)
+. ./install.cfg
+. ./install.lib
 
 if [ $# != 1 ] ; then
 	_usage
@@ -27,9 +22,6 @@ else
 	esac
 fi
 
-pushd $(dirname $0)
-. ./install.cfg
-
 _echo "DftUser=${DftUser}"
 _echo "confdir=${confdir}"
 
@@ -38,21 +30,24 @@ _echo "Boostraping Installation of Puppet..."
 	. ./uninstall-${Puppet}.sh
 
 	_echo "Prerequisites installation..."
-	apt-get install -y lsb-release
+	[ ! $(which lsb-release) ] && _apt-get install -y lsb-release
 	DstName=$(lsb_release -c -s)
 	_echo "lsb_release=${DstName}"
-	apt-get install -y wget
+	[ ! $(which wget) ] && _apt-get install -y wget
 
-	_echo "Enable the Puppet Labs Package Repository..."
-	wget https://apt.puppetlabs.com/puppetlabs-release-${DstName}.deb
-	dpkg -i puppetlabs-release-${DstName}.deb
-	rm puppetlabs-release-${DstName}.deb
-	apt-get update 
+
+	if [ ! ${OffLine} ] ; then
+		_echo "Enable the Puppet Labs Package Repository..."		
+		wget https://apt.puppetlabs.com/puppetlabs-release-${DstName}.deb
+		dpkg -i puppetlabs-release-${DstName}.deb
+		rm puppetlabs-release-${DstName}.deb
+	fi
+	_apt-get update 
 
 	_echo "apt-get install ${Package}"
-	apt-get --yes install ${Package}
-	apt-get --yes --fix-broken install
-	apt-get --yes autoremove 
+	_apt-get --yes install ${Package}
+	_apt-get --yes --fix-broken install
+	_apt-get --yes autoremove 
 
 _echo "User ${DftUser} control..."
 	if [ X"${DftUser}" == X"$(awk -F":" -v var=${DftUser} '{ if ($1 == var) print $1; }' /etc/passwd)" ] ; then

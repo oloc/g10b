@@ -16,3 +16,5 @@ If you have already install the all things, push some updates in the puppet stuf
     cd <root tree>/g10b/install
     . ./config-master.sh -u
 
+## Useful option
+You can toggle the **Offline** parameter to 1 in the g10b/install/install.cfg if your are offline. This option can help if you want to launch without network and avoid the "apt-get" instructions and their friends. 

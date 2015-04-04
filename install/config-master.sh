@@ -1,15 +1,13 @@
 #!/bin/bash 
 
-_echo() {
-	echo "$(date +%Y%m%d-%H%M%S) - $1" | tee -a ${LogFile}
-}
-
 if [ $UID != 0 ] ; then
 	echo "Please use sudo or root account."
 	exit
 fi
 
+pushd $(dirname $0)
 . ./install.cfg
+. ./install.lib
 
 while getopts "u" Option
 do
@@ -21,7 +19,7 @@ shift $(($OPTIND - 1))
 
 
 _echo "Puppet configuration for the ${ProjectName} project..."
-FromDir='..'
+FromDir="$(pwd)/.."
 if [ ${Update} ] ; then
 	_echo "Update in progress..."
 	rm -Rf /tmp/${ProjectName} 2>/dev/null
@@ -38,17 +36,18 @@ _echo "Adding some modules..."
 	while read Module
 	do
 		_echo "puppet module install ${Module}"
-		puppet module install ${Module}
+		[ ! ${OffLine} ] && puppet module install ${Module}
 	done
 
 	for Thingy in modules manifests
 	do
 		_echo "Importing ${ProjectName} ${Thingy}..."
-		cp -Rv ${FromDir}/${Thingy}/* ${confdir}/${Thingy}/           | tee -a ${LogFile}
+		cp -Rv ${FromDir}/${Thingy}/* ${confdir}/${Thingy}/  | tee -a ${LogFile}
 		chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}  | tee -a ${LogFIle}
 	done
 
 popd # pushd ${FromDir}
+popd # pushd $(dirname $0)
 
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
 chown -R ${DftUser}:${DftUser} ${confdir}

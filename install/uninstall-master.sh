@@ -5,11 +5,13 @@ if [ $UID != 0 ] ; then
 	exit
 fi
 
+pushd $(dirname $0)
 . ./install.cfg
+. ./install.lib
 
-apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
-apt-get --yes purge puppetlabs-release
-apt-get --yes autoremove
+_apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
+_apt-get --yes purge puppetlabs-release
+_apt-get --yes autoremove
 
 grep "dir=" ${confdir}/puppet.conf | while read Line
 do
@@ -19,3 +21,5 @@ done
 
 echo "rm -Rf ${confdir}"
       rm -Rf ${confdir}
+
+popd

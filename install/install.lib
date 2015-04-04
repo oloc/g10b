@@ -1,0 +1,20 @@
+#!/bin/bash 
+
+_apt-get(){
+	Args=$*
+	if [ ${OffLine} ] ; then
+		_echo "Offline * apt-get ${Args}"
+	else
+		_echo "apt-get ${Args}"
+		       apt-get ${Args} | tee -a ${LogFile}
+	fi
+}
+
+_echo() {
+	echo "$(date +%Y%m%d-%H%M%S) - $1" | tee -a ${LogFile}
+}
+
+_usage(){
+	echo "Usage: $(basename) <master | agent>\nPuppet master will be installed with the puppet agent."
+	exit
+}
