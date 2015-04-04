@@ -43,9 +43,7 @@ _echo "Boostraping Installation of Puppet..."
 	apt-get update
 
 	_echo "Clean-up potential old version of puppet and puppetmaster..."
-	apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
-	apt-get --yes purge puppetlabs-release
-	apt-get --yes autoremove 
+	./uninstall-${Package}.sh
 	_echo "apt-get install ${Package}"
 	apt-get --yes install ${Package}
 	apt-get --yes --fix-broken install
