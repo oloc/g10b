@@ -5,7 +5,7 @@ if [ $UID != 0 ] ; then
 	exit
 fi
 
-pushd $(pwd)/$(dirname $0)
+pushd $(pwd)/$(dirname $0) 2>/dev/null
 . ./install.cfg
 . ./install.lib
 
@@ -38,7 +38,7 @@ _echo "Adding some modules..."
 		_echo "puppet module install ${Module}"
 		(( ! ${OffLine} )) && puppet module install ${Module}
 	done
-1
+
 	for Thingy in modules manifests
 	do
 		_echo "Importing ${ProjectName} ${Thingy}..."
