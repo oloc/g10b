@@ -1,20 +1,22 @@
 # Install
-Here are the scripts helping to install puppet master and puppet agent without the vagrant boxes. They were the bootstraps in the vagrant files. I have extracted them from the version V0.3, I have cleaned them a little bit, and I put them here. But I didn't test them.
+Here are the scripts helping to install puppet master and puppet agent without the vagrant boxes. That can be helpfull if you want to pop your lab in a cloud. My advice is to create two instances, one with the Puppet agent, and one with the Puppet master, and to save them as template. At this point you should at the same situation than with vagrant.
 
 ## Usage
-So, with this caution, I suggest to use it like that:
+So, with this advice, I suggest to use in each instance (agent and master) that:
 
     env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git
     cd ./g10b/install
     . ./install.sh XXXX			# with XXXX=agent or master
 
 ## Useful use case
-I decide to split install-master.sh into install-master.sh and config-master.sh with the goal to be abble to launch an update of the puppet-master configuration without to have to launch the whole process from the provision.
+I decide to separate the installation and the configuration scripts with the goal to be abble to launch an update of the puppet-master configuration without to launch the whole process with the installation.
 
-If you have already install the all things, push some updates in the puppet stuff, you just have to do:
+If you have already install the all things and if you want to push some updates in the puppet stuff, you just have to do:
 
     cd <root tree>/g10b/install
     . ./config-master.sh -u
+
+This _-u option_ clone the github repository into a temporary directory and copy the puppet configuration files and manifests files. And, if you are not offline (see below), this _-u option_ install puppet modules regarding the retrieved **modules.lst** file.
 
 ## Useful option
 You can toggle the **OffLine** parameter to 1 in the g10b/install/install.cfg if your are offline. This option can help if you want to launch without network and avoid the "apt-get" instructions and their friends. 

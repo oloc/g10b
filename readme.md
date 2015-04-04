@@ -6,8 +6,8 @@ At this point, I think to myself "They install!?" Ouch! We are speaking of an ap
 As a starter, Vagrant provisions the VMs and bootstraps a basic installation (puppet master or puppet agent). Puppet master installs itself and with the recurring appliance (*puppet agent --test*) installs the others servers. Ambitious ? I'm not sure, that's the real world.
 
 Anyway, currently the project V0.3 allows you automatically to:
-* Vagrant pops the VMs
-* Bootstap installation of Puppet agents and puppet master
+* Vagrant pops the VMs with Puppet agents
+* Bootstap installation of Puppet master
 * Feed Puppet-master with modules and manifests for itself
 * Puppet-master configures itself
 * Puppet configures all machines
