@@ -1,5 +1,4 @@
 #!/bin/bash 
-set -e
 
 _echo() {
 	echo "$(date +%Y%m%d-%H%M%S) - $1" | tee -a ${LogFile}

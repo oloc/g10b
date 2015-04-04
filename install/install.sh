@@ -1,5 +1,6 @@
-#!/bin/bash 
-set -e
+#!/bin/bash
+# Due to: invoke-rc.d: initscript puppetmaster, action "start" failed. 
+set +e
 
 _echo() {
 	echo "$(date +%Y%m%d-%H%M%S) - $1" | tee -a ${LogFile}
@@ -43,9 +44,8 @@ _echo "Boostraping Installation of Puppet..."
 	wget https://apt.puppetlabs.com/puppetlabs-release-${DstName}.deb
 	dpkg -i puppetlabs-release-${DstName}.deb
 	rm puppetlabs-release-${DstName}.deb
-	apt-get update
+	apt-get update 
 
-	set -e
 	_echo "apt-get install ${Package}"
 	apt-get --yes install ${Package}
 	apt-get --yes --fix-broken install

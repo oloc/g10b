@@ -1,5 +1,4 @@
 #!/bin/bash 
-set +e
 
 if [ $UID != 0 ] ; then
 	echo "Please use sudo or root account."
