@@ -7,7 +7,7 @@ if [ $UID != 0 ] ; then
 	exit
 fi
 
-pushd $(dirname $0)
+pushd $(pwd)/$(dirname $0)
 . ./install.cfg
 . ./install.lib
 
@@ -43,8 +43,6 @@ _echo "Boostraping Installation of Puppet..."
 		rm puppetlabs-release-${DstName}.deb
 	fi
 	_apt-get update 
-
-	_echo "apt-get install ${Package}"
 	_apt-get --yes install ${Package}
 	_apt-get --yes --fix-broken install
 	_apt-get --yes autoremove 

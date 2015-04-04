@@ -6,7 +6,7 @@ if [ $UID != 0 ] ; then
 	exit
 fi
 
-pushd $(dirname $0)
+pushd $(pwd)/$(dirname $0)
 . ./install.cfg
 . ./install.lib
 
