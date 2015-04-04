@@ -7,7 +7,7 @@ if [ $UID != 0 ] ; then
 fi
 
 pushd $(dirname $0)
-. ./install.cfg
+./install.cfg
 
 apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
 apt-get --yes purge puppetlabs-release
