@@ -43,7 +43,7 @@ _echo "Boostraping Installation of Puppet..."
 	apt-get update
 
 	_echo "Clean-up potential old version of puppet and puppetmaster..."
-	./uninstall-${Package}.sh
+	./uninstall-${Puppet}.sh
 	_echo "apt-get install ${Package}"
 	apt-get --yes install ${Package}
 	apt-get --yes --fix-broken install
