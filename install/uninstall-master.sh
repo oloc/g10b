@@ -5,7 +5,6 @@ if [ $UID != 0 ] ; then
 	exit
 fi
 
-pushd $(pwd)/$(dirname $0)
 . ./install.cfg
 . ./install.lib
 
@@ -21,5 +20,3 @@ done
 
 echo "rm -Rf ${confdir}"
       rm -Rf ${confdir}
-
-popd

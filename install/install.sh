@@ -66,8 +66,8 @@ _echo "Puppet $(puppet --version) is installed."
 
 # End of the bootstrap
 # The following part is the configuration of the modules and manifests for the project itself
-./config-${Puppet}.sh
+. ./config-${Puppet}.sh
 
-popd # pushd $(dirname $0)
+popd 2>/dev/null # pushd $(dirname $0)
 
 _echo "Server $(hostname -f) ready."

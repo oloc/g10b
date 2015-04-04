@@ -11,10 +11,10 @@ node octopussy {
         'gitlab':
             zone => 'gitlab.oloc',
             data => ["$Subnet.57"];
-        'jenkins'
+        'jenkins':
             zone => 'jenkins.oloc',
             data => ["$Subnet.56"];
-        'rundeck'
+        'rundeck':
             zone => 'rundeck.oloc',
             data => ["$Subnet.56"];
     }
