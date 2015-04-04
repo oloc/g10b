@@ -7,7 +7,7 @@ if [ $UID != 0 ] ; then
 fi
 
 pushd $(dirname $0)
-./install.cfg
+. ./install.cfg
 
 apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
 apt-get --yes purge puppetlabs-release
@@ -18,5 +18,8 @@ do
 	echo "rm -Rf $(echo ${Line} | awk -F"=" '{print $2}')"
 	 eval rm -Rf $(echo ${Line} | awk -F"=" '{print $2}')
 done
+
+echo "rm -Rf ${confdir}"
+      rm -Rf ${confdir}
 
 popd

@@ -27,7 +27,7 @@ else
 fi
 
 pushd $(dirname $0)
-./install.cfg
+. ./install.cfg
 
 _echo "Boostraping Installation of Puppet..."
 	_echo "Prerequisites installation..."
