@@ -2,7 +2,7 @@
 
 _apt-get(){
 	Args=$*
-	if [ ${OffLine} ] ; then
+	if (( ${OffLine} )) ; then
 		_echo "Offline * apt-get ${Args}"
 	else
 		_echo "apt-get ${Args}"

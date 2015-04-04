@@ -1,5 +1,5 @@
 #!/bin/bash
-# Due to: invoke-rc.d: initscript puppetmaster, action "start" failed. 
+#2 Due to: invoke-rc.d: initscript puppetmaster, action "start" failed. 
 set +e
 
 if [ $UID != 0 ] ; then
@@ -35,8 +35,7 @@ _echo "Boostraping Installation of Puppet..."
 	_echo "lsb_release=${DstName}"
 	[ ! $(which wget) ] && _apt-get install -y wget
 
-
-	if [ ! ${OffLine} ] ; then
+	if (( ! ${OffLine} )) ; then
 		_echo "Enable the Puppet Labs Package Repository..."		
 		wget https://apt.puppetlabs.com/puppetlabs-release-${DstName}.deb
 		dpkg -i puppetlabs-release-${DstName}.deb

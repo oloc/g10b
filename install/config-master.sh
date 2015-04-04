@@ -36,9 +36,9 @@ _echo "Adding some modules..."
 	while read Module
 	do
 		_echo "puppet module install ${Module}"
-		[ ! ${OffLine} ] && puppet module install ${Module}
+		(( ! ${OffLine} )) && puppet module install ${Module}
 	done
-
+1
 	for Thingy in modules manifests
 	do
 		_echo "Importing ${ProjectName} ${Thingy}..."
