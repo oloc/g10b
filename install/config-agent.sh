@@ -10,18 +10,16 @@ if [ $UID != 0 ] ; then
 	exit
 fi
 
-pushd $(dirname $0)
 . ./install.cfg
 
 _echo "Configuration for the ${ProjectName} project..."
 
 _echo "Importing configuration..."
-cp ./etc/* ${confdir}/ | tee -a ${LogFile}
+cp ../etc/* ${confdir}/ | tee -a ${LogFile}
 
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
 chown -R ${DftUser}:${DftUser} ${confdir}
 
-popd
 
 _echo "Starting Puppet Client..."
 #puppet resource service puppet       ensure=running enable=true

@@ -30,6 +30,9 @@ fi
 pushd $(dirname $0)
 . ./install.cfg
 
+_echo "DftUser=${DftUser}"
+_echo "confdir=${confdir}"
+
 _echo "Boostraping Installation of Puppet..."
 	_echo "Clean-up potential old version of puppet and puppetmaster..."
 	. ./uninstall-${Puppet}.sh

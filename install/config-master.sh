@@ -9,7 +9,6 @@ if [ $UID != 0 ] ; then
 	exit
 fi
 
-pushd $(dirname $0)
 . ./install.cfg
 
 while getopts "u" Option
@@ -22,7 +21,7 @@ shift $(($OPTIND - 1))
 
 
 _echo "Puppet configuration for the ${ProjectName} project..."
-FromDir='.'
+FromDir='..'
 if [ ${Update} ] ; then
 	_echo "Update in progress..."
 	rm -Rf /tmp/${ProjectName} 2>/dev/null
@@ -50,7 +49,6 @@ _echo "Adding some modules..."
 	done
 
 popd # pushd ${FromDir}
-popd # pushd $(dirname $0)
 
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
 chown -R ${DftUser}:${DftUser} ${confdir}
