@@ -1,12 +1,11 @@
 #!/bin/bash 
-set -e
+set +e
 
 if [ $UID != 0 ] ; then
 	echo "Please use sudo or root account."
 	exit
 fi
 
-pushd $(dirname $0)
 . ./install.cfg
 
 apt-get --yes purge puppetmaster puppet puppetmaster-common puppet-common
@@ -21,5 +20,3 @@ done
 
 echo "rm -Rf ${confdir}"
       rm -Rf ${confdir}
-
-popd

@@ -30,6 +30,9 @@ pushd $(dirname $0)
 . ./install.cfg
 
 _echo "Boostraping Installation of Puppet..."
+	_echo "Clean-up potential old version of puppet and puppetmaster..."
+	. ./uninstall-${Puppet}.sh
+
 	_echo "Prerequisites installation..."
 	apt-get install -y lsb-release
 	DstName=$(lsb_release -c -s)
@@ -42,8 +45,7 @@ _echo "Boostraping Installation of Puppet..."
 	rm puppetlabs-release-${DstName}.deb
 	apt-get update
 
-	_echo "Clean-up potential old version of puppet and puppetmaster..."
-	./uninstall-${Puppet}.sh
+	set -e
 	_echo "apt-get install ${Package}"
 	apt-get --yes install ${Package}
 	apt-get --yes --fix-broken install
