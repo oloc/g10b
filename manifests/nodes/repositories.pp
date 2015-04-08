@@ -8,7 +8,7 @@ node repositories {
 	class { 'gitlab' : 
 		puppet_manage_config => true,
 		gitlab_branch        => '7.0.0',
-		external_url         => 'http://gitlab.oloc',
+		external_url         => "http://gitlab.$::domain",
 		# admin@local.host
 		# 5iveL!fe
 	}

@@ -2,26 +2,27 @@ node octopussy {
 	include g10b
     include dns::server
 
-    $Subnet = '192.168.10'
+    $project = "g10b"
+    $subnet  = '192.168.10'
 
     dns::server::options { '/etc/bind/named.conf.options':
         forwarders => [ '8.8.8.8', '8.8.4.4' ]
     }
     dns::record::a {
         'gitlab':
-            zone => 'gitlab.oloc',
-            data => ["$Subnet.57"];
+            zone => "gitlab.$::domain",
+            data => ["$subnet.57"];
         'jenkins':
-            zone => 'jenkins.oloc',
-            data => ["$Subnet.56"];
+            zone => "jenkins.$::domain",
+            data => ["$subnet.56"];
         'rundeck':
-            zone => 'rundeck.oloc',
-            data => ["$Subnet.56"];
+            zone => "rundeck.$::domain",
+            data => ["$subnet.56"];
     }
 
 	class  { 'apache': }
 
-    file { '/var/www/g10b/':
+    file { "/var/www/$project/":
             ensure => directory,
             group => "root",
             mode => 775,
@@ -31,12 +32,12 @@ node octopussy {
     file { 'index':
     	ensure => file,
     	mode   => 644,
-    	path   => "/var/www/g10b/index.html",
-    	source => "puppet:///modules/g10b/index.html",
+    	path   => "/var/www/$project/index.html",
+    	source => "puppet:///modules/$project/index.html",
     }
 
-	apache::vhost { 'g10b.oloc':
-		docroot    => '/var/www/g10b/',
+	apache::vhost { "$project.$::domain":
+		docroot    => "/var/www/$project/",
 		proxy_pass => [
 		{ 'path' => '/puppet',  'url' => 'http://puppet.oloc/'  },
 		{ 'path' => '/rundeck', 'url' => 'http://rundeck.oloc:4440/' },

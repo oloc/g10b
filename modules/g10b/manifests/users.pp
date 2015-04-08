@@ -1,6 +1,7 @@
 class g10b::users {
 
 	$admuser='oloc'
+	$project="g10b"
 
 	group { 'admin account group':
 		name => $admuser,
@@ -39,7 +40,7 @@ class g10b::users {
 		group  => $admuser,
 		mode   => 644,
 		owner  => $admuser,
-		source => "puppet:///modules/g10b/bashrc",
+		source => "puppet:///modules/$project/bashrc",
 	}
 
 	file { 'bash_aliases':
@@ -48,7 +49,7 @@ class g10b::users {
 		group  => $admuser,
 		mode   => 644,
 		owner  => $admuser,
-		source => "puppet:///modules/g10b/bash_aliases",
+		source => "puppet:///modules/$project/bash_aliases",
 	}
 
 	file { 'profile':
@@ -57,7 +58,7 @@ class g10b::users {
 		group  => $admuser,
 		mode   => 644,
 		owner  => $admuser,
-		source => "puppet:///modules/g10b/profile",
+		source => "puppet:///modules/$project/profile",
 	}
 
 }

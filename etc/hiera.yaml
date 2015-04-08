@@ -1,2 +1,23 @@
-:dnsclient:
-	:nameservers: octopussy.oloc
+---
+:backends:
+  - yaml
+:hierarchy:
+  - defaults
+  - "%{clientcert}"
+  - "%{environment}"
+  - global
+
+:yaml:
+# datadir is empty here, so hiera uses its defaults:
+# - /var/lib/hiera on *nix
+# - %CommonAppData%\PuppetLabs\hiera\var on Windows
+# When specifying a datadir, make sure the directory exists.
+  :datadir:
+
+#common:
+#- project: g10b
+#- subnet: '192.168.10'
+#- admusr: oloc
+#- admgrp: adm
+#:dnsclient:
+#	:nameservers: octopussy.oloc
