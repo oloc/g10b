@@ -39,10 +39,10 @@ node octopussy {
 	apache::vhost { "$project.$::domain":
 		docroot    => "/var/www/$project/",
 		proxy_pass => [
-		{ 'path' => '/puppet',  'url' => 'http://puppet.oloc/'  },
-		{ 'path' => '/rundeck', 'url' => 'http://rundeck.oloc:4440/' },
-		{ 'path' => '/gitlab',  'url' => 'http://gitlab.oloc/'  },
-		{ 'path' => '/jenkins', 'url' => 'http://jenkins.oloc:8080/' },
+		{ 'path' => '/puppet',  'url' => "http://puppet.$::domain/"  },
+		{ 'path' => '/rundeck', 'url' => "http://rundeck.$::domain:4440/" },
+		{ 'path' => '/gitlab',  'url' => "http://gitlab.$::domain/"  },
+		{ 'path' => '/jenkins', 'url' => "http://jenkins.$::domain:8080/" },
 		],
 	}
 }
