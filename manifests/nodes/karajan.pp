@@ -25,7 +25,7 @@ node karajan {
 		#group => $rd_grp,
 		# I have to force the jre because the default in rundeck::params is not appropriate.
 		jre_name    => 'openjdk-7-jre',
-		jre_version => '7u71-2.5.3-0ubuntu0.14.04.1'
+		#jre_version => '7u71-2.5.3-0ubuntu0.14.04.1'
 	}
 
 }
