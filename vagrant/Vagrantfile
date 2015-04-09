@@ -34,11 +34,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   fileContent.each do |node|
     config.vm.define node[:node] do |config|
-      hostsupdate="echo -e \"127.0.0.1\tlocalhost\n127.0.1.1\t#{node[:host]}.#{Domain} #{node[:host]}\n\n#{HostMaster}\n#{Gateway}\" > /etc/hosts"
+      hostsUpdate="echo -e \"127.0.0.1\\tlocalhost\\n127.0.1.1\\t#{node[:host]}.#{Domain} #{node[:host]}\\n\\n#{HostMaster}\\n#{Gateway}\\n\" > /etc/hosts"
 
       config.vm.hostname = node[:host] 
       config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
-      config.vm.provision :shell, :inline => hostsupdate
+      config.vm.provision :shell, :inline => hostsUpdate
       
       if node[:bootstrap] == 'agent'
         config.vm.box     = "oloc/ubuntu-14.04-64-puppet-agent"
