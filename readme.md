@@ -14,6 +14,8 @@ Anyway, currently the project V0.3 allows you automatically to:
 
 Then Jenkins, GitLab, Rundeck and Puppet are ready!
 
+![Scheme](./docs/g10b.jpg)
+
 ## Prerequisites
 To use this tools, you need a hosting plateform with:
 * git
