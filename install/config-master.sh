@@ -39,9 +39,10 @@ _echo "Adding some modules..."
 		(( ! ${OffLine} )) && puppet module install ${Module}
 	done
 
-	for Thingy in modules manifests
+	for Thingy in modules manifests hiera
 	do
 		_echo "Importing ${ProjectName} ${Thingy}..."
+		mkdir -p ${confdir}/${Thingy}/                       | tee -a ${logfile}
 		cp -Rv ${FromDir}/${Thingy}/* ${confdir}/${Thingy}/  | tee -a ${LogFile}
 		chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}  | tee -a ${LogFIle}
 	done
