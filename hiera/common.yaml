@@ -1,0 +1,7 @@
+common:
+ project: g10b
+ subnet: '192.168.10'
+ admusr: oloc
+ admgrp: adm
+
+dnsclient::nameservers: octopussy.oloc
