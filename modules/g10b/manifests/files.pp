@@ -1,4 +1,4 @@
-class g10b::directories {
+class g10b::files {
 
         file { '/opt':
                 ensure => directory,
@@ -12,4 +12,9 @@ class g10b::directories {
 		group => 'puppet',
 		owner => 'puppet',
 	}
+
+        file { '/etc/hiera.yaml':
+                ensure => link,
+                target => "/etc/puppet/hiera.yaml"
+        }
 }
