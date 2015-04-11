@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define node[:node] do |config|
       hostsUpdate="echo -e \"127.0.0.1\\tlocalhost\\n127.0.1.1\\t#{node[:host]}.#{Domain} #{node[:host]}\\n\\n#{HostMaster}\\n#{Gateway}\\n\" > /etc/hosts"
 
-      config.vm.hostname = node[:host] 
+      config.vm.hostname = "#{node[:host]}.#{Domain}" 
       config.vm.network :private_network, ip: "#{SubNet}.#{node[:iplastdigit]}"
       config.vm.provision :shell, :inline => hostsUpdate
       
