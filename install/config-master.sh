@@ -36,10 +36,10 @@ _echo "Adding some modules..."
 	while read Module
 	do
 		_echo "puppet module install ${Module}"
-		(( ! ${OffLine} )) && puppet module install ${Module}
+		(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
 	done
 
-	for Thingy in modules manifests hiera
+	for Thingy in modules manifests hieradata
 	do
 		_echo "Importing ${ProjectName} ${Thingy}..."
 		mkdir -p ${confdir}/${Thingy}/                       | tee -a ${logfile}
