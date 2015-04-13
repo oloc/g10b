@@ -2,8 +2,8 @@ node octopussy {
 	include g10b
     include dns::server
 
-    $project = "g10b"
-    $subnet  = '192.168.10'
+    $project = hiera('project')
+    $subnet = hiera('subnet')
 
     dns::server::options { '/etc/bind/named.conf.options':
         forwarders => [ '8.8.8.8', '8.8.4.4' ]
