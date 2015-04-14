@@ -19,16 +19,14 @@ shift $(($OPTIND - 1))
 
 
 _echo "Puppet configuration for the ${ProjectName} project..."
-FromDir="$(pwd)/.."
+pushd $(pwd)/..
 if [ ${Update} ] ; then
 	_echo "Update in progress..."
-	rm -Rf /tmp/${ProjectName} 2>/dev/null
-	env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/${ProjectName}.git /tmp/${ProjectName}
-	FromDir=/tmp/${ProjectName}
+	env GIT_SSL_NO_VERIFY=true git pull
 fi
-pushd ${FromDir}
+
 _echo "Importing configuration..."
-	cp ${FromDir}/etc/* ${confdir}/ | tee -a ${LogFile}
+	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
 
 _echo "Adding some modules..."
@@ -43,11 +41,11 @@ _echo "Adding some modules..."
 	do
 		_echo "Importing ${ProjectName} ${Thingy}..."
 		mkdir -p ${confdir}/${Thingy}/                       | tee -a ${logfile}
-		cp -Rv ${FromDir}/${Thingy}/* ${confdir}/${Thingy}/  | tee -a ${LogFile}
+		cp -Rv ./${Thingy}/* ${confdir}/${Thingy}/  | tee -a ${LogFile}
 		chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}  | tee -a ${LogFIle}
 	done
 
-popd # pushd ${FromDir}
+popd # pushd $(pwd)/..
 popd # pushd $(dirname $0)
 
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
