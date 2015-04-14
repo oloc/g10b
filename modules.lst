@@ -11,8 +11,7 @@ ghoneycutt-dnsclient
 # Any
 jfryman-nginx
 spuder-gitlab
-theforeman-dns
+ajjahn-dns
 #
 # Avoid
-# ajjahn-dns - Too many issues in the module backlog, especially the issue 78:
-# https://github.com/ajjahn/puppet-dns/issues/78
+# theforeman-dns - The insertion of A record is not possible.

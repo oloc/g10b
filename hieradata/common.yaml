@@ -1,7 +1,6 @@
-common:
- project: g10b
- subnet: '192.168.10'
- admusr: oloc
- admgrp: adm
+project: "g10b"
+subnet: '192.168.10'
+admusr: "oloc"
+admgrp: "adm"
 
 dnsclient::nameservers: '192.168.10.50'
