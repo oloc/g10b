@@ -6,7 +6,7 @@ class g10b::cron {
 		month    => '*',
 		monthday => '*',
 		hour     => '*',
-		minute   => '*/05',
+		minute   => '*/5',
 	}
 
 	package { "logrotate":
