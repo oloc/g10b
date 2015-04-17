@@ -2,8 +2,14 @@ class g10b::ajjahn-dns {
     include dns::server
 
     $subnet = hiera('subnet')
+    $project = hiera('project')
 
+    # Forward Zone
     dns::zone { "$::domain":
+        soa => "$::fqdn",
+    }
+    # Reverse Zone
+    dns::zone { '10.168.192.IN-ADDR.ARPA':
         soa => "$::fqdn",
     }
 
@@ -12,15 +18,28 @@ class g10b::ajjahn-dns {
     }
 
     dns::record::a {
-        'gitlab':
-            zone => "gitlab.$::domain",
+        "$::hostname":
+            zone => "$::domain",
+            data => ["$::ipaddress_eth1"];   
+        'karajan':
+            zone => "$::domain",
+            data => ["$subnet.56"];
+        'repositories':
+            zone => "$::domain",
             data => ["$subnet.57"];
-        'jenkins':
-            zone => "jenkins.$::domain",
-            data => ["$subnet.56"];
-        'rundeck':
-            zone => "rundeck.$::domain",
-            data => ["$subnet.56"];
     }
-
+    dns::record::cname {
+        "$project":
+            zone => "$::domain",
+            data => "$::hostname.$::domain";
+        'jenkins':
+            zone => "$::domain",
+            data => "karajan.$::domain";
+        'rundeck':
+            zone => "$::domain",
+            data => "karajan.$::domain";
+        'gitlab':
+            zone => "$::domain",
+            data => "repositories.$::domain";
+    }
 }

@@ -4,3 +4,11 @@ admusr: "oloc"
 admgrp: "adm"
 
 dnsclient::nameservers: '192.168.10.50'
+
+applications:
+ - name: 'gitlab'
+   node: 'repositories'
+ - name: 'jenkins'
+   node: 'karajan'
+ - name: 'rundeck'
+   node: 'karajan'
