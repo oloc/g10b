@@ -1,5 +1,6 @@
 node karajan {
 	include g10b
+	include g10b::ssh
 
 	$rd_usr='rundeck'
 	$rd_grp='rundeck'
