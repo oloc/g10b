@@ -18,13 +18,13 @@ class g10b::webserver {
         source => "puppet:///modules/$project/index.html",
     }
 
-	apache::vhost { "$project.$::domain":
+	apache::mod::proxy { "$project.$::domain":
 		docroot    => "/var/www/$project/",
 		proxy_pass => [
-		{ 'path' => '/puppet',  'url' => "http://puppet.$::domain/"  },
-		{ 'path' => '/rundeck', 'url' => "http://rundeck.$::domain:4440/" },
-		{ 'path' => '/gitlab',  'url' => "http://gitlab.$::domain/"  },
-		{ 'path' => '/jenkins', 'url' => "http://jenkins.$::domain:8080/" },
+		{ 'path' => '/puppet',  'url' => "http://puppet.$::domain:8140/"  },
+		{ 'path' => '/rundeck', 'url' => "http://karajan.$::domain:4440/" },
+		{ 'path' => '/gitlab',  'url' => "http://repository.$::domain/"  },
+		{ 'path' => '/jenkins', 'url' => "http://karajan.$::domain:8080/" },
 		],
 	}
 }

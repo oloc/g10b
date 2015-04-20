@@ -5,7 +5,7 @@ class g10b {
 	include g10b::cron	
 
 	$dnsservers = hiera('dnsclient::nameservers')
-    $subnet = hiera('subnet')
+	$subnet = hiera('subnet')
 
 	class { 'git': }
 
@@ -20,8 +20,9 @@ class g10b {
 		gateway   => [ "*", ],
 	}
 	network::route {'eth1':
-		ipaddress => [ "$subnet.0", ],
-		netmask   => [ '255.255.255.0', ],
-		gateway   => [ "$subnet.50", ],
+		ipaddress => [ 'default', "$subnet.0", ],
+		netmask   => [ '0.0.0.0', '255.255.255.0', ],
+		gateway   => [ "$subnet.50", "$subnet.50", ],
 	}
+
 }
