@@ -42,7 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       
       if node[:bootstrap] == 'agent'
         config.vm.box     = "oloc/ubuntu-14.04-64-puppet-agent"
-        config.vm.box_url = "https://vagrantcloud.com/oloc/boxes/ubuntu-14.04-64-puppet-agent/versions/0.0.4/providers/virtualbox.box"
+        config.vm.box_url = "https://vagrantcloud.com/oloc/boxes/ubuntu-14.04-64-puppet-agent/versions/0.0.5/providers/virtualbox.box"
         config.vm.provision :shell, :inline => "rm -Rf ./#{Project}"
         config.vm.provision :shell, :inline => GitClone
       end
