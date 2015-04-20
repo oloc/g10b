@@ -4,15 +4,15 @@ puppetlabs-ntp
 puppetlabs-mysql
 puppetlabs-apache
 puppetlabs-dashboard
+#
 # Approved modules
 rtyler-jenkins
 opentable-rundeck
 ghoneycutt-dnsclient
 example42-network
+#
 # Any
 jfryman-nginx
 spuder-gitlab
 ajjahn-dns
-#
-# Avoid
-# theforeman-dns - The insertion of A record is not possible.
+deric-mesos 

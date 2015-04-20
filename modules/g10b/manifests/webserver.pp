@@ -25,6 +25,7 @@ class g10b::webserver {
 		{ 'path' => '/rundeck', 'url' => "http://karajan.$::domain:4440/" },
 		{ 'path' => '/gitlab',  'url' => "http://repository.$::domain:80/"  },
 		{ 'path' => '/jenkins', 'url' => "http://karajan.$::domain:8080/" },
+        { 'path' => '/mesos',   'url' => "http://karajan.$::domain:80/" },
 		],
 	}
 }

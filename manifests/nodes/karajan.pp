@@ -6,6 +6,8 @@ node karajan {
 	$rd_grp='rundeck'
 
 	class { 'jenkins': }
+	class { 'mesos::master': }
+
 
 	group { 'Rundeck Group':
 		name => $rd_grp,
