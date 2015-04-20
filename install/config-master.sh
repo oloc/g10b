@@ -52,13 +52,10 @@ popd # pushd $(dirname $0)
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
 chown -R ${DftUser}:${DftUser} ${confdir}
 
-_echo "Starting Puppet Client..."
-puppet resource service puppet       ensure=running enable=true
+_echo "Scheduling Puppet Agent..."
+puppet resource cron puppet-agent ensure=present user=root minute='*/5' command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
+
 _echo "Starting Puppet Server..."
 puppet resource service puppetmaster ensure=running enable=true
-
-_echo "Puppet is configuring itself..."
-_echo "puppet apply ${confdir}/manifests --modulepath=${confdir}/modules"
-  sudo puppet apply ${confdir}/manifests --modulepath=${confdir}/modules
 
 _echo "Puppet master configuration of server $(hostname -f) is done."
