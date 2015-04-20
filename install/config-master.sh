@@ -9,10 +9,11 @@ pushd $(pwd)/$(dirname $0) 2>/dev/null
 . ./install.cfg
 . ./install.lib
 
-while getopts "u" Option
+while getopts "ub:" Option
 do
 	case ${Option} in
 	u|U) typeset -i Update=1 ;;
+	b|B) typeset Branch="-b $OPTARG" ;;
 	esac
 done
 shift $(($OPTIND - 1))
@@ -22,7 +23,7 @@ _echo "Puppet configuration for the ${ProjectName} project..."
 pushd $(pwd)/..
 if [ ${Update} ] ; then
 	_echo "Update in progress..."
-	env GIT_SSL_NO_VERIFY=true git pull
+	env GIT_SSL_NO_VERIFY=true git pull ${Branch}
 fi
 
 _echo "Importing configuration..."
@@ -40,9 +41,9 @@ _echo "Adding some modules..."
 	for Thingy in modules manifests hieradata
 	do
 		_echo "Importing ${ProjectName} ${Thingy}..."
-		mkdir -p ${confdir}/${Thingy}/                       | tee -a ${logfile}
-		cp -Rv ./${Thingy}/* ${confdir}/${Thingy}/  | tee -a ${LogFile}
-		chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}  | tee -a ${LogFIle}
+		mkdir -p ${confdir}/${Thingy}/                        | tee -a ${logfile}
+		cp -Rv ./${Thingy}/* ${confdir}/${Thingy}/            | tee -a ${LogFile}
+		chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}   | tee -a ${LogFIle}
 	done
 
 popd # pushd $(pwd)/..
