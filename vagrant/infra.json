@@ -1,13 +1,5 @@
 [
 	{
-		"node": "g10b-gateway",
-		"iplastdigit": "50",
-		"host": "octopussy",
-		"memory": 512,
-		"cpu": 1,
-		"bootstrap": "agent"
-	},
-	{
 		"node": "g10b-puppet-master",
 		"iplastdigit": "55",
 		"host": "puppet",
@@ -15,6 +7,14 @@
 		"cpu": 1,
 		"bootstrap": "master"
 	},
+	{
+		"node": "g10b-gateway",
+		"iplastdigit": "50",
+		"host": "octopussy",
+		"memory": 512,
+		"cpu": 1,
+		"bootstrap": "agent"
+	},	
 	{
 		"node": "g10b-orchestration",
 		"iplastdigit": "56",
