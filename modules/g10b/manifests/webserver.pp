@@ -23,7 +23,7 @@ class g10b::webserver {
 		proxy_pass => [
 		{ 'path' => '/puppet',  'url' => "http://puppet.$::domain:8140/"  },
 		{ 'path' => '/rundeck', 'url' => "http://karajan.$::domain:4440/" },
-		{ 'path' => '/gitlab',  'url' => "http://repository.$::domain/"  },
+		{ 'path' => '/gitlab',  'url' => "http://repository.$::domain:80/"  },
 		{ 'path' => '/jenkins', 'url' => "http://karajan.$::domain:8080/" },
 		],
 	}
