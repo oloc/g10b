@@ -10,7 +10,7 @@ class g10b {
 	class { 'git': }
 
 	class {'dnsclient':
-		nameservers => "$dnsservers",
+		nameservers => $dnsservers,
 		domain => "$::domain",
 	}
 
