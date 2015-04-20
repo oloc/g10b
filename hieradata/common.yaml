@@ -3,12 +3,15 @@ subnet: '192.168.10'
 admusr: "oloc"
 admgrp: "adm"
 
-dnsclient::nameservers: '192.168.10.50'
+dnsclient::nameservers: "192.168.10.50"
 
 applications:
  - name: 'gitlab'
-   node: 'repositories'
+   host: 'repositories'
+   port: '80'
  - name: 'jenkins'
-   node: 'karajan'
+   host: 'karajan'
+   port: '8080'
  - name: 'rundeck'
-   node: 'karajan'
+   host: 'karajan'
+   port: '4440'
