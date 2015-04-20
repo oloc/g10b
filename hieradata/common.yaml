@@ -3,7 +3,7 @@ subnet: '192.168.10'
 admusr: "oloc"
 admgrp: "adm"
 
-dnsclient::nameservers: "192.168.10.50"
+dnsclient::nameservers: [10.0.2.3, 192.168.10.50]
 
 applications:
  - name: 'gitlab'
