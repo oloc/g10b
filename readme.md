@@ -12,7 +12,7 @@ Anyway, currently the project V0.3 allows you automatically to:
 * Puppet-master configures itself
 * Puppet configures all machines
 
-Then Jenkins, GitLab, Rundeck and Puppet are ready!
+Then Jenkins, GitLab, Rundeck, Mesos and Puppet are ready!
 
 ![Scheme](./docs/g10b.jpg)
 
@@ -25,7 +25,7 @@ To use this tools, you need a hosting plateform with:
 ## Installation
 On your host (for example your laptop with virtualBox), follow the step by step commands below:
 
-    env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git --branch v0.3
+    env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git --branch v0.4
     cd ./g10b/vagrant
     vagrant up
 
@@ -41,6 +41,7 @@ At this stage you can have access to the Jenkins, Gitlab and the Rundeck in your
 * http://g10b.oloc/jenkins
 * http://g10b.oloc/gitlab
 * http://g10b.oloc/rundeck
+* http://g10b.oloc/mesos
 
 
 ## Configuration
@@ -49,7 +50,7 @@ The infrastructure is described in the **vagrant/infra.json** file.
 The configuration of the servers is described in the puppet manifests and modules.
 
 ## Versions
-* _V0.4 - Vagrant uses own boxes. Infrastructure is revised. Gateway and DNS are activated. (wip)_
+* V0.4 - Vagrant uses own boxes. Infrastructure is revised. Gateway and DNS are activated. Mesos is available.
 * V0.3 - Add Rundeck Jenkins and Gitlab
 * V0.2 - Vagrant pops the infra, and bootstap the installation of Puppet-master. Puppet-master feeds and configures itself.
 * V0.1 - script of installation of puppet-master on a system. It's more than a bootstrap. It's a bootstrap installing puppet-master and a feeder of modules and manifests needed to configure puppet itself by itself.
