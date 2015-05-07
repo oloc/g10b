@@ -1,4 +1,5 @@
-class g10b::ajjahn-dns {
+class g10b::dns {
+    # ajjahn-dns
     include dns::server
 
     $subnet = hiera('subnet')
