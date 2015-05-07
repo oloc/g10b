@@ -18,7 +18,7 @@ class g10b::webserver {
         source => "puppet:///modules/$project/index.html",
     }
 
-	apache::mod::proxy { "$project.$::domain":
+	apache::vhost { "$project.$::domain":
 		docroot    => "/var/www/$project/",
 		proxy_pass => [
 		{ 'path' => '/puppet',  'url' => "http://puppet.$::domain:8140/"  },
