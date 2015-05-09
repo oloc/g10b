@@ -2,6 +2,7 @@
 :backends:
   - yaml
 :hierarchy:
+  - applications
   - "%{::fqdn}"
   - common
 :yaml:
