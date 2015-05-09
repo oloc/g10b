@@ -1,0 +1,9 @@
+---
+mesos::master_port : 5050
+mesos::log_dir     : '/var/log/mesos'
+mesos::conf_dir    : '/etc/mesos'
+mesos::owner       : 'mesos'
+mesos::group       : 'mesos'
+
+rundeck::user  : 'rundeck'
+rundeck::group : 'rundeck'
