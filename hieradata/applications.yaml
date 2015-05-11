@@ -1,9 +1,18 @@
 ---
+gitlab::host : 'repositories'
+gitlab::port : 80
+
+jenkins::host : 'karajan'
+jenkins::port : 8080
+
+mesos::host        : 'karajan'
 mesos::master_port : 5050
 mesos::log_dir     : '/var/log/mesos'
 mesos::conf_dir    : '/etc/mesos'
 mesos::owner       : 'mesos'
 mesos::group       : 'mesos'
 
+rundeck::host  : 'karajan'
+rundeck::port  : 80
 rundeck::user  : 'rundeck'
 rundeck::group : 'rundeck'

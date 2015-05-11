@@ -7,17 +7,3 @@ admgrp: "adm"
 dnsclient::nameservers:
  - '10.0.2.3'
  - '192.168.10.50'
-
-applications:
- - name: 'gitlab'
-   host: 'repositories'
-   port: '80'
- - name: 'jenkins'
-   host: 'karajan'
-   port: '8080'
- - name: 'rundeck'
-   host: 'karajan'
-   port: '4440'
- - name: 'mesos'
-   host: 'karajan'
-   port: '80'   
