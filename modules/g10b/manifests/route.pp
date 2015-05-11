@@ -17,7 +17,8 @@ class g10b::route {
 		network::route {'eth2':
 			ipaddress => [ 'default', ],
 			netmask   => [ '0.0.0.0', ],
-			gateway   => [ "*" , ]
+			gateway   => [ "*" , ],
+		}
 	}
 	else {
 		network::route {'eth1':

@@ -8,10 +8,12 @@ class g10b::dns {
     # Forward Zone
     dns::zone { "$::domain":
         soa => "$::fqdn",
+        nameservers => ["$::hostname"],
     }
     # Reverse Zone
     dns::zone { '10.168.192.IN-ADDR.ARPA':
         soa => "$::fqdn",
+        nameservers => ["$::hostname"],
     }
 
     dns::server::options { '/etc/bind/named.conf.options':
