@@ -6,7 +6,6 @@ class g10b {
 
 	$dnsservers = hiera('dnsclient::nameservers')
 
-
 	class { 'git': }
 
 	class {'dnsclient':

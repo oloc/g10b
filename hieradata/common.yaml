@@ -1,6 +1,7 @@
 ---
 project: "g10b"
 subnet: '192.168.10'
+subadm: '10.0.2'
 admusr: "oloc"
 admgrp: "adm"
 
