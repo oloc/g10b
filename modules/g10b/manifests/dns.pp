@@ -7,17 +7,18 @@ class g10b::dns {
 
     # Forward Zone
     dns::zone { "$::domain":
-        soa => "$::fqdn",
-        nameservers => ["$::hostname"],
+        #soa => "$::fqdn",
+        #nameservers => [ $::fqdn ],
     }
     # Reverse Zone
     dns::zone { '10.168.192.IN-ADDR.ARPA':
-        soa => "$::fqdn",
-        nameservers => ["$::hostname"],
+        #soa => "$::fqdn",
+        #nameservers => [ $::fqdn ],
     }
 
     dns::server::options { '/etc/bind/named.conf.options':
-        forwarders => [ '8.8.8.8', '8.8.4.4' ]
+        forwarders => [ '8.8.8.8', '8.8.4.4' ],
+        allow_recursion => [ 'any' ],
     }
 
     dns::record::a {

@@ -13,6 +13,6 @@ class g10b {
 		domain => "$::domain",
 	}
 
-	class { 'route': }
+	class { 'g10b::route': }
 
 }

@@ -8,7 +8,7 @@ class g10b::route {
 		netmask   => [ '255.255.255.0', ],
 		gateway   => [ "*", ],
 	}
-	if str2bool("$::ipaddress_eth2") {
+	if $::ipaddress_eth2 {
 		network::route {'eth1':
 			ipaddress => [ "$subnet.0", ],
 			netmask   => [ '255.255.255.0', ],
