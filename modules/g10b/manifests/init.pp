@@ -1,5 +1,4 @@
 class g10b {
-	include '::ntp'
 	include g10b::users
 	include g10b::files
 	include g10b::cron	
@@ -15,4 +14,5 @@ class g10b {
 
 	class { 'g10b::route': }
 
+	class { '::ntp': }
 }
