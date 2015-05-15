@@ -30,10 +30,17 @@ _echo "Importing configuration..."
 	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
 
+_echo "Removing old modules..."
+	puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
+	while  read Module; do
+		GrepResult=$(grep ${Module} modules.lst)
+		if [ $? != 0 ] ; then
+			(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
+		fi
+	done
 _echo "Adding some modules..."
 	grep -v '^#' modules.lst |
-	while read Module
-	do
+	while read Module; do
 		_echo "puppet module install ${Module}"
 		(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
 	done

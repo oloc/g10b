@@ -4,6 +4,7 @@ puppetlabs-ntp
 puppetlabs-mysql
 puppetlabs-apache
 puppetlabs-dashboard
+puppetlabs-docker_platform
 #
 # Approved modules
 rtyler-jenkins
