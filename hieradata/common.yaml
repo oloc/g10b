@@ -6,5 +6,5 @@ admusr: "oloc"
 admgrp: "adm"
 
 dnsclient::nameservers:
- - '10.0.2.3'
  - '192.168.10.50'
+ - '10.0.2.3'
