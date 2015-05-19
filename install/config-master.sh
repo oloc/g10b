@@ -18,6 +18,9 @@ do
 done
 shift $(($OPTIND - 1))
 
+_echo "Stoping Puppet..."
+	service puppetmaster stop   | tee -a ${LogFile}
+	service puppetmaster status | tee -a ${LogFile}
 
 _echo "Puppet configuration for the ${ProjectName} project..."
 pushd $(pwd)/..
