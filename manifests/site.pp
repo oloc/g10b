@@ -14,4 +14,4 @@ node default {
 }
 
 # ToDo: Import is deprecated
-# import "nodes/*.pp"
+import "nodes/*.pp"
