@@ -1,9 +1,9 @@
 # Supported modules
 puppetlabs-git
 puppetlabs-ntp
-puppetlabs-mysql
+#puppetlabs-mysql
 puppetlabs-apache
-puppetlabs-dashboard
+#puppetlabs-dashboard
 puppetlabs-docker_platform
 #
 # Approved modules
@@ -13,7 +13,7 @@ ghoneycutt-dnsclient
 example42-network
 #
 # Any
-jfryman-nginx
+#jfryman-nginx
 spuder-gitlab
 ajjahn-dns
 deric-mesos 
