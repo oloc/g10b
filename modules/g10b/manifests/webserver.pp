@@ -1,6 +1,11 @@
 class g10b::webserver {
 
     $project = hiera('project')
+    $jk_port = hiera('jenkins::port')
+    $gl_port = hiera('gitlab::port')
+    $ms_port = hiera('mesos::master_port')
+    $pp_port = '8140'
+    $rd_port = hiera('rundeck::port')
 
     class  { 'apache': }
 
@@ -21,11 +26,11 @@ class g10b::webserver {
 	apache::vhost { "$project.$::domain":
 		docroot    => "/var/www/$project/",
 		proxy_pass => [
-		{ 'path' => '/puppet',  'url' => "http://puppet.$::domain:8140/"  },
-		{ 'path' => '/rundeck', 'url' => "http://karajan.$::domain:4440/" },
-		{ 'path' => '/gitlab',  'url' => "http://repositories.$::domain:80/gitlab"  },
-		{ 'path' => '/jenkins', 'url' => "http://karajan.$::domain:8080/jenkins" },
-        { 'path' => '/mesos',   'url' => "http://karajan.$::domain:80/" },
+		{ 'path' => '/puppet',  'url' => "http://puppet.$::domain:$pp_port/"  },
+		{ 'path' => '/rundeck', 'url' => "http://karajan.$::domain:$rd_port/" },
+		{ 'path' => '/gitlab',  'url' => "http://repositories.$::domain:$gl_port/gitlab"  },
+		{ 'path' => '/jenkins', 'url' => "http://karajan.$::domain:$jk_port/jenkins" },
+        { 'path' => '/mesos',   'url' => "http://karajan.$::domain:$ms_port/" },
 		],
 	}
 }
