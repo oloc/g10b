@@ -1,4 +1,4 @@
-class g10b::dns {
+class g10b_dns {
     # ajjahn-dns
     include dns::server
 

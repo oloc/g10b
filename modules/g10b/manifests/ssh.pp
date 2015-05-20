@@ -1,4 +1,4 @@
-class g10b::ssh{
+class g10b_ssh{
 	package { "openssh-server":
 		ensure => latest,
 		before => File['/etc/ssh/sshd_config'],

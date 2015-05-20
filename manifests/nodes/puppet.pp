@@ -1,6 +1,6 @@
 node puppet {
 	include g10b
-	include g10b::ssh
+	include g10b_ssh
 	
 	$dshbrd_usr='dshbrd'
 	$dshbrd_grp='dshgrp'

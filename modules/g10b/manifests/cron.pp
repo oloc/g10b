@@ -1,4 +1,4 @@
-class g10b::cron {
+class g10b_cron {
 
 	cron { 'Puppet-Agent':
 		command  => '/usr/bin/puppet agent --onetime --no-daemonize --splay',

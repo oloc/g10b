@@ -1,4 +1,4 @@
-class g10b::mesosphere {
+class g10b_mesosphere {
 
 	exec {'add_mesosphere-key':
 		command => "/usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF",

@@ -1,4 +1,4 @@
-class g10b::webserver {
+class g10b_webserver {
 
     $project = hiera('project')
 

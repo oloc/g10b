@@ -1,4 +1,4 @@
-class g10b::users {
+class g10b_users {
 
 	$admuser='oloc'
 	$project="g10b"

@@ -1,4 +1,4 @@
-class g10b::rundeck {
+class g10b_rundeck {
 
 	$rd_usr=hiera('rundeck::user')
 	$rd_grp=hiera('rundeck::group')

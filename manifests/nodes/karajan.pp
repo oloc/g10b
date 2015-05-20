@@ -1,8 +1,8 @@
 node karajan {
 	include g10b
-	include g10b::ssh
-	include g10b::rundeck
-	include g10b::mesosphere
+	include g10b_ssh
+	include g10b_rundeck
+	include g10b_mesosphere
 
 	class { 'jenkins': }
 
