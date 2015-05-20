@@ -1,4 +1,4 @@
-class g10b_ntp {
+class g10b::ntp {
 	exec {'/usr/bin/apt-get -y update':
 		user => 'root',
 	}->

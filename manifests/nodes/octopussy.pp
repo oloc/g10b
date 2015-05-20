@@ -1,6 +1,6 @@
 node octopussy {
-	include g10b
-    include g10b_dns
-    include g10b_webserver
-    include g10b_ssh
+	class {'g10b':}
+    class {'g10b::dns':}
+    class {'g10b::webserver':}
+    class {'g10b::ssh':}
 }

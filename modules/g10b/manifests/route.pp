@@ -1,4 +1,4 @@
-class g10b_route {
+class g10b::route {
 	
 	$subnet = hiera('subnet')
 	$subadm = hiera('subadm')

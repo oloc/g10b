@@ -1,4 +1,4 @@
-class g10b_webserver {
+class g10b::webserver {
 
     $project = hiera('project')
 
@@ -23,8 +23,8 @@ class g10b_webserver {
 		proxy_pass => [
 		{ 'path' => '/puppet',  'url' => "http://puppet.$::domain:8140/"  },
 		{ 'path' => '/rundeck', 'url' => "http://karajan.$::domain:4440/" },
-		{ 'path' => '/gitlab',  'url' => "http://repository.$::domain:80/"  },
-		{ 'path' => '/jenkins', 'url' => "http://karajan.$::domain:8080/" },
+		{ 'path' => '/gitlab',  'url' => "http://repository.$::domain:80/gitlab"  },
+		{ 'path' => '/jenkins', 'url' => "http://karajan.$::domain:8080/jenkins" },
         { 'path' => '/mesos',   'url' => "http://karajan.$::domain:80/" },
 		],
 	}

@@ -1,4 +1,4 @@
-class g10b_files {
+class g10b::files {
 
         file { '/opt':
                 ensure => directory,

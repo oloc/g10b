@@ -1,4 +1,4 @@
-class g10b_rundeck {
+class g10b::rundeck {
 
 	$rd_usr=hiera('rundeck::user')
 	$rd_grp=hiera('rundeck::group')
@@ -19,7 +19,7 @@ class g10b_rundeck {
 	exec { 'service rundeckd stop':
 		user => 'root',
 	}->
-	class { 'rundeck':
+	class { '::rundeck':
 		user  => $rd_usr,
 		group => $rd_grp,
 		# I have to force the jre because the default in rundeck::params is not appropriate.

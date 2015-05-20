@@ -1,13 +1,13 @@
 class g10b {
-	include g10b_users
-	include g10b_files
-	include g10b_cron
-	include g10b_ntp	
-	#include g10b_route
-
 	$dnsservers = hiera('dnsclient::nameservers')
 
-	class { 'git': }
+	class {'g10b::users':}
+	class {'g10b::files':}
+	class {'g10b::cron':}
+	class {'g10b::ntp':}	
+	#class {'g10b::route':}
+
+	class { '::git': }
 
 	class {'dnsclient':
 		nameservers => $dnsservers,

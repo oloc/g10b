@@ -1,5 +1,5 @@
 node metrology {
-	include g10b
-	include g10b_ssh	
+	class {'g10b':}
+	class {'g10b::ssh':}	
 
 }

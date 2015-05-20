@@ -1,4 +1,20 @@
-class g10b_mesosphere {
+class g10b::mesosphere {
+
+	$ms_usr=hiera('mesos::owner')
+	$ms_grp=hiera('mesos::group')
+
+	group { 'Mesos Group':
+		name => $ms_grp,
+		ensure => 'present',
+	}
+
+	user { 'Mesos User':
+		name    => $ms_usr,
+		ensure  => present,
+		comment => 'mesos server',
+		groups  => $ms_grp,
+		home    => "/home/$ms_usr",
+	}
 
 	exec {'add_mesosphere-key':
 		command => "/usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF",
