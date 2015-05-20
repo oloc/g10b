@@ -33,15 +33,15 @@ This commands will pop the needed VMs in virtualbox and install the stuff.
 If you possess a datacenter or a cloud and if you want to test the installation you have to launch the *install* scripts in the appropriate machines.
 
 ## Usage
-You have modify the **/etc/hosts** of your host (for example your laptop with virtualBox) to add the different servers regarding the IP addresses you configure in the _Vagrantfile_ and in the _infra.json_ (as the iplastdigit parameter). As default, you have to add these lines:
+You have to add the DNS VM (g10b-gateway) as a resolver of your host (for example your laptop with virtualBox), regarding the IP addresses you configure in the _Vagrantfile_ and in the _infra.json_ (as the iplastdigit parameter). As default, you have to use this command:
 
-    192.168.10.50 g10b.oloc g10b
+    echo 'nameserver 192.168.10.50' | sudo resolvconf -a *
 
 At this stage you can have access to the Jenkins, Gitlab, the Rundeck and Mesos in your browser at:
-* http://g10b.oloc/jenkins
-* http://g10b.oloc/gitlab
-* http://g10b.oloc/rundeck
-* http://g10b.oloc/mesos
+* http://g10b.oloc/jenkins or http://karajan.oloc:8080/jenkins/
+* http://g10b.oloc/gitlab  or http://repositories.oloc/gitlab
+* http://g10b.oloc/rundeck or http://karajan.oloc:4440/
+* http://g10b.oloc/mesos   or http://karajan.oloc:5050/
 
 
 ## Configuration
