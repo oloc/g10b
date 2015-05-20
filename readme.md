@@ -37,7 +37,7 @@ You have modify the **/etc/hosts** of your host (for example your laptop with vi
 
     192.168.10.50 g10b.oloc g10b
 
-At this stage you can have access to the Jenkins, Gitlab and the Rundeck in your browser at:
+At this stage you can have access to the Jenkins, Gitlab, the Rundeck and Mesos in your browser at:
 * http://g10b.oloc/jenkins
 * http://g10b.oloc/gitlab
 * http://g10b.oloc/rundeck
