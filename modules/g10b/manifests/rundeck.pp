@@ -16,8 +16,9 @@ class g10b::rundeck {
 		home    => "/home/$rd_usr",
 	}
 
-	exec { 'service rundeckd stop':
-		user => 'root',
+	exec { 'rundeck_service_stop':
+		command => 'service rundeckd stop',
+		user    => 'root',
 	}->
 	class { '::rundeck':
 		user  => $rd_usr,
