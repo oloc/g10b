@@ -1,6 +1,4 @@
-node repositories {
-	$project = hiera('project')
-	
+node repositories {	
 	class {'g10b':}
 
 	class {'docker_registry':}
@@ -8,7 +6,7 @@ node repositories {
 	class { 'gitlab': 
 		puppet_manage_config => true,
 		gitlab_branch        => '7.0.0',
-		external_url         => "http://$project.$::domain/gitlab",
+		external_url         => "http://$::fqdn/gitlab",
 		# admin@local.host
 		# 5iveL!fe
 	}
