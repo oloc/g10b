@@ -25,7 +25,7 @@ To use this tools, you need a hosting plateform with:
 ## Installation
 On your host (for example your laptop with virtualBox), follow the step by step commands below:
 
-    env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git --branch v0.4
+    env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git 
     cd ./g10b/vagrant
     vagrant up
 
