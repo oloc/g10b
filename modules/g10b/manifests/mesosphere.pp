@@ -26,8 +26,9 @@ class g10b::mesosphere {
 		creates => "/etc/apt/sources.list.d/mesosphere.list",
 		user    => 'root',
 	}->
-	exec {'/usr/bin/apt-get -y update':
-		user => 'root',
+	exec {'mesosphere_update':
+		command => '/usr/bin/apt-get -y update',
+		user    => 'root',
 	}->
 	class { 'mesos::master': }
 
