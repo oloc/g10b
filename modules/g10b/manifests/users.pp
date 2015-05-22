@@ -1,64 +1,64 @@
 class g10b::users {
 
-	$admuser='oloc'
-	$project="g10b"
+  $admuser='oloc'
+  $project="g10b"
 
-	group { 'admin account group':
-		name => $admuser,
- 		ensure => 'present',
-	}
+  group { 'admin account group':
+    name => $admuser,
+     ensure => 'present',
+  }
 
-	group { 'adm':
-		ensure => 'present',
-	}
+  group { 'adm':
+    ensure => 'present',
+  }
 
-	group { 'opt':
-		ensure => 'present',
-	}
+  group { 'opt':
+    ensure => 'present',
+  }
 
-	user { 'admin account':
-		name     => $admuser,
-		ensure   => 'present',
-		comment  => 'admin account',
-		groups   => [sudo, adm, opt],
-		home     => "/home/$admuser",
-		password => '8f91640bb5850b0d7d49276cb5728f9e76fb1629',
-		shell    => '/bin/bash',
-	}
-	
-	file { 'admin home':
-		path   => "/home/$admuser",
-		ensure => directory ,
-		group  => $admuser,
-		mode   => 640,
-		owner  => $admuser,
-	}
+  user { 'admin account':
+    name     => $admuser,
+    ensure   => 'present',
+    comment  => 'admin account',
+    groups   => [sudo, adm, opt],
+    home     => "/home/$admuser",
+    password => '8f91640bb5850b0d7d49276cb5728f9e76fb1629',
+    shell    => '/bin/bash',
+  }
+  
+  file { 'admin home':
+    path   => "/home/$admuser",
+    ensure => directory ,
+    group  => $admuser,
+    mode   => 640,
+    owner  => $admuser,
+  }
 
-	file { 'bashrc':
-		path   => "/home/$admuser/.bashrc",
-		ensure => 'present',
-		group  => $admuser,
-		mode   => 644,
-		owner  => $admuser,
-		source => "puppet:///modules/$project/bashrc",
-	}
+  file { 'bashrc':
+    path   => "/home/$admuser/.bashrc",
+    ensure => 'present',
+    group  => $admuser,
+    mode   => 644,
+    owner  => $admuser,
+    source => "puppet:///modules/$project/bashrc",
+  }
 
-	file { 'bash_aliases':
-		path   => "/home/$admuser/.bash_aliases",
-		ensure => 'present',
-		group  => $admuser,
-		mode   => 644,
-		owner  => $admuser,
-		source => "puppet:///modules/$project/bash_aliases",
-	}
+  file { 'bash_aliases':
+    path   => "/home/$admuser/.bash_aliases",
+    ensure => 'present',
+    group  => $admuser,
+    mode   => 644,
+    owner  => $admuser,
+    source => "puppet:///modules/$project/bash_aliases",
+  }
 
-	file { 'profile':
-		path   => "/home/$admuser/.profile",
-		ensure => 'present',
-		group  => $admuser,
-		mode   => 644,
-		owner  => $admuser,
-		source => "puppet:///modules/$project/profile",
-	}
+  file { 'profile':
+    path   => "/home/$admuser/.profile",
+    ensure => 'present',
+    group  => $admuser,
+    mode   => 644,
+    owner  => $admuser,
+    source => "puppet:///modules/$project/profile",
+  }
 
 }

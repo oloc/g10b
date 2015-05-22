@@ -1,20 +1,20 @@
 class g10b::files {
 
-        file { '/opt':
-                ensure => directory,
-                group => "opt",
-                mode => 775,
-                owner => "root",
-        }
+  file { '/opt':
+    ensure => directory,
+    group  => "opt",
+    mode   => 775,
+    owner  => "root",
+  }
 
-	file { '/var/lib/puppet':
-		ensure => directory,
-		group => 'puppet',
-		owner => 'puppet',
-	}
+  file { '/var/lib/puppet':
+    ensure => directory,
+    group  => 'puppet',
+    owner  => 'puppet',
+  }
 
-        file { '/etc/hiera.yaml':
-                ensure => link,
-                target => "/etc/puppet/hiera.yaml"
-        }
+  file { '/etc/hiera.yaml':
+    ensure => link,
+    target => "/etc/puppet/hiera.yaml"
+  }
 }

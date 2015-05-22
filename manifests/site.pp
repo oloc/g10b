@@ -7,10 +7,10 @@ $mysql_password = "myT0pS3cretPa55worD"
 
 
 node default {
-		@@dns::record::a { $::hostname:
-			zone => $::domain,
-			data => $::ipadress,
-		}
+  @@dns::record::a { $::hostname:
+    zone => $::domain,
+    data => $::ipadress,
+  }
 }
 
 # ToDo: Import is deprecated
