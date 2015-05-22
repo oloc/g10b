@@ -1,6 +1,6 @@
 class g10b::webserver {
   $project = hiera('project')
-  $jk_port = hiera('jenkins::port')1
+  $jk_port = hiera('jenkins::port')
   $gl_port = hiera('gitlab::port')
   $ms_port = hiera('mesos::master_port')
   $pp_port = '8140'
