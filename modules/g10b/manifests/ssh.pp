@@ -6,7 +6,7 @@ class g10b::ssh{
 
   file { '/etc/ssh/sshd_config':
     ensure => file,
-    mode   => '644',
+    mode   => '0644',
   }
 
   service{ 'ssh':

@@ -26,13 +26,13 @@ class g10b::dns {
   dns::record::a {
     $::hostname:
       zone => $::domain,
-      data => ["${::ipaddress_eth1}"];
+      data => [ $::ipaddress_eth1 ];
     'karajan':
       zone => $::domain,
-      data => ["{$subnet}.56"];
+      data => ["${subnet}.56"];
     'repositories':
       zone => $::domain,
-      data => ["{$subnet}.57"];
+      data => ["${subnet}.57"];
   }
   dns::record::cname {
     $project:
