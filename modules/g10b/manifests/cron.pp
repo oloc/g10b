@@ -9,7 +9,7 @@ class g10b::cron {
     minute   => '*/5',
   }
 
-  package { "logrotate":
+  package { 'logrotate':
     ensure => installed,
   }
   ->

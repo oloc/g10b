@@ -1,10 +1,7 @@
-filebucket { main: server => "puppet" }
+filebucket { main: server => 'puppet' }
 File { backup => main }
 
-Exec { path => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" }
-
-$mysql_password = "myT0pS3cretPa55worD"
-
+Exec { path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' }
 
 node default {
   @@dns::record::a { $::hostname:
@@ -14,4 +11,4 @@ node default {
 }
 
 # ToDo: Import is deprecated
-import "nodes/*.pp"
+import 'nodes/*.pp'

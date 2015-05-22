@@ -2,9 +2,9 @@ class g10b::files {
 
   file { '/opt':
     ensure => directory,
-    group  => "opt",
-    mode   => 775,
-    owner  => "root",
+    group  => 'opt',
+    mode   => '775',
+    owner  => 'root',
   }
 
   file { '/var/lib/puppet':
@@ -15,6 +15,6 @@ class g10b::files {
 
   file { '/etc/hiera.yaml':
     ensure => link,
-    target => "/etc/puppet/hiera.yaml"
+    target => '/etc/puppet/hiera.yaml'
   }
 }

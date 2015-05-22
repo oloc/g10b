@@ -25,27 +25,27 @@ class g10b::dns {
 
   dns::record::a {
     "$::hostname":
-      zone => "$::domain",
-      data => ["$::ipaddress_eth1"];   
+      zone => $::domain,
+      data => ["$::ipaddress_eth1"];
     'karajan':
-      zone => "$::domain",
+      zone => $::domain,
       data => ["$subnet.56"];
     'repositories':
-      zone => "$::domain",
+      zone => $::domain,
       data => ["$subnet.57"];
   }
   dns::record::cname {
     "$project":
-      zone => "$::domain",
+      zone => $::domain,
       data => "$::hostname.$::domain";
     'jenkins':
-      zone => "$::domain",
+      zone => $::domain,
       data => "karajan.$::domain";
     'rundeck':
-      zone => "$::domain",
+      zone => $::domain,
       data => "karajan.$::domain";
     'gitlab':
-      zone => "$::domain",
+      zone => $::domain,
       data => "repositories.$::domain";
   }
 }

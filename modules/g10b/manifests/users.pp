@@ -4,61 +4,61 @@ class g10b::users {
   $project="g10b"
 
   group { 'admin account group':
-    name => $admuser,
-     ensure => 'present',
+    ensure => present,
+    name   => $admuser,
   }
 
   group { 'adm':
-    ensure => 'present',
+    ensure => present,
   }
 
   group { 'opt':
-    ensure => 'present',
+    ensure => present,
   }
 
   user { 'admin account':
+    ensure   => present,
     name     => $admuser,
-    ensure   => 'present',
     comment  => 'admin account',
     groups   => [sudo, adm, opt],
-    home     => "/home/$admuser",
+    home     => "/home/${admuser}",
     password => '8f91640bb5850b0d7d49276cb5728f9e76fb1629',
     shell    => '/bin/bash',
   }
   
   file { 'admin home':
-    path   => "/home/$admuser",
-    ensure => directory ,
+    ensure => directory,
+    path   => "/home/${admuser}",
     group  => $admuser,
-    mode   => 640,
+    mode   => '640',
     owner  => $admuser,
   }
 
   file { 'bashrc':
-    path   => "/home/$admuser/.bashrc",
-    ensure => 'present',
+    ensure => present,
+    path   => "/home/${admuser}/.bashrc",
     group  => $admuser,
-    mode   => 644,
+    mode   => '644',
     owner  => $admuser,
-    source => "puppet:///modules/$project/bashrc",
+    source => "puppet:///modules/${project}/bashrc",
   }
 
   file { 'bash_aliases':
-    path   => "/home/$admuser/.bash_aliases",
-    ensure => 'present',
+    ensure => present,
+    path   => "/home/${admuser}/.bash_aliases",
     group  => $admuser,
-    mode   => 644,
+    mode   => '644',
     owner  => $admuser,
-    source => "puppet:///modules/$project/bash_aliases",
+    source => "puppet:///modules/${project}/bash_aliases",
   }
 
   file { 'profile':
-    path   => "/home/$admuser/.profile",
-    ensure => 'present',
+    ensure => present,
+    path   => "/home/${admuser}/.profile",
     group  => $admuser,
-    mode   => 644,
+    mode   => '644',
     owner  => $admuser,
-    source => "puppet:///modules/$project/profile",
+    source => "puppet:///modules/${project}/profile",
   }
 
 }

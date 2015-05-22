@@ -10,7 +10,7 @@ class g10b {
 
   class {'dnsclient':
     nameservers => $dnsservers,
-    domain => "$::domain",
+    domain      => $::domain,
   }
 
   class { '::ntp':
