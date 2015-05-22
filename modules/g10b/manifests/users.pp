@@ -1,7 +1,7 @@
 class g10b::users {
 
-  $admuser='oloc'
-  $project="g10b"
+  $admuser = hiera('admuser')
+  $project = hiera('project')
 
   group { 'admin account group':
     ensure => present,
