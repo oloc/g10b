@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/oloc/g10b.png)](https://travis-ci.org/oloc/g10b)
 # Get your lab!
 Many companies want a lab, a kind of research workspace. And so do some people. That's a good way to understand, learn, and improve some tools, let me say devops tools. And in order to setup a such lab, they install all needed tools.
 
