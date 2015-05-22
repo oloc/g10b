@@ -13,7 +13,7 @@ class g10b::mesosphere {
     name    => $ms_usr,
     comment => 'mesos server',
     groups  => $ms_grp,
-    home    => "/home/$ms_usr",
+    home    => "/home/${ms_usr}",
   }
 
   exec {'mesosphere_add_key':

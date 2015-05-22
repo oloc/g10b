@@ -10,19 +10,19 @@ class g10b::webserver {
 
   file { "/var/www/${project}/":
     ensure => directory,
-    group  => "root",
-    mode   => '775',
-    owner  => "root",
+    group  => 'root',
+    mode   => '0775',
+    owner  => 'root',
   }
 
   file { 'index':
     ensure => file,
-    mode   => '644',
+    mode   => '0644',
     path   => "/var/www/${project}/index.html",
     source => "puppet:///modules/${project}/index.html",
   }
 
-  apache::vhost { "$project.${::domain}":
+  apache::vhost { "${project}.${::domain}":
     docroot    => "/var/www/${project}/",
     proxy_pass => [
       { 'path' => '/puppet',  'url' => "http://puppet.${::domain}:${pp_port}/"  },

@@ -10,8 +10,8 @@ class g10b::ssh{
   }
 
   service{ 'ssh':
-    enable     => true,
     ensure     => running,
+    enable     => true,
     hasrestart => true,
   }
 

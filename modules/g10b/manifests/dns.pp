@@ -6,7 +6,7 @@ class g10b::dns {
   $project = hiera('project')
 
   # Forward Zone
-  dns::zone { "$::domain":
+  dns::zone { $::domain:
     soa         => $::fqdn,
     soa_email   => "root.${::fqdn}",
     nameservers => [ $::fqdn ],
@@ -24,28 +24,28 @@ class g10b::dns {
   }
 
   dns::record::a {
-    "$::hostname":
+    $::hostname:
       zone => $::domain,
-      data => ["$::ipaddress_eth1"];
+      data => ["${::ipaddress_eth1}"];
     'karajan':
       zone => $::domain,
-      data => ["$subnet.56"];
+      data => ["{$subnet}.56"];
     'repositories':
       zone => $::domain,
-      data => ["$subnet.57"];
+      data => ["{$subnet}.57"];
   }
   dns::record::cname {
-    "$project":
+    $project:
       zone => $::domain,
-      data => "$::hostname.$::domain";
+      data => "${::hostname}.${::domain}";
     'jenkins':
       zone => $::domain,
-      data => "karajan.$::domain";
+      data => "karajan.${::domain}";
     'rundeck':
       zone => $::domain,
-      data => "karajan.$::domain";
+      data => "karajan.${::domain}";
     'gitlab':
       zone => $::domain,
-      data => "repositories.$::domain";
+      data => "repositories.${::domain}";
   }
 }

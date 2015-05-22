@@ -3,7 +3,7 @@ class g10b::files {
   file { '/opt':
     ensure => directory,
     group  => 'opt',
-    mode   => '775',
+    mode   => '0775',
     owner  => 'root',
   }
 

@@ -30,7 +30,7 @@ class g10b::users {
     ensure => directory,
     path   => "/home/${admuser}",
     group  => $admuser,
-    mode   => '640',
+    mode   => '0640',
     owner  => $admuser,
   }
 
@@ -38,7 +38,7 @@ class g10b::users {
     ensure => present,
     path   => "/home/${admuser}/.bashrc",
     group  => $admuser,
-    mode   => '644',
+    mode   => '0644',
     owner  => $admuser,
     source => "puppet:///modules/${project}/bashrc",
   }
@@ -47,7 +47,7 @@ class g10b::users {
     ensure => present,
     path   => "/home/${admuser}/.bash_aliases",
     group  => $admuser,
-    mode   => '644',
+    mode   => '0644',
     owner  => $admuser,
     source => "puppet:///modules/${project}/bash_aliases",
   }
@@ -56,7 +56,7 @@ class g10b::users {
     ensure => present,
     path   => "/home/${admuser}/.profile",
     group  => $admuser,
-    mode   => '644',
+    mode   => '0644',
     owner  => $admuser,
     source => "puppet:///modules/${project}/profile",
   }
