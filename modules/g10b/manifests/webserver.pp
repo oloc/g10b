@@ -24,12 +24,12 @@ class g10b::webserver {
 
   apache::vhost { "${project}.${::domain}":
     docroot    => "/var/www/${project}/",
-    proxy_pass => [ 
-      " { 'path' => '/puppet',  'url' => http://puppet.${::domain}:${pp_port}/ } ",
-      " { 'path' => '/rundeck', 'url' => http://karajan.${::domain}:${rd_port}/ } ",
-      " { 'path' => '/gitlab',  'url' => http://repositories.${::domain}:${gl_port}/gitlab } ",
-      " { 'path' => '/jenkins', 'url' => http://karajan.${::domain}:${jk_port}/jenkins } ",
-      " { 'path' => '/mesos',   'url' => http://karajan.${::domain}:${ms_port}/ } ",
+    proxy_pass => [
+      "{ 'path' => '/puppet',  'url' => http://puppet.${::domain}:${pp_port}/ }",
+      "{ 'path' => '/rundeck', 'url' => http://karajan.${::domain}:${rd_port}/ }",
+      "{ 'path' => '/gitlab',  'url' => http://repositories.${::domain}:${gl_port}/gitlab }",
+      "{ 'path' => '/jenkins', 'url' => http://karajan.${::domain}:${jk_port}/jenkins }",
+      "{ 'path' => '/mesos',   'url' => http://karajan.${::domain}:${ms_port}/ }",
     ],
   }
 }
