@@ -10,5 +10,5 @@ node default {
   }
 }
 
-# ToDo: Import is deprecated
+# Import is deprecated since Puppet 3.5
 # import 'nodes/*.pp'
