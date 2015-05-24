@@ -1,6 +1,6 @@
 class g10b::users {
 
-  $admuser = hiera('admuser')
+  $admuser = hiera('admusr')
   $project = hiera('project')
 
   group { 'admin account group':
