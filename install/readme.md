@@ -13,10 +13,10 @@ I decide to separate the installation and the configuration scripts with the goa
 
 If you have already install the all things and if you want to push some updates in the puppet stuff, you just have to do:
 
-    cd <root tree>/g10b/install
-    . ./config-master.sh -u
+    cd <root tree>/g10b
+    . ./install/config-master.sh -u
 
-This _-u option_ clone the github repository into a temporary directory and copy the puppet configuration files and manifests files. And, if you are not offline (see below), this _-u option_ install puppet modules regarding the retrieved **modules.lst** file.
+This _-u option_ pulls lthe github repository and copies the puppet configuration files and manifests files. And, if you are not offline (see below), this _-u option_ install puppet modules regarding the retrieved **modules.lst** file.
 
 ## Useful option
 You can toggle the **OffLine** parameter to 1 in the g10b/install/install.cfg if your are offline. This option can help if you want to launch without network and avoid the "apt-get" instructions and their friends. 
