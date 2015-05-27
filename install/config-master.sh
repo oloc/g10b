@@ -32,10 +32,11 @@ fi
 _echo "Importing configuration..."
 	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
-	Env=$(puppet config print environment)
-	mkdir -p ${EnvDir}/${Env} | tee -a ${LogFile}
-	echo "manifest=$confdir/manifests/" > ${EnvDir}/${Env}/environment.conf
-	chown -R ${DftUser}:${DftUser} ${EnvDir}
+
+_echo "Environment ${EnvName} setting..."	
+	mkdir -p ${EnvDir}/${EnvName} | tee -a ${LogFile}
+	chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}
+	puppet config set environment ${EnvName}
 
 _echo "Removing old modules..."
 	puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
