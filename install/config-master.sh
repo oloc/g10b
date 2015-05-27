@@ -56,9 +56,9 @@ _echo "Adding some modules..."
 	for Thingy in modules manifests hieradata
 	do
 		_echo "Importing ${ProjectName} ${Thingy}..."
-		mkdir -p ${confdir}/${Thingy}/                        | tee -a ${logfile}
-		cp -Rv ./${Thingy}/* ${confdir}/${Thingy}/            | tee -a ${LogFile}
-		chown -R ${DftUser}:${DftUser} ${confdir}/${Thingy}   | tee -a ${LogFIle}
+		mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                        | tee -a ${logfile}
+		cp -Rv ./${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/            | tee -a ${LogFile}
+		chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}   | tee -a ${LogFIle}
 	done
 
 popd # pushd $(pwd)/..
