@@ -4,14 +4,6 @@ class g10b::webserver {
 
   class  { 'apache': }
 
-# Duplicate declaration modules/apache/manifests/vhost.pp:261
-#  file { "/var/www/${project}/":
-#    ensure => directory,
-#    group  => 'root',
-#    mode   => '0775',
-#    owner  => 'root',
-#  }
-
   file { 'index':
     ensure => file,
     mode   => '0644',
@@ -20,7 +12,11 @@ class g10b::webserver {
   }
 
   apache::vhost { "${project}.${::domain}":
-    docroot    => "/var/www/${project}/",
-    proxy_pass => $pass,
+    docroot       => "/var/www/${project}/",
+    docroot_owner => 'root',
+    docroot_group => 'root',
+    docroot_mode  => '0775',
+    proxy_pass    => $pass,
+
   }
 }
