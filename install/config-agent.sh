@@ -15,6 +15,9 @@ _echo "Configuration for the ${ProjectName} project..."
 _echo "Importing configuration..."
 cp $(pwd)/../etc/* ${confdir}/ | tee -a ${LogFile}
 
+_echo "Environment ${EnvName} setting..."
+puppet config set environment ${EnvName}
+
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
 chown -R ${DftUser}:${DftUser} ${confdir}
 
