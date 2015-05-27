@@ -1,4 +1,7 @@
 ---
+puppet::host : 'puppet'
+puppet::port : 8140
+
 gitlab::host : 'repositories'
 gitlab::port : 80
 
@@ -13,6 +16,18 @@ mesos::owner       : 'mesos'
 mesos::group       : 'mesos'
 
 rundeck::host  : 'karajan'
-rundeck::port  : 80
+rundeck::port  : 4440
 rundeck::user  : 'rundeck'
 rundeck::group : 'rundeck'
+
+pass:
+  - path: /puppet
+    url: http://puppet.oloc:8140
+  - path: /rundeck
+    url: http://karajan.oloc:4440
+  - path: /gitlab
+    url: http://repositories.oloc:80/gitlab
+  - path: /jenkins
+    url: http://karajan.oloc:8080/jenkins
+  - path: /mesos
+    url: http://karajan.oloc:5050/
