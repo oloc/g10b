@@ -51,6 +51,7 @@ The infrastructure is described in the **vagrant/infra.json** file.
 The configuration of the servers is described in the puppet manifests and modules.
 
 ## Versions
+* V0.5 - Technical version: Remove Import nodes. Add Environment directory to be Puppet-4-ready. Add Travis rake test.
 * V0.4 - Vagrant uses own boxes. Infrastructure is revised. Gateway and DNS are activated. Mesos is available.
 * V0.3 - Add Rundeck Jenkins and Gitlab
 * V0.2 - Vagrant pops the infra, and bootstap the installation of Puppet-master. Puppet-master feeds and configures itself.

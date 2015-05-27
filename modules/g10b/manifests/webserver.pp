@@ -17,6 +17,6 @@ class g10b::webserver {
     docroot_group => 'root',
     docroot_mode  => '0775',
     proxy_pass    => $pass,
-
   }
+  
 }

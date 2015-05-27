@@ -9,6 +9,3 @@ node default {
     data => $::ipadress,
   }
 }
-
-# Import is deprecated since Puppet 3.5
-# import 'nodes/*.pp'
