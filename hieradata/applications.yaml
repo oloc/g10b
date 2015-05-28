@@ -9,7 +9,8 @@ jenkins::host : 'karajan'
 jenkins::port : 8080
 
 mesos::host        : 'karajan'
-mesos::master_port : 5050
+mesos::port        : 5050
+mesos::master_port : "%{hiera('mesos::port')}"
 mesos::log_dir     : '/var/log/mesos'
 mesos::conf_dir    : '/etc/mesos'
 mesos::owner       : 'mesos'
@@ -22,12 +23,12 @@ rundeck::group : 'rundeck'
 
 pass:
   - path: /puppet
-    url: http://puppet.oloc:8140
+    url: "http://%{hiera('puppet::host')}.%{::domain}:%{hiera('puppet::port')}"
   - path: /rundeck
-    url: http://karajan.oloc:4440
+    url: "http://%{hiera('rundeck::host')}.%{::domain}:%{hiera('rundeck::port')}"
   - path: /gitlab
-    url: http://repositories.oloc:80/gitlab
+    url: "http://%{hiera('gitlab::host')}.%{::domain}:%{hiera('gitlab::port')}/gitlab"
   - path: /jenkins
-    url: http://karajan.oloc:8080/jenkins
+    url: "http://%{hiera('jenkins::host')}.%{::domain}:%{hiera('jenkins::port')}/jenkins"
   - path: /mesos
-    url: http://karajan.oloc:5050/
+    url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
