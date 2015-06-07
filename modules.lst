@@ -8,12 +8,12 @@ puppetlabs-docker_platform
 #
 # Approved modules
 rtyler-jenkins
-opentable-rundeck
 ghoneycutt-dnsclient
 example42-network
 #
 # Any
 #jfryman-nginx
+puppet-rundeck
 spuder-gitlab
 ajjahn-dns
 deric-mesos 
