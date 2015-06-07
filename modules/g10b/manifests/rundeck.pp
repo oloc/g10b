@@ -23,13 +23,11 @@ class g10b::rundeck {
     user    => 'root',
   }->
   class { '::rundeck':
-    user               => $rd_usr,
-    group              => $rd_grp,
-    # I have to force the jre because the default in rundeck::params is not appropriate.
-    jre_name           => 'openjdk-7-jre',
-    #jre_version => '7u71-2.5.3-0ubuntu0.14.04.1'
-    grails_server_url  => $rd_gsr,
+    user              => $rd_usr,
+    group             => $rd_grp,
+    jre_name          => 'openjdk-7-jre',
+    grails_server_url => $rd_gsr,
     # waiting for https://github.com/puppet-community/puppet-rundeck/pull/92
-    #server_web_context => $rd_swc,
+    #server_web_context +> $rd_swc,
   }
 }
