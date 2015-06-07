@@ -20,12 +20,14 @@ rundeck::host  : 'karajan'
 rundeck::port  : 4440
 rundeck::user  : 'rundeck'
 rundeck::group : 'rundeck'
+rundeck::server_web_context: "/rundeck"
+rundeck::grails_server_url : "http://%{hiera('rundeck::host')}.%{::domain}:%{hiera('rundeck::port')}%{hiera('rundeck::server_web_context')}"
 
 pass:
   - path: /puppet
     url: "http://%{hiera('puppet::host')}.%{::domain}:%{hiera('puppet::port')}"
   - path: /rundeck
-    url: "http://%{hiera('rundeck::host')}.%{::domain}:%{hiera('rundeck::port')}"
+    url: "%{hiera('rundeck::grails_server_url')}"
   - path: /gitlab
     url: "http://%{hiera('gitlab::host')}.%{::domain}:%{hiera('gitlab::port')}/gitlab"
   - path: /jenkins
