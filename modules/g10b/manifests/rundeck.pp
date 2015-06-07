@@ -2,6 +2,7 @@ class g10b::rundeck {
 
   $rd_usr=hiera('rundeck::user')
   $rd_grp=hiera('rundeck::group')
+  $rd_fwc=hiera('rundeck::framework_config')
 
   group { 'Rundeck Group':
     ensure => present,
@@ -26,5 +27,6 @@ class g10b::rundeck {
     # I have to force the jre because the default in rundeck::params is not appropriate.
     jre_name => 'openjdk-7-jre',
     #jre_version => '7u71-2.5.3-0ubuntu0.14.04.1'
+    framework_config => $rd_fwc,
   }
 }
