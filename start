@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Must be remove for the setup
+echo 'nameserver 192.168.10.50' | sudo resolvconf -d *
+
+pushd $(pwd)/$(dirname $0)/vagrant
+time vagrant up
+vagrant status
+popd
+
+echo 'nameserver 192.168.10.50' | sudo resolvconf -a *

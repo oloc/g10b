@@ -27,28 +27,27 @@ To use this tools, you need a hosting plateform with:
 On your host (for example your laptop with virtualBox), follow the step by step commands below:
 
     env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git 
-    cd ./g10b/vagrant
-    vagrant up
+    ./g10b/start
 
-This commands will pop the needed VMs in virtualbox and install the stuff.
+This command will pop the needed VMs in virtualbox and install the stuff.
 If you possess a datacenter or a cloud and if you want to test the installation you have to launch the *install* scripts in the appropriate machines.
 
 ## Usage
-You have to add the DNS VM (g10b-gateway) as a resolver of your host (for example your laptop with virtualBox), regarding the IP addresses you configure in the _Vagrantfile_ and in the _infra.json_ (as the iplastdigit parameter). As default, you have to use this command:
-
-    echo 'nameserver 192.168.10.50' | sudo resolvconf -a *
-
 At this stage you can have access to the Jenkins, Gitlab, the Rundeck and Mesos in your browser at:
 * http://g10b.oloc/jenkins or http://karajan.oloc:8080/jenkins/
 * http://g10b.oloc/gitlab  or http://repositories.oloc/gitlab
 * http://g10b.oloc/rundeck or http://karajan.oloc:4440/
 * http://g10b.oloc/mesos   or http://karajan.oloc:5050/
 
-
 ## Configuration
-The infrastructure is described in the **vagrant/infra.json** file. 
+The infrastructure is described in the __vagrant/infra.json__ file. 
 
 The configuration of the servers is described in the puppet manifests and modules.
+
+If you modify the project settings, you have to add the DNS VM (g10b-gateway) as a resolver of your host (for example your laptop with virtualBox), regarding the IP addresses you configure in the *Vagrantfile* and in the *infra.json* (as the iplastdigit parameter). As default, the *start* initiate for you this command:
+
+    echo 'nameserver 192.168.10.50' | sudo resolvconf -a *
+
 
 ## Versions
 * V0.5 - Technical version: Remove Import nodes. Add Environment directory to be Puppet-4-ready. Add Travis rake test.
