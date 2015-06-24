@@ -1,7 +1,7 @@
-class g10b::route {
-  
-  $subnet = hiera('subnet')
-  $subadm = hiera('subadm')
+class g10b::route(
+  $subnet = $g10b::subnet,
+  $subadm = $g10b::subadm,
+){
 
   network::route {'eth0':
     ipaddress => [ "${subadm}.0", ],

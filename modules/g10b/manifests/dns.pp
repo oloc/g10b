@@ -1,9 +1,10 @@
-class g10b::dns {
+class g10b::dns(
+    $subnet        = $g10b::subnet,
+    $project       = $g10b::project,
+    $dnsforwarders = $g10b::dnsforwarders,
+){
   # ajjahn-dns
   class {'dns::server':}
-
-  $subnet = hiera('subnet')
-  $project = hiera('project')
 
   # Forward Zone
   dns::zone { $::domain:
@@ -19,7 +20,7 @@ class g10b::dns {
   }
 
   dns::server::options { '/etc/bind/named.conf.options':
-    forwarders      => [ '8.8.8.8', '8.8.4.4' ],
+    forwarders      => $dnsforwarders,
     allow_recursion => [ 'any' ],
   }
 

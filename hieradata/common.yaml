@@ -1,10 +1,14 @@
 ---
-project: "g10b"
-subnet: '192.168.10'
-subadm: '10.0.2'
-admusr: "oloc"
-admgrp: "adm"
+g10b::project: 'g10b'
+g10b::admusr : 'oloc'
+g10b::admgrp : 'adm'
+g10b::subnet : '192.168.10'
+g10b::subadm : '10.0.2'
 
-dnsclient::nameservers:
+g10b::dnsservers:
  - '192.168.10.50'
  - '10.0.2.3'
+
+g10b::dnsforwarders:
+ - '8.8.8.8'
+ - '8.8.4.4'

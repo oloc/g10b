@@ -1,7 +1,7 @@
-class g10b::mesosphere {
-
-  $ms_usr=hiera('mesos::owner')
-  $ms_grp=hiera('mesos::group')
+class g10b::mesosphere(
+  $ms_usr = $mesos::owner,
+  $ms_grp = $mesos::group,
+){
 
   group { 'Mesos Group':
     ensure => present,

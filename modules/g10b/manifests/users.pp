@@ -1,64 +1,65 @@
-class g10b::users {
+class g10b::users(
+  $admusr  = $g10b::admusr,
+  $admgrp  = $g10b::admgrp,
+){
 
-  $admuser = hiera('admusr')
-  $project = hiera('project')
-
-  group { 'admin account group':
+  group { 'admin user account group':
     ensure => present,
-    name   => $admuser,
+    name   => $admusr,
   }
 
-  group { 'adm':
+  group { 'admin group':
     ensure => present,
+    name   => $admgrp,
   }
 
   group { 'opt':
     ensure => present,
   }
 
-  user { 'admin account':
+  user { 'admin user account':
     ensure   => present,
-    name     => $admuser,
-    comment  => 'admin account',
-    groups   => [sudo, adm, opt],
-    home     => "/home/${admuser}",
+    name     => $admusr,
+    comment  => 'admin user account',
+    groups   => [sudo, $admgrp, opt],
+    home     => "/home/${admusr}",
     password => '8f91640bb5850b0d7d49276cb5728f9e76fb1629',
     shell    => '/bin/bash',
   }
   
-  file { 'admin home':
+  file { 'admin user home':
     ensure => directory,
-    path   => "/home/${admuser}",
-    group  => $admuser,
+    path   => "/home/${admusr}",
+    group  => $admusr,
     mode   => '0640',
-    owner  => $admuser,
+    owner  => $admusr,
   }
 
   file { 'bashrc':
     ensure => present,
-    path   => "/home/${admuser}/.bashrc",
-    group  => $admuser,
+    path   => "/home/${admusr}/.bashrc",
+    group  => $admusr,
     mode   => '0644',
-    owner  => $admuser,
-    source => "puppet:///modules/${project}/bashrc",
+    owner  => $admusr,
+    source => "puppet:///modules/${module_name}/bashrc",
   }
 
   file { 'bash_aliases':
     ensure => present,
-    path   => "/home/${admuser}/.bash_aliases",
-    group  => $admuser,
+    path   => "/home/${admusr}/.bash_aliases",
+    group  => $admusr,
     mode   => '0644',
-    owner  => $admuser,
-    source => "puppet:///modules/${project}/bash_aliases",
+    owner  => $admusr,
+    source => "puppet:///modules/${module_name}/bash_aliases",
   }
 
   file { 'profile':
     ensure => present,
-    path   => "/home/${admuser}/.profile",
-    group  => $admuser,
+    path   => "/home/${admusr}/.profile",
+    group  => $admusr,
     mode   => '0644',
-    owner  => $admuser,
-    source => "puppet:///modules/${project}/profile",
+    owner  => $admusr,
+    source => "puppet:///modules/${module_name}/profile",
   }
 
 }

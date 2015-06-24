@@ -1,6 +1,7 @@
-class g10b::webserver {
-  $project = hiera('project')
-  $pass = hiera('pass')
+class g10b::webserver(
+  $project = $g10b::project,
+  $pass    = $pass,
+){
 
   class  { 'apache': }
 
@@ -8,7 +9,7 @@ class g10b::webserver {
     ensure => file,
     mode   => '0644',
     path   => "/var/www/${project}/index.html",
-    source => "puppet:///modules/${project}/index.html",
+    source => "puppet:///modules/${module_name}/index.html",
   }
 
   apache::vhost { "${project}.${::domain}":

@@ -1,9 +1,9 @@
-class g10b::rundeck {
-
-  $rd_usr=hiera('rundeck::user')
-  $rd_grp=hiera('rundeck::group')
-  $rd_gsr=hiera('rundeck::grails_server_url')
-  $rd_swc=hiera('rundeck::server_web_context')
+class g10b::rundeck(
+  $rd_usr = $rundeck::user,
+  $rd_grp = $rundeck::group,
+  $rd_gsr = $rundeck::grails_server_url,
+  $rd_swc = $rundeck::server_web_context,
+){
 
   group { 'Rundeck Group':
     ensure => present,
