@@ -10,6 +10,7 @@ puppetlabs-docker_platform
 rtyler-jenkins
 ghoneycutt-dnsclient
 example42-network
+elasticsearch-elasticsearch
 #
 # Any
 #jfryman-nginx
@@ -18,3 +19,6 @@ spuder-gitlab
 ajjahn-dns
 deric-mesos 
 markb-docker_registry
+elasticsearch-logstash
+elasticsearch-logstashforwarder
+lesaux-kibana4

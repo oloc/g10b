@@ -35,7 +35,7 @@
 		"node": "g10b-metrology",
 		"iplastdigit": "58",
 		"host": "metrology",
-		"memory": 1024,
+		"memory": 2048,
 		"cpu": 1,
 		"bootstrap": "agent"
 	},

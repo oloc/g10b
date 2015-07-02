@@ -1,12 +1,18 @@
 ---
-puppet::host : 'puppet'
-puppet::port : 8140
+es::port : 9200
 
 gitlab::host : 'repositories'
 gitlab::port : 80
 
 jenkins::host : 'karajan'
 jenkins::port : 8080
+
+kibana::host  : 'metrology'
+kibana::port  : 80
+kibana::user  : 'kibana'
+kibana::group : 'kibana'
+
+logstash::host : 'metrology'
 
 mesos::host        : 'karajan'
 mesos::port        : 5050
@@ -15,6 +21,9 @@ mesos::log_dir     : '/var/log/mesos'
 mesos::conf_dir    : '/etc/mesos'
 mesos::owner       : 'mesos'
 mesos::group       : 'mesos'
+
+puppet::host : 'puppet'
+puppet::port : 8140
 
 rundeck::host  : 'karajan'
 rundeck::port  : 4440
@@ -34,3 +43,5 @@ pass:
     url: "http://%{hiera('jenkins::host')}.%{::domain}:%{hiera('jenkins::port')}/jenkins"
   - path: /mesos
     url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
+  - path: /kibana
+    url: "http://%hiera('kibana::host')}.%{::domain}:%{hiera('kibana::port')}/"
