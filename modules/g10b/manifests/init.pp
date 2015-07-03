@@ -30,7 +30,7 @@ class g10b(
 
   class {'::logstashforwarder':
     servers => [$logstash::host],
-    require => Exec['elasticsearch_add_key','logstashforwarder_add_repo'],
+    require => Exec['elk::elasticsearch_add_key','elk::logstashforwarder_add_repo'],
   }
 
   exec {'apt-get_update':
