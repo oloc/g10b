@@ -1,5 +1,5 @@
 ---
-es::port : 9200
+elasticsearch::port : 9200
 
 gitlab::host : 'repositories'
 gitlab::port : 80
