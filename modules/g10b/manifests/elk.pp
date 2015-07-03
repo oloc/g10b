@@ -5,7 +5,9 @@ class g10b::elk(
 ){
 
   class {'elasticsearch':}
-  class {'logstash':}
+  class {'logstash':
+    require => Exec['logstash_add_key','logstash_add_repo'],
+  }
   class {'::kibana4':
     manage_user       => true,
     kibana4_user      => $kibana_user,
