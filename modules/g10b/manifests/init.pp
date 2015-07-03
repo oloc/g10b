@@ -28,30 +28,9 @@ class g10b(
     require => Exec['apt-get_update'],
   }
 
-  exec {'logstash_add_key':
-    command => 'wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -',
-    user    => 'root',
-  }
-
-  exec {'logstash_add_repo':
-    command => '/bin/echo "deb http://packages.elasticsearch.org/logstash/current/debian stable main" | \
-        sudo /usr/bin/tee /etc/apt/sources.list.d/logstash.list',
-    creates => '/etc/apt/sources.list.d/logstash.list',
-    user    => 'root',
-    before  => Exec['apt-get_update'],
-  }
-
-  exec {'logstashforwarder_add_repo':
-    command => '/bin/echo "deb http://packages.elasticsearch.org/logstashforwarder/debian stable main" | \
-        sudo /usr/bin/tee /etc/apt/sources.list.d/logstashforwarder.list',
-    creates => '/etc/apt/sources.list.d/logstashforwarder.list',
-    user    => 'root',
-    before  => Exec['apt-get_update'],
-  }
-
   class {'::logstashforwarder':
     servers => [$logstash::host],
-    require => Exec['logstash_add_key','logstashforwarder_add_repo'],
+    require => Exec['elasticsearch_add_key','logstashforwarder_add_repo'],
   }
 
   exec {'apt-get_update':
