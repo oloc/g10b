@@ -2,5 +2,5 @@ node 'metrology' {
   class {'g10b':}
   class {'g10b::ssh':}
 
-  class {'elk':}
+  class {'g10b::elk':}
 }

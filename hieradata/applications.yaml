@@ -16,7 +16,6 @@ logstash::host : 'metrology'
 
 mesos::host        : 'karajan'
 mesos::port        : 5050
-mesos::master_port : "%{hiera('mesos::port')}"
 mesos::log_dir     : '/var/log/mesos'
 mesos::conf_dir    : '/etc/mesos'
 mesos::owner       : 'mesos'

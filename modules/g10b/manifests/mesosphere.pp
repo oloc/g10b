@@ -14,7 +14,7 @@ class g10b::mesosphere(
     name    => $mesos_usr,
     comment => 'mesos server',
     groups  => $mesos_grp,
-    home    => "/home/${ms_usr}",
+    home    => "/home/${mesos_usr}",
   }
 
   exec {'mesosphere_add_key':
@@ -28,7 +28,7 @@ class g10b::mesosphere(
     user    => 'root',
   }->
   class { 'mesos::master':
-    master_port => $mesos_port, 
+    master_port => $mesos_port,
     require     => Class['apt::update'],
   }
 

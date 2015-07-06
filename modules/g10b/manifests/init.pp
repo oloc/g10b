@@ -33,5 +33,8 @@ class g10b(
     servers => [$logstash::host],
   }
 
-  class { 'apt::update': }
+  if !defined(Class['apt::update']) {
+    class { 'apt::update': }
+  }
+  
 }
