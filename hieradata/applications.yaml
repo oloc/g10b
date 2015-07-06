@@ -1,4 +1,4 @@
-  ---
+---
 elasticsearch::port : 9200
 
 gitlab::host : 'repositories'
