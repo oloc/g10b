@@ -27,7 +27,7 @@ class g10b::mesosphere(
     user    => 'root',
   }->
   class { 'mesos::master':
-    require => Exec['apt-get_update'],
+    require => Class['apt::update'],
   }
 
 }

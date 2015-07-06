@@ -25,16 +25,12 @@ class g10b(
   }
 
   class { '::ntp':
-    require => Exec['apt-get_update'],
+    require => Class['apt::update'],
   }
 
-  class {'::logstashforwarder':
+  class {'elk::logstashforwarder':
     servers => [$logstash::host],
-    require => Exec['elk::elasticsearch_add_key','elk::logstashforwarder_add_repo'],
   }
 
-  exec {'apt-get_update':
-    command => '/usr/bin/apt-get -y update',
-    user    => 'root',
-  }
+  class { 'apt::update': }
 }
