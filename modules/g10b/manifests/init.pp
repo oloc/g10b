@@ -1,9 +1,10 @@
 class g10b(
-  $admusr     = $g10b::admusr,
-  $admgrp     = $g10b::admgrp,
-  $subnet     = $g10b::subnet,
-  $subadm     = $g10b::subadm,
-  $dnsservers = $g10b::dnsservers,
+  $admusr        = $g10b::admusr,
+  $admgrp        = $g10b::admgrp,
+  $subnet        = $g10b::subnet,
+  $subadm        = $g10b::subadm,
+  $dnsservers    = $g10b::dnsservers,
+  $logstash_host = $logstash::host,
 ){
 
   class {'g10b::users':
@@ -28,7 +29,7 @@ class g10b(
     require => Class['apt::update'],
   }
 
-  class {'elk::logstashforwarder':
+  class {'::logstashforwarder':
     servers => [$logstash::host],
   }
 

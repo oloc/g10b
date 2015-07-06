@@ -1,18 +1,19 @@
 class g10b::mesosphere(
-  $ms_usr = $mesos::owner,
-  $ms_grp = $mesos::group,
+  $mesos_usr  = $mesos::owner,
+  $mesos_grp  = $mesos::group,
+  $mesos_port = $mesos::port,
 ){
 
   group { 'Mesos Group':
     ensure => present,
-    name   => $ms_grp,
+    name   => $mesos_grp,
   }
 
   user { 'Mesos User':
     ensure  => present,
-    name    => $ms_usr,
+    name    => $mesos_usr,
     comment => 'mesos server',
-    groups  => $ms_grp,
+    groups  => $mesos_grp,
     home    => "/home/${ms_usr}",
   }
 
@@ -27,7 +28,8 @@ class g10b::mesosphere(
     user    => 'root',
   }->
   class { 'mesos::master':
-    require => Class['apt::update'],
+    master_port => $mesos_port, 
+    require     => Class['apt::update'],
   }
 
 }
