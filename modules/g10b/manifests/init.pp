@@ -5,7 +5,7 @@ class g10b(
   $subnet     = $g10b::subnet,
   $subadm     = $g10b::subadm,
   $dnsservers = $g10b::dnsservers,
-  $elk_host   = $g10b::elk::host,
+  $elk_host   = $g10b::elk_host,
 ){
 
   class {'g10b::users':
@@ -31,7 +31,7 @@ class g10b(
   }
 
   class {'::logstashforwarder':
-    servers => [$elk_host],
+    servers => ["${elk_host}.${::domain}"],
   }
 
   if !defined(Class['apt::update']) {
