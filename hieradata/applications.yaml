@@ -1,5 +1,5 @@
 ---
-g10b::elk::host : 'metrology'
+g10b::elk::host               : 'metrology'
 g10b::elk::elasticsearch_port : 9200
 g10b::elk::kibana_user        : 'kibana'
 g10b::elk::kibana_group       : 'kibana'
@@ -9,9 +9,6 @@ gitlab::port : 80
 
 jenkins::host : 'karajan'
 jenkins::port : 8080
-
-kibana::host  : 'metrology'
-kibana::port  : 80
 
 mesos::host        : 'karajan'
 mesos::port        : 5050
@@ -42,4 +39,4 @@ pass:
   - path: /mesos
     url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
   - path: /kibana
-    url: "http://%{hiera('kibana::host')}.%{::domain}:%{hiera('kibana::port')}/"
+    url: "http://%{hiera('g10b::elk::host')}.%{::domain}/"
