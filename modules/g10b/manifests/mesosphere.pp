@@ -1,7 +1,7 @@
 class g10b::mesosphere(
-  $mesos_usr  = $mesos::owner,
-  $mesos_grp  = $mesos::group,
-  $mesos_port = $mesos::port,
+  $mesos_owner = $mesos::owner,
+  $mesos_group = $mesos::group,
+  $mesos_port  = $mesos::port,
 ){
 
   group { 'Mesos Group':
@@ -28,9 +28,9 @@ class g10b::mesosphere(
     user    => 'root',
   }->
   class { 'mesos::master':
-    owner       => $mesos_usr,
-    group       => $mesos_group,
     master_port => $mesos_port,
+    owner       => $mesos_owner,
+    group       => $mesos_group,
     require     => Class['apt::update'],
   }
 
