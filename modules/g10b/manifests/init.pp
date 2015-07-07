@@ -1,10 +1,11 @@
 class g10b(
-  $admusr        = $g10b::admusr,
-  $admgrp        = $g10b::admgrp,
-  $subnet        = $g10b::subnet,
-  $subadm        = $g10b::subadm,
-  $dnsservers    = $g10b::dnsservers,
-  $elk_host      = $g10b::elk::host,
+  $project    = $g10b::project,
+  $admusr     = $g10b::admusr,
+  $admgrp     = $g10b::admgrp,
+  $subnet     = $g10b::subnet,
+  $subadm     = $g10b::subadm,
+  $dnsservers = $g10b::dnsservers,
+  $elk_host   = $g10b::elk::host,
 ){
 
   class {'g10b::users':
