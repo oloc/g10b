@@ -9,6 +9,6 @@ g10b::dnsservers:
  - '192.168.10.50'
  - '10.0.2.3'
 
-g10b::dnsforwarders:
+g10b::dns::forwarders:
  - '8.8.8.8'
  - '8.8.4.4'

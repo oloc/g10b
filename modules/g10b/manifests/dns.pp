@@ -1,5 +1,5 @@
 class g10b::dns(
-    $subne      = $g10b::subnet,
+    $subnet     = $g10b::subnet,
     $project    = $g10b::project,
     $forwarders = $g10b::dns::forwarders,
 ){
