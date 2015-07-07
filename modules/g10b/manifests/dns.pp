@@ -1,6 +1,6 @@
 class g10b::dns(
-    $subnet        = $g10b::subnet,
-    $project       = $g10b::project,
+    $subne      = $g10b::subnet,
+    $project    = $g10b::project,
     $forwarders = $g10b::dns::forwarders,
 ){
   # ajjahn-dns
@@ -17,7 +17,7 @@ class g10b::dns(
     soa         => $::fqdn,
     soa_email   => "root.${::fqdn}",
     nameservers => [ $::fqdn ],
-  }1
+  }
 
   dns::server::options { '/etc/bind/named.conf.options':
     forwarders      => $forwarders,
