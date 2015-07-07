@@ -1,7 +1,7 @@
 ---
-elk::kibana_user        : 'kibana'
-elk::kibana_group       : 'kibana'
-elk::elasticsearch_port : 9200
+g10b::elk::kibana_user        : 'kibana'
+g10b::elk::kibana_group       : 'kibana'
+g10b::elk::elasticsearch_port : 9200
 
 gitlab::host : 'repositories'
 gitlab::port : 80
