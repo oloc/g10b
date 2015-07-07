@@ -7,7 +7,7 @@ class g10b::elk(
 ) {
 
   class {'elasticsearch':}
-  elasticsearch::instance { 'es-01': 
+  elasticsearch::instance { 'es-01':
     ensure  => present,
     require => Class['elasticsearch'],
   }
