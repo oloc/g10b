@@ -1,5 +1,4 @@
 ---
-g10b::project: 'g10b'
 g10b::admusr : 'oloc'
 g10b::admgrp : 'adm'
 g10b::subnet : '192.168.10'

@@ -1,5 +1,5 @@
 class g10b(
-  $project    = $g10b::project,
+  $project    = $module_name,
   $admusr     = $g10b::admusr,
   $admgrp     = $g10b::admgrp,
   $subnet     = $g10b::subnet,
