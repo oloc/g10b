@@ -4,7 +4,7 @@ class g10b(
   $subnet        = $g10b::subnet,
   $subadm        = $g10b::subadm,
   $dnsservers    = $g10b::dnsservers,
-  $elk_host      = $g10b::elk_host,
+  $elk_host      = $g10b::elk::host,
 ){
 
   class {'g10b::users':

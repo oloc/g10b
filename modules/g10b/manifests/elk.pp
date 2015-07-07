@@ -1,7 +1,7 @@
 class g10b::elk(
-  $kibana_user        = $elk::kibana_user,
-  $kibana_group       = $elk::kibana_group,
-  $elasticsearch_port = $elk::elasticsearch_port,
+  $kibana_user        = $g10b::elk::kibana_user,
+  $kibana_group       = $g10b::elk::kibana_group,
+  $elasticsearch_port = $g10b::elk::elasticsearch_port,
 ) {
 
   class {'::elasticsearch':}
