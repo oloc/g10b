@@ -40,4 +40,4 @@ g10b::webserver::pass:
   - path: /mesos
     url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
   - path: /kibana
-    url: "http://%{hiera('g10b::elk::host')}.%{::domain}:%{hiera('g10b::elk::kibana_port')}/"
+    url: "http://%{hiera('g10b::elk_host')}.%{::domain}:%{hiera('g10b::elk::kibana_port')}/"

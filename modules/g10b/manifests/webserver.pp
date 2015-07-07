@@ -1,5 +1,5 @@
 class g10b::webserver(
-  $project = $g10b::webserver::project,
+  $project = $module_name,
   $pass    = $g10b::webserver::pass,
 ){
 

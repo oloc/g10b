@@ -1,6 +1,6 @@
 class g10b::dns(
     $subnet     = $g10b::subnet,
-    $project    = $g10b::project,
+    $project    = $module_name,
     $forwarders = $g10b::dns::forwarders,
 ){
   # ajjahn-dns
