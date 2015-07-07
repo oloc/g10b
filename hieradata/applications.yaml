@@ -1,5 +1,7 @@
 ---
-elasticsearch::port : 9200
+elk::kibana_user        : 'kibana'
+elk::kibana_group       : 'kibana'
+elk::elasticsearch_port : 9200
 
 gitlab::host : 'repositories'
 gitlab::port : 80
@@ -9,10 +11,6 @@ jenkins::port : 8080
 
 kibana::host  : 'metrology'
 kibana::port  : 80
-kibana::user  : 'kibana'
-kibana::group : 'kibana'
-
-logstash::host : 'metrology'
 
 mesos::host        : 'karajan'
 mesos::port        : 5050
@@ -43,4 +41,4 @@ pass:
   - path: /mesos
     url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
   - path: /kibana
-    url: "http://%hiera('kibana::host')}.%{::domain}:%{hiera('kibana::port')}/"
+    url: "http://%{hiera('kibana::host')}.%{::domain}:%{hiera('kibana::port')}/"
