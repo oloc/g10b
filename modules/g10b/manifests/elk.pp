@@ -1,8 +1,8 @@
 class g10b::elk(
-  $kibana_user        = $kibana::user,
-  $kibana_group       = $kibana::group,
-  $elasticsearch_port = $elasticsearch::port,
-){
+  $kibana_user        = $elk::kibana_user,
+  $kibana_group       = $elk::kibana_group,
+  $elasticsearch_port = $elk::elasticsearch_port,
+) {
 
   class {'::elasticsearch':}
   class {'::logstash':}

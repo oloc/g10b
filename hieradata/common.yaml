@@ -5,6 +5,8 @@ g10b::admgrp : 'adm'
 g10b::subnet : '192.168.10'
 g10b::subadm : '10.0.2'
 
+g10b::elk_host : 'metrology'
+
 g10b::dnsservers:
  - '192.168.10.50'
  - '10.0.2.3'
