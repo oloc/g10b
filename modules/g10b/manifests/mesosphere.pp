@@ -6,15 +6,15 @@ class g10b::mesosphere(
 
   group { 'Mesos Group':
     ensure => present,
-    name   => $mesos_grp,
+    name   => $mesos_group,
   }
 
   user { 'Mesos User':
     ensure  => present,
-    name    => $mesos_usr,
+    name    => $mesos_owner,
     comment => 'mesos server',
-    groups  => $mesos_grp,
-    home    => "/home/${mesos_usr}",
+    groups  => $mesos_group,
+    home    => "/home/${mesos_owner}",
   }
 
   exec {'mesosphere_add_key':
