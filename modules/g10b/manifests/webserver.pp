@@ -1,6 +1,6 @@
 class g10b::webserver(
-  $project = $g10b::project,
-  $pass    = $pass,
+  $project = $g10b::webserver::project,
+  $pass    = $g10b::webserver::pass,
 ){
 
   class  { 'apache': }

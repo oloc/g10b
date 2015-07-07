@@ -34,6 +34,9 @@ class g10b::dns(
     'repositories':
       zone => $::domain,
       data => ["${subnet}.57"];
+    'metrology':
+      zone => $::domain,
+      data => ["${subnet}.58"];
   }
   dns::record::cname {
     $project:

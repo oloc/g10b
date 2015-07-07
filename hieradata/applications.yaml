@@ -28,7 +28,7 @@ rundeck::group : 'rundeck'
 rundeck::server_web_context: "/rundeck"
 rundeck::grails_server_url : "http://%{hiera('rundeck::host')}.%{::domain}:%{hiera('rundeck::port')}%{hiera('rundeck::server_web_context')}"
 
-pass:
+g10b::webserver::pass:
   - path: /puppet
     url: "http://%{hiera('puppet::host')}.%{::domain}:%{hiera('puppet::port')}"
   - path: /rundeck
