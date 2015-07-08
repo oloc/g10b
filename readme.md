@@ -13,7 +13,7 @@ Anyway, currently the project allows you automatically to:
 * Puppet-master configures itself
 * Puppet configures all machines
 
-Then Jenkins, GitLab, Rundeck, Mesos and Puppet are ready!
+Then Jenkins, GitLab, Rundeck, Mesos, Elasticsearch, Logstash, Kibana and Puppet are ready!
 
 ![Scheme](./docs/g10b.jpg)
 
@@ -33,14 +33,12 @@ This command will pop the needed VMs in virtualbox and install the stuff.
 If you possess a datacenter or a cloud and if you want to test the installation you have to launch the *install* scripts in the appropriate machines.
 
 ## Usage
-At this stage you can have access to the Jenkins, Gitlab, the Rundeck and Mesos in your browser at:
-* http://g10b.oloc/jenkins or http://karajan.oloc:8080/jenkins/
-* http://g10b.oloc/gitlab  or http://repositories.oloc/gitlab
-* http://g10b.oloc/rundeck or http://karajan.oloc:4440/
-* http://g10b.oloc/mesos   or http://karajan.oloc:5050/
+At this stage you can have access to the Jenkins, Gitlab, Rundeck, Mesos and Kibana in your browser at:
+* http://<module name>.<domain> 
+* http://g10b.oloc (by default)
 
 ## Configuration
-The infrastructure is described in the __vagrant/infra.json__ file. 
+The infrastructure is described in the __hieradata/infra.json__ file. 
 
 The configuration of the servers is described in the puppet manifests and modules.
 
@@ -50,6 +48,7 @@ If you modify the project settings, you have to add the DNS VM (g10b-gateway) as
 
 
 ## Versions
+* V0.6 - Add ELK (ElasticSearch Logstash Kibana)
 * V0.5 - Technical version: Remove Import nodes. Add Environment directory to be Puppet-4-ready. Add Travis rake test.
 * V0.4 - Vagrant uses own boxes. Infrastructure is revised. Gateway and DNS are activated. Mesos is available.
 * V0.3 - Add Rundeck Jenkins and Gitlab
