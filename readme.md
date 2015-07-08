@@ -33,8 +33,8 @@ This command will pop the needed VMs in virtualbox and install the stuff.
 If you possess a datacenter or a cloud and if you want to test the installation you have to launch the *install* scripts in the appropriate machines.
 
 ## Usage
-At this stage you can have access to the Jenkins, Gitlab, Rundeck, Mesos and Kibana in your browser at:
-* http://<module name>.<domain> 
+You can access to the Jenkins, Gitlab, Rundeck, Mesos and Kibana in your browser at:
+* http://\<module name\>.\<domain\> 
 * http://g10b.oloc (by default)
 
 ## Configuration
