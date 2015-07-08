@@ -10,8 +10,27 @@ class g10b::elk(
     ensure  => present,
     require => Class['elasticsearch'],
   }
-  
+  elasticsearch::plugin{'mobz/elasticsearch-head':
+    module_dir => 'head',
+    require    => Class['elasticsearch'],
+  }
+  elasticsearch::plugin{'lukas-vlcek/bigdesk':
+    module_dir => 'bigdesk',
+    require    => Class['elasticsearch'],
+  }
+
   class {'::logstash':}
+
+  file {'/etc/logstash/logstash-syslog.conf':
+    ensure => present,
+    content => template('g10b/logstash-syslog.conf.erb'),
+  }
+
+  file {'/etc/logstash/logstash-apache.conf':
+    ensure => present,
+    content => template('g10b/logstash-apache.conf.erb'),
+  }
+
 
   class {'::kibana4':
     manage_user       => true,
