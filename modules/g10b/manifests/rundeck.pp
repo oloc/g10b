@@ -1,33 +1,32 @@
 class g10b::rundeck(
-  $rd_usr = $rundeck::user,
-  $rd_grp = $rundeck::group,
-  $rd_gsr = $rundeck::grails_server_url,
-  $rd_swc = $rundeck::server_web_context,
+  $user               = $rundeck::user,
+  $group              = $rundeck::group,
+  $grails_server_url  = $rundeck::grails_server_url,
+  $server_web_context = $rundeck::server_web_context,
 ){
 
   group { 'Rundeck Group':
     ensure => present,
-    name   => $rd_grp,
+    name   => $group,
   }
 
   user { 'Rundeck User':
     ensure  => present,
-    name    => $rd_usr,
+    name    => $user,
     comment => 'rundeck server',
-    groups  => $rd_grp,
-    home    => "/home/${rd_usr}",
+    groups  => $group,
+    home    => "/home/${user}",
   }
 
-  exec { 'rundeck_service_stop':
+  exec { 'service_stop':
     command => 'service rundeckd stop',
     user    => 'root',
   }->
   class { '::rundeck':
-    user              => $rd_usr,
-    group             => $rd_grp,
-    jre_name          => 'openjdk-7-jre',
-    grails_server_url => $rd_gsr,
-    # waiting for https://github.com/puppet-community/puppet-rundeck/pull/92
-    #server_web_context +> $rd_swc,
-  }
+    user               => $user,
+    group              => $group,
+    jre_name           => 'openjdk-7-jre',
+    grails_server_url  => $grails_server_url,
+    server_web_context => $server_web_context, # https://github.com/puppet-community/puppet-rundeck/pull/92
+   }
 }
