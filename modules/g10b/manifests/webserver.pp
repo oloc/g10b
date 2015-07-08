@@ -9,7 +9,8 @@ class g10b::webserver(
     ensure => file,
     mode   => '0644',
     path   => "/var/www/${project}/index.html",
-    source => "puppet:///modules/${module_name}/index.html",
+    content => template('g10b/index.html.erb')
+    #source => "puppet:///modules/${module_name}/index.html",
   }
 
   apache::vhost { "${project}.${::domain}":

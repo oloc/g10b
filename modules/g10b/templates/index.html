@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>g10b - Get your lab!</title>
+</head>
+<body>
+	<h1>Welcome to your lab!</h1>
+		<h2><a href="http://g10b.oloc/gitlab/">Gitlab</a></h2>
+		<h2><a href="http://g10b.oloc/jenkins/">Jenkins</a></h2>
+		<h2><a href="http://g10b.oloc/rundeck/">Rundeck</a></h2>
+		<h2><a href="http://g10b.oloc/mesos/">Mesos</a></h2>
+		<h2><a href="http://g10b.oloc/kibana/">Kibana</a></h2>
+	<h1>Direct links</h1>
+		<h2><a href="http://<%= scope.lookupvar('gitlab::host') %>.oloc/gitlab/">Gitlab</a></h2>
+		<h2><a href="http://<%= scope.lookupvar('jenkins::host') %>.oloc/jenkins/">Jenkins</a></h2>
+		<h2><a href="http://<%= scope.lookupvar('rundeck::host') %>.oloc/rundeck/">Rundeck</a></h2>
+		<h2><a href="http://<%= scope.lookupvar('mesos::host') %>.oloc/mesos/">Mesos</a></h2>
+		<h2><a href="http://<%= scope.lookupvar('g10b::elk_host') %>.oloc/kibana/">Kibana</a></h2>
+</body>
+</html>

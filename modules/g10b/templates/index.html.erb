@@ -1,0 +1,16 @@
+<html>
+<head>
+        <title>g10b - Get your lab!</title>
+</head>
+<body>
+  <h1>Welcome to your lab!</h1>
+    <% @pass.each do |p| -%>
+      <h2><a href="http://<%= @project %>.<%= @domain %><%= p['path']  %>/"><%= p['path']  %></a></h2>
+    <% end -%>
+
+  <h1>Direct links</h1>
+    <% @pass.each do |p| -%>
+      <h2><a href="<%= p['url'] %>"><%= p['path']  %></a></h2>
+    <% end -%>
+</body>
+</html>

@@ -17,7 +17,6 @@ class g10b::elk(
     manage_user       => true,
     kibana4_user      => $kibana_user,
     kibana4_group     => $kibana_group,
-    host              => $::fqdn,
     port              => $kibana_port,
     elasticsearch_url => "http://${::fqdn}:${elasticsearch_port}",
   }
