@@ -18,6 +18,6 @@ filter {
 }
 
 output {
-  elasticsearch { host => <%= scope.lookupvar('g10b::elk_host') %> }
+  elasticsearch { host => <%= @fqdn %> }
   stdout { codec => rubydebug }
 }

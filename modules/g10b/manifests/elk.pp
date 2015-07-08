@@ -21,12 +21,12 @@ class g10b::elk(
 
   class {'::logstash':}
 
-  file {'/etc/logstash/logstash-syslog.conf':
+  file {'/etc/logstash/conf.d/logstash-syslog.conf':
     ensure  => present,
     content => template('g10b/logstash-syslog.conf.erb'),
   }
 
-  file {'/etc/logstash/logstash-apache.conf':
+  file {'/etc/logstash/conf.d/logstash-apache.conf':
     ensure  => present,
     content => template('g10b/logstash-apache.conf.erb'),
   }
