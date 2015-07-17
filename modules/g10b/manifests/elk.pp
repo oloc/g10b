@@ -12,10 +12,12 @@ class g10b::elk(
   }
   elasticsearch::plugin{'mobz/elasticsearch-head':
     module_dir => 'head',
+    instances  => 'es-01',
     require    => Class['elasticsearch'],
   }
   elasticsearch::plugin{'lukas-vlcek/bigdesk':
     module_dir => 'bigdesk',
+    instances  => 'es-01',
     require    => Class['elasticsearch'],
   }
 
