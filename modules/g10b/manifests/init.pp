@@ -36,13 +36,13 @@ class g10b(
     manage_repo  => true,
   }
   logstashforwarder::file { 'syslog':
-    paths  => [ "/var/log/syslog" ],
-    fields => { "type" => "syslog" },
+    paths   => [ "/var/log/syslog" ],
+    fields  => { "type" => "syslog" },
     require => Class['::logstashforwarder'],
   }
   logstashforwarder::file { 'auth.log':
-    paths  => [ "/var/log/auth.log" ],
-    fields => { "type" => "auth" },
+    paths   => [ "/var/log/auth.log" ],
+    fields  => { "type" => "auth" },
     require => Class['::logstashforwarder'],
   }
 
