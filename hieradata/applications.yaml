@@ -1,5 +1,6 @@
 ---
 g10b::elk_host                : 'metrology'
+g10b::logstash_port           : 5000
 g10b::elk::elasticsearch_port : 9200
 g10b::elk::kibana_user        : 'kibana'
 g10b::elk::kibana_group       : 'kibana'
