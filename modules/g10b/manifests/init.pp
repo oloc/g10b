@@ -38,10 +38,10 @@ class g10b(
   }
 
   class {'::logstashforwarder':
-    servers      => ["${elk_host}.${::domain}:${logstash_port}"],
-    ssl_ca       => $file_crt,
-    manage_repo  => true,
-    require      => File[$file_crt],
+    servers     => ["${elk_host}.${::domain}:${logstash_port}"],
+    ssl_ca      => $file_crt,
+    manage_repo => true,
+    require     => File[$file_crt],
   }
 
   $syslog_fields = { 'type' => 'syslog' }

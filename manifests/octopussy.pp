@@ -5,4 +5,11 @@ node 'octopussy' {
 
   class {'g10b::webserver':}
 
+  $apache_fields = { 'type' => 'apache' }
+  logstashforwarder::file { 'apache.log':
+    paths   => [ '/var/log/apache2/*.log' ],
+    fields  => $apache_fields,
+    require => Class['::logstashforwarder'],
+  }
+
 }
