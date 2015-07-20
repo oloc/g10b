@@ -36,12 +36,14 @@ class g10b(
     path   => $file_crt,
     source => "puppet:///modules/${module_name}/logstash-forwarder.crt",
   }
+  
   class {'::logstashforwarder':
     servers      => ["${elk_host}.${::domain}:${logstash_port}"],
     ssl_ca       => $file_crt,
     manage_repo  => true,
     require      => File[$file_crt],
   }
+
   logstashforwarder::file { 'syslog':
     paths   => [ '/var/log/syslog' ],
     fields  => { 'type' => 'syslog' },
