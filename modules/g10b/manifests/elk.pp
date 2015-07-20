@@ -21,8 +21,8 @@ class g10b::elk(
     require    => Class['elasticsearch'],
   }
 
-  file {'/etc/pki/tls/private': 
-    ensure => directory,
+  file {'/etc/pki/tls/private':
+    ensure  => directory,
     require => File['/etc/pki/tls'],
   }
 

@@ -26,7 +26,9 @@ class g10b(
     nameservers => $dnsservers,
     domain      => $::domain,
   }
-
+else {
+  # enter puppet code
+}
   class { '::ntp':
     require => Class['apt::update'],
   }
