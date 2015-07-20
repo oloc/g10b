@@ -17,4 +17,13 @@ class g10b::files {
     ensure => link,
     target => '/etc/puppet/hiera.yaml'
   }
+
+  file {'/etc/pki/tls': 
+    ensure => directory,
+  }
+  file {'/etc/pki/tls/certs': 
+    ensure => directory,
+    require => File['/etc/pki/tls'],
+  }
+
 }

@@ -31,18 +31,25 @@ class g10b(
     require => Class['apt::update'],
   }
 
+  $file_crt = '/etc/pki/tls/certs/logstash-forwarder.crt'
+  file {$file_crt:
+    path   => $file_crt,
+    source => "puppet:///modules/${module_name}/logstash-forwarder.crt",
+  }
   class {'::logstashforwarder':
     servers      => ["${elk_host}.${::domain}:${logstash_port}"],
+    ssl_ca       => $file_crt,
     manage_repo  => true,
+    require      => File[$file_crt],
   }
   logstashforwarder::file { 'syslog':
-    paths   => [ "/var/log/syslog" ],
-    fields  => { "type" => "syslog" },
+    paths   => [ '/var/log/syslog' ],
+    fields  => { 'type' => 'syslog' },
     require => Class['::logstashforwarder'],
   }
   logstashforwarder::file { 'auth.log':
-    paths   => [ "/var/log/auth.log" ],
-    fields  => { "type" => "auth" },
+    paths   => [ '/var/log/auth.log' ],
+    fields  => { 'type' => 'auth' },
     require => Class['::logstashforwarder'],
   }
 

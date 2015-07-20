@@ -21,16 +21,30 @@ class g10b::elk(
     require    => Class['elasticsearch'],
   }
 
-  class {'::logstash':}
-
-  file {'/etc/logstash/conf.d/logstash-syslog.conf':
-    ensure  => present,
-    content => template('g10b/logstash-syslog.conf.erb'),
+  file {'/etc/pki/tls/private': 
+    ensure => directory,
+    require => File['/etc/pki/tls'],
   }
 
-  file {'/etc/logstash/conf.d/logstash-apache.conf':
-    ensure  => present,
-    content => template('g10b/logstash-apache.conf.erb'),
+  class {'::logstash':
+    require => File ['/etc/pki/tls/private']
+  }
+
+  logstash::configfile {'logstash-input.conf':
+    source => "puppet:///modules/${module_name}/logstash-input.conf",
+    order  => 01,
+  }
+  logstash::configfile {'logstash-syslog.conf':
+    source => "puppet:///modules/${module_name}/logstash-syslog.conf",
+    order  => 50,
+  }
+  logstash::configfile {'logstash-apache.conf':
+    source => "puppet:///modules/${module_name}/logstash-apache.conf",
+    order  => 50,
+  }
+  logstash::configfile {'logstash-output.conf':
+    source => "puppet:///modules/${module_name}/logstash-output.conf",
+    order  => 99,
   }
 
 
