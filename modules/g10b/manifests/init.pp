@@ -24,7 +24,6 @@ class g10b(
 
   class {'dnsclient':
     nameservers => $dnsservers,
-    domain      => $::domain,
   }
 
   class { '::ntp':
