@@ -11,7 +11,7 @@
 		"node": "g10b-gateway",
 		"iplastdigit": "50",
 		"host": "octopussy",
-		"memory": 512,
+		"memory": 1024,
 		"cpu": 1,
 		"bootstrap": "agent"
 	},	
