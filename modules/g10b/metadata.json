@@ -1,11 +1,39 @@
 {
-	"name": "g10b",
-	"version": "0.6",
-	"author": "oloc",
-	"summary": "Get your lab!",
-	"license": "Apache-2.0",
-	"source": "git://github.com/oloc/g10b",
-	"project_page": "https://github.com/oloc/g10b",
-	"issues_url": "://github.com/oloc/g10b/issues"
-	"description": "Module for configuring the Devops Lab from the project g10b-Get your lab!"
+  "name": "g10b",
+  "version": "0.6",
+  "author": "oloc",
+  "summary": "Get your lab!",
+  "license": "Apache-2.0",
+  "source": "git://github.com/oloc/g10b",
+  "project_page": "https://github.com/oloc/g10b",
+  "issues_url": "://github.com/oloc/g10b/issues",
+  "description": "Module for configuring the Devops Lab from the project g10b-Get your lab!",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 3.2.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 1.4.0 < 2.0.0"
+    },
+    {
+      "name": "puppetlabs/git",
+      "version_requirement": ">= 0.0.0"
+    },
+    {
+      "name": "puppetlabs/ntp",
+      "version_requirement": ">= 0.0.0"
+    },
+    {
+      "name": "ajjahn/dns",
+      "version_requirement": ">= 0.0.0"
+    },
+    {
+      "name": "elasticsearch/logstashforwarder",
+      "version_requirement": ">= 0.0.0"
+    },
+
+  ],
+
 }
