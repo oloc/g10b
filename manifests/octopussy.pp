@@ -9,9 +9,8 @@ node 'octopussy' {
 
   $apache_fields = { 'type' => 'apache' }
   logstashforwarder::file { 'apache.log':
-    paths   => [ '/var/log/apache2/*.log' ],
-    fields  => $apache_fields,
-    require => Class['::logstashforwarder'],
+    paths  => [ '/var/log/apache2/*.log' ],
+    fields => $apache_fields,
   }
 
 }
