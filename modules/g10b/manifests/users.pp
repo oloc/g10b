@@ -1,6 +1,8 @@
 class g10b::users(
-  $admusr  = $g10b::admusr,
-  $admgrp  = $g10b::admgrp,
+  $admusr      = $g10b::admusr,
+  $admgrp      = $g10b::admgrp,
+  $mesos_owner = $mesos::owner,
+  $mesos_group = $mesos::group,
 ){
 
   group { 'admin user account group':
@@ -60,6 +62,19 @@ class g10b::users(
     mode   => '0644',
     owner  => $admusr,
     source => "puppet:///modules/${module_name}/profile",
+  }
+
+  group { 'Mesos Group':
+    ensure => present,
+    name   => $mesos_group,
+  }
+
+  user { 'Mesos User':
+    ensure  => present,
+    name    => $mesos_owner,
+    comment => 'mesos server',
+    groups  => $mesos_group,
+    home    => "/home/${mesos_owner}",
   }
 
 }
