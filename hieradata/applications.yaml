@@ -12,12 +12,12 @@ gitlab::port : 80
 jenkins::host : 'karajan'
 jenkins::port : 8080
 
-mesos::host        : 'karajan'
-mesos::port        : 5050
-mesos::log_dir     : '/var/log/mesos'
-mesos::conf_dir    : '/etc/mesos'
-mesos::owner       : 'mesos'
-mesos::group       : 'mesos'
+mesos::host     : 'karajan'
+mesos::port     : 5050
+mesos::log_dir  : '/var/log/mesos'
+mesos::conf_dir : '/etc/mesos'
+mesos::owner    : 'mesos'
+mesos::group    : 'mesos'
 
 puppet::host : 'puppet'
 puppet::port : 8140
