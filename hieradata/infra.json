@@ -27,7 +27,7 @@
 		"node": "g10b-repositories",
 		"iplastdigit": "57",
 		"host": "repositories",
-		"memory": 1024,
+		"memory": 2048,
 		"cpu": 1,
 		"bootstrap": "agent"
 	},
