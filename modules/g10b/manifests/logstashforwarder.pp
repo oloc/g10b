@@ -18,13 +18,13 @@ class g10b::logstashforwarder(
 
   $syslog_fields = { 'type' => 'syslog' }
   logstashforwarder::file { 'syslog':
-    paths   => [ '/var/log/syslog' ],
-    fields  => $syslog_fields,
+    paths  => [ '/var/log/syslog' ],
+    fields => $syslog_fields,
   }
   $auth_fields = { 'type' => 'auth' }
   logstashforwarder::file { 'auth.log':
-    paths   => [ '/var/log/auth.log' ],
-    fields  => $auth_fields,
+    paths  => [ '/var/log/auth.log' ],
+    fields => $auth_fields,
   }
 
 }
