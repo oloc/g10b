@@ -6,7 +6,7 @@ Domain="oloc"
 Project="g10b"
 GitClone='env GIT_SSL_NO_VERIFY=true git clone https://github.com/oloc/g10b.git'
 
-fileContent = JSON.parse(File.read("../hieradata/infra.json"), symbolize_names: true)
+fileContent = JSON.parse(File.read("../hieradata/provision.json"), symbolize_names: true)
 
 fileContent.each do |node|
   if node[:bootstrap] == 'master' 

@@ -38,11 +38,11 @@ You can access to the Jenkins, Gitlab, Rundeck, Mesos and Kibana in your browser
 * http://g10b.oloc (by default)
 
 ## Configuration
-The infrastructure is described in the __hieradata/infra.json__ file. 
+The infrastructure is described in the __hieradata/provision.json__ file. 
 
 The configuration of the servers is described in the puppet manifests and modules.
 
-If you modify the project settings, you have to add the DNS VM (g10b-gateway) as a resolver of your host (for example your laptop with virtualBox), regarding the IP addresses you configure in the *Vagrantfile* and in the *infra.json* (as the iplastdigit parameter). As default, the *start* initiate for you this command:
+If you modify the project settings, you have to add the DNS VM (g10b-gateway) as a resolver of your host (for example your laptop with virtualBox), regarding the IP addresses you configure in the *Vagrantfile* and in the *provision.json* (as the iplastdigit parameter). As default, the *start* initiate for you this command:
 
     echo 'nameserver 192.168.10.50' | sudo resolvconf -a *
 
