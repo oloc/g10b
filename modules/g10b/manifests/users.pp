@@ -1,8 +1,8 @@
 class g10b::users(
   $admusr      = $g10b::admusr,
   $admgrp      = $g10b::admgrp,
-  $mesos_owner = $mesos::owner,
-  $mesos_group = $mesos::group,
+  $mesos_owner = $g10b::mesos_owner,
+  $mesos_group = $g10b::mesos_group,
 ){
 
   group { 'admin user account group':

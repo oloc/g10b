@@ -1,0 +1,30 @@
+---
+g10b::rundeck::user              : "%{hiera('rundeck::user')}"
+g10b::rundeck::group             : "%{hiera('rundeck::group')}"
+g10b::rundeck::server_web_context: "%{hiera('rundeck::server_web_context')}"
+g10b::rundeck::grails_server_url : "%{hiera('rundeck::grails_server_url')}"
+
+g10b::mesos_host  : "%{hiera('mesos::host')}"
+g10b::mesos_owner : "%{hiera('mesos::owner')}"
+g10b::mesos_group : "%{hiera('mesos::group')}"
+
+g10b::elk_host                : "%{hiera('g10b-metrology')}"
+g10b::logstash_port           : "%{hiera('logstash::port')}"
+g10b::elk::elasticsearch_port : "%{hiera('elasticsearch::port')}"
+g10b::elk::kibana_user        : "%{hiera('kibana::user')}"
+g10b::elk::kibana_group       : "%{hiera('kibana::group')}"
+g10b::elk::kibana_port        : "%{hiera('kibana::port')}"
+
+g10b::webserver::pass:
+  - path: /puppet
+    url: "http://%{hiera('puppet::host')}.%{::domain}:%{hiera('puppet::port')}"
+  - path: /rundeck
+    url: "%{hiera('rundeck::grails_server_url')}"
+  - path: /gitlab
+    url: "http://%{hiera('gitlab::host')}.%{::domain}:%{hiera('gitlab::port')}/gitlab"
+  - path: /jenkins
+    url: "http://%{hiera('jenkins::host')}.%{::domain}:%{hiera('jenkins::port')}/jenkins"
+  - path: /mesos
+    url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
+  - path: /kibana
+    url: "http://%{hiera('kibana::host')}.%{::domain}:%{hiera('kibana::port')}/"

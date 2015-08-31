@@ -1,8 +1,8 @@
 class g10b::rundeck(
-  $user               = $rundeck::user,
-  $group              = $rundeck::group,
-  $grails_server_url  = $rundeck::grails_server_url,
-  $server_web_context = $rundeck::server_web_context,
+  $user               = $g10b::rundeck::user,
+  $group              = $g10b::rundeck::group,
+  $grails_server_url  = $g10b::rundeck::grails_server_url,
+  $server_web_context = $g10b::rundeck::server_web_context,
 ){
 
   group { 'Rundeck Group':

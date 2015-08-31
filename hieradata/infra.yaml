@@ -1,0 +1,8 @@
+---
+g10b-puppet-master: 'puppet'
+g10b-gateway: 'octopussy'
+g10b-orchestration: 'karajan'
+g10b-repositories: 'repositories'
+g10b-metrology: 'metrology'
+g10b-testing: 'testing'
+g10b-production: 'production'

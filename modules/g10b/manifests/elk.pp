@@ -47,7 +47,6 @@ class g10b::elk(
     order  => 99,
   }
 
-
   class {'::kibana4':
     manage_user       => true,
     kibana4_user      => $kibana_user,
