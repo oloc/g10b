@@ -5,7 +5,10 @@ class g10b::elk(
   $elasticsearch_port = $g10b::elk::elasticsearch_port,
 ) {
 
-  class {'elasticsearch':}
+  class {'elasticsearch':
+    manage_repo  => true,
+    repo_version => '2.0',
+  }
   elasticsearch::instance { 'es-01':
     ensure  => present,
     require => Class['elasticsearch'],
@@ -21,13 +24,10 @@ class g10b::elk(
     require    => Class['elasticsearch'],
   }
 
-  file {'/etc/pki/tls/private':
-    ensure  => directory,
-    require => File['/etc/pki/tls'],
-  }
-
   class {'::logstash':
-    require => File ['/etc/pki/tls/private']
+    manage_repo  => true,
+    repo_version => '1.5',
+    require      => File ['/etc/pki/tls/private']
   }
 
   logstash::configfile {'logstash-input.conf':
