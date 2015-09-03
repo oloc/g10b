@@ -53,7 +53,7 @@ _echo "Adding some modules..."
 		_echo "puppet module install ${Module}"
 		(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
 		if [ ${Update} ] ; then
-			(( ! ${OffLine} )) && puppet module update ${Module} | tee -a ${LogFile}
+			(( ! ${OffLine} )) && puppet module upgrade ${Module} | tee -a ${LogFile}
 		fi
 	done
 

@@ -24,4 +24,4 @@ markb-docker_registry
 elasticsearch-logstash
 elasticsearch-logstashforwarder
 lesaux-kibana4
-biemond-wildfly
+#biemond-wildfly
