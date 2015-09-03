@@ -1,4 +1,4 @@
-class g10b::master(
+class g10b::mesos_master(
   $port  = $g10b::mesos::port,
   $owner = $g10b::mesos::owner,
   $group = $g10b::mesos::group,
