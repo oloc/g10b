@@ -15,7 +15,7 @@ class g10b::mesos(
     name    => $owner,
     comment => 'mesos server',
     groups  => $group,
-    home    => "/home/${mesos_owner}",
+    home    => "/home/${owner}",
   }
 
   exec {'mesosphere_add_key':
