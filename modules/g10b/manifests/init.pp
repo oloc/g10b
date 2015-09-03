@@ -5,7 +5,6 @@ class g10b(
   $dnsservers    = $g10b::dnsservers,
   $elk_host      = $g10b::elk_host,
   $logstash_port = $g10b::logstash_port,
-  $mesos_host    = $g10b::mesos_host,
 ){
 
   class {'g10b::users':}
@@ -26,9 +25,7 @@ class g10b(
     require => Class['apt::update'],
   }
 
-  class {'mesos::slave':
-    master => $mesos_host,
-  }
+  class {'g10b::mesos_slave':}
 
   class {'g10b::logstashforwarder':
     elk_host      => $elk_host,

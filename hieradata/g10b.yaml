@@ -5,6 +5,7 @@ g10b::rundeck::server_web_context: "%{hiera('rundeck::server_web_context')}"
 g10b::rundeck::grails_server_url : "%{hiera('rundeck::grails_server_url')}"
 
 g10b::mesos_host  : "%{hiera('mesos::host')}"
+g10b::mesos_port  : "%{hiera('mesos::port')}"
 g10b::mesos_owner : "%{hiera('mesos::owner')}"
 g10b::mesos_group : "%{hiera('mesos::group')}"
 

@@ -1,8 +1,20 @@
 class g10b::mesos(
-  $port  = $g10b::mesos::port,
-  $owner = $g10b::mesos::owner,
-  $group = $g10b::mesos::group,
+  $mesos_owner = $g10b::mesos_owner,
+  $mesos_group = $g10b::mesos_group,
 ){
+
+  group { 'Mesos Group':
+    ensure => present,
+    name   => $mesos_group,
+  }
+
+  user { 'Mesos User':
+    ensure  => present,
+    name    => $mesos_owner,
+    comment => 'mesos server',
+    groups  => $mesos_group,
+    home    => "/home/${mesos_owner}",
+  }
 
   exec {'mesosphere_add_key':
     command => '/usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF',
@@ -13,12 +25,7 @@ class g10b::mesos(
         sudo /usr/bin/tee /etc/apt/sources.list.d/mesosphere.list',
     creates => '/etc/apt/sources.list.d/mesosphere.list',
     user    => 'root',
-  }->
-  class { 'mesos::master':
-    master_port => $port,
-    owner       => $owner,
-    group       => $group,
-    require     => Class['apt::update'],
+    before  => Class['apt::update'],
   }
 
 }
