@@ -15,6 +15,8 @@ class g10b::rundeck(
     name    => $user,
     comment => 'rundeck server',
     groups  => $group,
+    expiry  => absent,
+    shell   => '/bin/false'
     home    => "/home/${user}",
   }
 

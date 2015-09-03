@@ -4,7 +4,9 @@ class g10b::dns(
     $forwarders = $g10b::dns::forwarders,
 ){
   # ajjahn-dns
-  class {'dns::server':}
+  class {'dns::server':
+    require => Class['apt::update'],
+  }
 
   # Forward Zone
   dns::zone { $::domain:
