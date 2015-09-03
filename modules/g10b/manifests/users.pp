@@ -1,6 +1,6 @@
 class g10b::users(
-  $admusr = $g10b::admusr,
-  $admgrp = $g10b::admgrp,
+  $admusr = $g10b::users::admusr,
+  $admgrp = $g10b::users::admgrp,
 ){
 
   group { 'admin user account group':

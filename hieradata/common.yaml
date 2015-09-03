@@ -1,6 +1,7 @@
 ---
-g10b::admusr : 'oloc'
-g10b::admgrp : 'adm'
+g10b::users::admusr : 'oloc'
+g10b::users::admgrp : 'adm'
+
 g10b::subnet : '192.168.10'
 g10b::subadm : '10.0.2'
 
