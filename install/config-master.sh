@@ -13,7 +13,7 @@ while getopts "ub:" Option
 do
 	case ${Option} in
 	u|U) typeset -i Update=1 ;;
-	b|B) typeset Branch="-b $OPTARG" ;;
+	b|B) typeset Branch="$OPTARG" ;;
 	esac
 done
 shift $(($OPTIND - 1))
@@ -25,8 +25,9 @@ _echo "Stoping Puppet..."
 _echo "Puppet configuration for the ${ProjectName} project..."
 pushd $(pwd)/..
 if [ ${Update} ] ; then
-	_echo "Update in progress..."
-	env GIT_SSL_NO_VERIFY=true git pull ${Branch}
+	_echo "Update with branch ${Branch} in progress..."
+	env GIT_SSL_NO_VERIFY=true git checkout ${Branch}
+	env GIT_SSL_NO_VERIFY=true git pull
 fi
 
 _echo "Importing configuration..."
