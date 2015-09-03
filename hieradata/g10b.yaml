@@ -9,12 +9,15 @@ g10b::mesos::port  : "%{hiera('mesos::port')}"
 g10b::mesos::owner : "%{hiera('mesos::owner')}"
 g10b::mesos::group : "%{hiera('mesos::group')}"
 
-g10b::elk_host                : "%{hiera('g10b-metrology')}"
-g10b::logstash_port           : "%{hiera('logstash::port')}"
-g10b::elk::elasticsearch_port : "%{hiera('elasticsearch::port')}"
-g10b::elk::kibana_user        : "%{hiera('kibana::user')}"
-g10b::elk::kibana_group       : "%{hiera('kibana::group')}"
-g10b::elk::kibana_port        : "%{hiera('kibana::port')}"
+g10b::elk_host                 : "%{hiera('g10b-metrology')}"
+g10b::logstash_port            : "%{hiera('logstash::port')}"
+g10b::elk::elasticsearch_port  : "%{hiera('elasticsearch::port')}"
+g10b::elk::elasticsearch_user  : "%{hiera('elasticsearch::user')}"
+g10b::elk::elasticsearch_group : "%{hiera('elasticsearch::group')}"
+g10b::elk::kibana_port         : "%{hiera('kibana::port')}"
+g10b::elk::kibana_user         : "%{hiera('kibana::user')}"
+g10b::elk::kibana_group        : "%{hiera('kibana::group')}"
+
 
 g10b::webserver::pass:
   - path: /puppet

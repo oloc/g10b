@@ -1,13 +1,18 @@
 class g10b::elk(
-  $kibana_user        = $g10b::elk::kibana_user,
-  $kibana_group       = $g10b::elk::kibana_group,
-  $kibana_port        = $g10b::elk::kibana_port,
-  $elasticsearch_port = $g10b::elk::elasticsearch_port,
+  $kibana_port         = $g10b::elk::kibana_port,
+  $kibana_user         = $g10b::elk::kibana_user,
+  $kibana_group        = $g10b::elk::kibana_group,
+  $elasticsearch_port  = $g10b::elk::elasticsearch_port,
+  $elasticsearch_user  = $g10b::elk::elasticsearch_user,
+  $elasticsearch_group = $g10b::elk::elasticsearch_group,
 ) {
 
+  $config_hash = {'ES_USER' => $elasticsearch_user,'ES_GROUP' => $elasticsearch_group,}
+
   class {'elasticsearch':
-    manage_repo  => true,
-    repo_version => '2.0',
+    manage_repo   => true,
+    repo_version  => '2.0',
+    init_defaults => $config_hash,
   }
   elasticsearch::instance { 'es-01':
     ensure  => present,

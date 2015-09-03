@@ -1,6 +1,8 @@
 ---
-elasticsearch::host : "%{hiera('g10b-metrology')}"
-elasticsearch::port : 9200
+elasticsearch::host  : "%{hiera('g10b-metrology')}"
+elasticsearch::port  : 9200
+elasticsearch::user  : 'elasticsearch'
+elasticsearch::group : 'elasticsearch'
 
 gitlab::host : "%{hiera('g10b-repositories')}"
 gitlab::port : 80
