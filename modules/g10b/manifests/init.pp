@@ -33,7 +33,7 @@ class g10b(
   }
 
   if !defined(Class['apt::update']) {
-    class { 'apt::update': }
+    class { '::apt::update': }
   }
 
 }

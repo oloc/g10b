@@ -21,6 +21,7 @@ class g10b::mesos(
   exec {'mesosphere_add_key':
     command => '/usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF',
     user    => 'root',
+    unless  => '/usr/bin/apt-key list | grep E56151BF 2>/dev/null',
   }->
   exec {'mesosphere_add_repo':
     command => '/bin/echo "deb http://repos.mesosphere.io/$(lsb_release -is | tr \'[:upper:]\' \'[:lower:]\') $(lsb_release -cs) main" | \
