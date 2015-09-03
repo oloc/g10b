@@ -18,12 +18,12 @@ class g10b::files {
     target => '/etc/puppet/hiera.yaml'
   }
 
-  file {'/etc/pki/tls':
+  $certs=['/etc/pki','/etc/pki/tls','/etc/pki/tls/certs']
+  file {$certs:
     ensure => directory,
-  }
-  file {'/etc/pki/tls/certs':
-    ensure  => directory,
-    require => File['/etc/pki/tls'],
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
   }
 
 }
