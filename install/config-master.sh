@@ -13,6 +13,7 @@ while getopts "ub:" Option
 do
 	case ${Option} in
 	u|U) typeset -i Update=1 ;;
+	m|M) typeset -i ModuleUpdate=1 ;;
 	b|B) typeset Branch="$OPTARG" ;;
 	esac
 done
@@ -52,7 +53,8 @@ _echo "Adding some modules..."
 	while read Module; do
 		_echo "puppet module install ${Module}"
 		(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
-		if [ ${Update} ] ; then
+		if [ ${ModuleUpdate} ] ; then
+			_echo "puppet module upgrade ${Module}"			
 			(( ! ${OffLine} )) && puppet module upgrade ${Module} | tee -a ${LogFile}
 		fi
 	done
