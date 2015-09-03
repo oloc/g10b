@@ -52,6 +52,9 @@ _echo "Adding some modules..."
 	while read Module; do
 		_echo "puppet module install ${Module}"
 		(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
+		if [ ${Update} ] ; then
+			(( ! ${OffLine} )) && puppet module update ${Module} | tee -a ${LogFile}
+		fi
 	done
 
 	for Thingy in modules manifests hieradata
