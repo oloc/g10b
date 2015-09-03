@@ -13,7 +13,7 @@ Anyway, currently the project allows you automatically to:
 * Puppet-master configures itself
 * Puppet configures all machines
 
-Then Jenkins, GitLab, Rundeck, Mesos, Elasticsearch, Logstash, Kibana and Puppet are ready!
+Then Jenkins, GitLab, Rundeck, Mesos, Docker, Elasticsearch, Logstash, Kibana and Puppet are ready!
 
 ![Scheme](./docs/g10b.jpg)
 
@@ -48,6 +48,7 @@ If you modify the project settings, you have to add the DNS VM (g10b-gateway) as
 
 
 ## Versions
+* V0.7 - Add Docker and Docker Registry. Technical improvements: Hiera variables revision
 * V0.6 - Add ELK (ElasticSearch Logstash Kibana)
 * V0.5 - Technical version: Remove Import nodes. Add Environment directory to be Puppet-4-ready. Add Travis rake test.
 * V0.4 - Vagrant uses own boxes. Infrastructure is revised. Gateway and DNS are activated. Mesos is available.
@@ -60,7 +61,7 @@ If you modify the project settings, you have to add the DNS VM (g10b-gateway) as
 I do not possess a datacenter or a cloud, so I proceed with VMs. To help you if you are in troubles, here is my own configuration:
 
 * Operating System: Ubuntu 14.04.1 LTS, Trusty Tahr
-* Kernel: 3.13.0-39-generic
+* Kernel: 3.13.0-62-generic
 * MoBo: W54_55SU1,SUW
 * CPU: Intel(R) Core(TM) i7-4712MQ CPU @ 2.30GHz
 * Memory: 2x 8GiB SODIMM DDR3 Synchrone 1600 MHz (0,6 ns)
