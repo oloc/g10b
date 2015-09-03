@@ -4,7 +4,7 @@
 echo 'nameserver 192.168.10.50' | sudo resolvconf -d *
 
 pushd $(pwd)/$(dirname $0)/vagrant
-sudo time vagrant up
+time vagrant up
 vagrant status
 popd
 
