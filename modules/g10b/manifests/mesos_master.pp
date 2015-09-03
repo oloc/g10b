@@ -1,13 +1,13 @@
-class g10b::mesos_master(
-  $mesos_port  = $g10b::mesos_port,
-  $mesos_owner = $g10b::mesos_owner,
-  $mesos_group = $g10b::mesos_group,
-){
+class g10b::master(
+  $port  = $g10b::mesos::port,
+  $owner = $g10b::mesos::owner,
+  $group = $g10b::mesos::group,
+) inherits g10b::mesos {
 
   class { 'mesos::master':
-    master_port => $mesos_port,
-    owner       => $mesos_owner,
-    group       => $mesos_group,
+    master_port => $port,
+    owner       => $owner,
+    group       => $group,
     require     => Class['g10b::mesos'],
   }
 

@@ -1,9 +1,9 @@
 class g10b::mesos_slave(
-  $mesos_host = $g10b::mesos_host,
-){
+  $host = $g10b::mesos::host,
+) inherits g10b::mesos {
 
   class { 'mesos::slave':
-    master  => $mesos_host,
+    master  => $host,
     require => Class['g10b::mesos'],
   }
 

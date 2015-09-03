@@ -1,18 +1,20 @@
 class g10b::mesos(
-  $mesos_owner = $g10b::mesos_owner,
-  $mesos_group = $g10b::mesos_group,
+  $host  = $g10b::mesos::host,
+  $port  = $g10b::mesos::port,
+  $owner = $g10b::mesos::owner,
+  $group = $g10b::mesos::group,
 ){
 
   group { 'Mesos Group':
     ensure => present,
-    name   => $mesos_group,
+    name   => $group,
   }
 
   user { 'Mesos User':
     ensure  => present,
-    name    => $mesos_owner,
+    name    => $owner,
     comment => 'mesos server',
-    groups  => $mesos_group,
+    groups  => $group,
     home    => "/home/${mesos_owner}",
   }
 
