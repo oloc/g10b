@@ -9,10 +9,10 @@ pushd $(pwd)/$(dirname $0) 2>/dev/null
 . ./install.cfg
 . ./install.lib
 
-while getopts "ub:" Option
+while getopts "cumb:" Option
 do
 	case ${Option} in
-	c|C) typeset -i Clean=1 ;;
+	c|C) typeset -i CleanEnv=1 ;;
 	u|U) typeset -i Update=1 ;;
 	m|M) typeset -i ModuleUpdate=1 ;;
 	b|B) typeset Branch="$OPTARG" ;;
@@ -36,8 +36,8 @@ _echo "Importing configuration..."
 	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
 
-if [ ${Clean} ] ; then
-	_echo "Cleaning of environment ${EnvName}..."
+if [ ${CleanEnv} ] ; then
+	_echo "CleanEnving of environment ${EnvName}..."
 	rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
 fi
 
