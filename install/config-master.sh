@@ -60,8 +60,8 @@ _echo "Adding some modules..."
 		_echo "puppet module install ${Module}"
 		(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
 		if [ ${ModuleUpdate} ] ; then
-			_echo "puppet module upgrade ${Module}"			
-			(( ! ${OffLine} )) && puppet module upgrade ${Module} | tee -a ${LogFile}
+			_echo "puppet module upgrade ${Module} --ignore-dependencies"
+			(( ! ${OffLine} )) && puppet module upgrade ${Module} --ignore-dependencies | tee -a ${LogFile}
 		fi
 	done
 
