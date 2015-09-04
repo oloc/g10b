@@ -12,6 +12,7 @@ pushd $(pwd)/$(dirname $0) 2>/dev/null
 while getopts "ub:" Option
 do
 	case ${Option} in
+	c|C) typeset -i Clean=1 ;;
 	u|U) typeset -i Update=1 ;;
 	m|M) typeset -i ModuleUpdate=1 ;;
 	b|B) typeset Branch="$OPTARG" ;;
@@ -34,6 +35,11 @@ fi
 _echo "Importing configuration..."
 	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
+
+if [ ${Clean} ] ; then
+	_echo "Cleaning of environment ${EnvName}..."
+	rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
+fi
 
 _echo "Environment ${EnvName} setting..."	
 	mkdir -p ${EnvDir}/${EnvName} | tee -a ${LogFile}
