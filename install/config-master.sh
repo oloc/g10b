@@ -9,10 +9,11 @@ pushd $(pwd)/$(dirname $0) 2>/dev/null
 . ./install.cfg
 . ./install.lib
 
-while getopts "cumb:" Option
+while getopts "crumb:" Option
 do
 	case ${Option} in
 	c|C) typeset -i CleanEnv=1 ;;
+    r|R) typeset -i RemoveOld=1 ;;
 	u|U) typeset -i Update=1 ;;
 	m|M) typeset -i ModuleUpdate=1 ;;
 	b|B) typeset Branch="$OPTARG" ;;
@@ -46,14 +47,18 @@ _echo "Environment ${EnvName} setting..."
 	chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}
 	puppet config set environment ${EnvName}
 
-_echo "Removing old modules..."
-	puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
-	while  read Module; do
-		GrepResult=$(grep ${Module} modules.lst)
-		if [ $? != 0 ] ; then
-			(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
-		fi
-	done
+if [ ${RemoveOld} ] ; then
+	_echo "Removing old modules..."
+		puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
+		while  read Module; do
+			GrepResult=$(grep ${Module} modules.lst)
+			if [ $? != 0 ] ; then
+				_echo "puppet module uninstall ${Module}"
+				(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
+			fi
+		done
+fi
+
 _echo "Adding some modules..."
 	grep -v '^#' modules.lst |
 	while read Module; do
