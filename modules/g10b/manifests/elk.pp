@@ -11,7 +11,7 @@ class g10b::elk(
 
   class {'elasticsearch':
     manage_repo   => true,
-    repo_version  => '2.0',
+    repo_version  => '1.7',
     init_defaults => $config_hash,
   }
   elasticsearch::instance { 'es-01':

@@ -1,6 +1,7 @@
 # Supported modules
 puppetlabs-stdlib
 puppetlabs-apt
+puppetlabs-concat
 puppetlabs-git
 puppetlabs-ntp
 puppetlabs-apache
