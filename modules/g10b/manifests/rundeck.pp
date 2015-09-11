@@ -5,15 +5,6 @@ class g10b::rundeck(
   $server_web_context = $g10b::rundeck::server_web_context,
 ){
 
-  group { 'Rundeck Group':
-    ensure => present,
-    name   => $group,
-  }
-
-  exec { 'service_stop':
-    command => 'service rundeckd stop',
-    user    => 'root',
-  }->
   class { '::rundeck':
     user               => $user,
     group              => $group,
