@@ -25,11 +25,11 @@ class g10b::mesos(
       'id'     => '81026D0004C44CF7EF55ADF8DF7D54CBE56151BF',
       'server' => 'keyserver.ubuntu.com',
     },
-    include => {
+    include  => {
       'src' => true,
       'deb' => true,
     },
-    before => Class['apt::update'],
+    before   => Class['apt::update'],
   }
 
 }
