@@ -8,7 +8,7 @@ class g10b::logstashforwarder(
     path   => $file_crt,
     source => "puppet:///modules/${module_name}/logstash-forwarder.crt",
   }
-  $file_key = '/etc/pki/tls/certs/logstash-forwarder.key'
+  $file_key = '/etc/pki/tls/private/logstash-forwarder.key'
   file {$file_key:
     path   => $file_key,
     source => "puppet:///modules/${module_name}/logstash-forwarder.key",
