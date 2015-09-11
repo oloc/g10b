@@ -10,16 +10,6 @@ class g10b::rundeck(
     name   => $group,
   }
 
-  user { 'Rundeck User':
-    ensure  => present,
-    name    => $user,
-    comment => 'rundeck server',
-    groups  => $group,
-    expiry  => absent,
-    shell   => '/bin/false',
-    home    => "/home/${user}",
-  }
-
   exec { 'service_stop':
     command => 'service rundeckd stop',
     user    => 'root',
