@@ -9,10 +9,13 @@ pushd $(pwd)/$(dirname $0) 2>/dev/null
 . ./install.cfg
 . ./install.lib
 
-while getopts "ub:" Option
+while getopts "crumb:" Option
 do
 	case ${Option} in
+	c|C) typeset -i CleanEnv=1 ;;
+    r|R) typeset -i RemoveOld=1 ;;
 	u|U) typeset -i Update=1 ;;
+	m|M) typeset -i ModuleUpdate=1 ;;
 	b|B) typeset Branch="$OPTARG" ;;
 	esac
 done
@@ -34,24 +37,37 @@ _echo "Importing configuration..."
 	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
 
+if [ ${CleanEnv} ] ; then
+	_echo "CleanEnving of environment ${EnvName}..."
+	rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
+fi
+
 _echo "Environment ${EnvName} setting..."	
 	mkdir -p ${EnvDir}/${EnvName} | tee -a ${LogFile}
 	chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}
 	puppet config set environment ${EnvName}
 
-_echo "Removing old modules..."
-	puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
-	while  read Module; do
-		GrepResult=$(grep ${Module} modules.lst)
-		if [ $? != 0 ] ; then
-			(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
-		fi
-	done
+if [ ${RemoveOld} ] ; then
+	_echo "Removing old modules..."
+		puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
+		while  read Module; do
+			GrepResult=$(grep ${Module} modules.lst)
+			if [ $? != 0 ] ; then
+				_echo "puppet module uninstall ${Module}"
+				(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
+			fi
+		done
+fi
+
 _echo "Adding some modules..."
 	grep -v '^#' modules.lst |
 	while read Module; do
 		_echo "puppet module install ${Module}"
 		(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
+		if [ ${ModuleUpdate} ] ; then
+			_echo "puppet module upgrade ${Module} --ignore-dependencies"
+			(( ! ${OffLine} )) && puppet module upgrade ${Module} --ignore-dependencies | tee -a ${LogFile}
+		fi
 	done
 
 	for Thingy in modules manifests hieradata

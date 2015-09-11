@@ -18,7 +18,7 @@ class g10b::files {
     target => '/etc/puppet/hiera.yaml'
   }
 
-  $certs=['/etc/pki','/etc/pki/tls','/etc/pki/tls/certs']
+  $certs=['/etc/pki','/etc/pki/tls','/etc/pki/tls/certs','/etc/pki/tls/private']
   file {$certs:
     ensure => directory,
     mode   => '0755',

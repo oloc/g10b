@@ -1,44 +1,34 @@
 ---
-g10b::elk_host                : 'metrology'
-g10b::logstash_port           : 5000
-g10b::elk::elasticsearch_port : 9200
-g10b::elk::kibana_user        : 'kibana'
-g10b::elk::kibana_group       : 'kibana'
-g10b::elk::kibana_port        : 5601
+elasticsearch::host  : "%{hiera('g10b-metrology')}"
+elasticsearch::port  : 9200
+elasticsearch::user  : 'elasticsearch'
+elasticsearch::group : 'elasticsearch'
 
-gitlab::host : 'repositories'
+gitlab::host : "%{hiera('g10b-repositories')}"
 gitlab::port : 80
 
-jenkins::host : 'karajan'
+jenkins::host : "%{hiera('g10b-orchestration')}"
 jenkins::port : 8080
 
-mesos::host     : 'karajan'
-mesos::port     : 5050
-mesos::log_dir  : '/var/log/mesos'
-mesos::conf_dir : '/etc/mesos'
-mesos::owner    : 'mesos'
-mesos::group    : 'mesos'
+kibana::host  : "%{hiera('g10b-metrology')}"
+kibana::port  : 5601
+kibana::user  : 'kibana'
+kibana::group : 'kibana'
 
-puppet::host : 'puppet'
+logstash::host : "%{hiera('g10b-metrology')}"
+logstash::port : 5000
+
+mesos::host : "%{hiera('g10b-orchestration')}"
+mesos::port : 5050
+mesos::owner : 'mesos'
+mesos::group : 'mesos'
+
+puppet::host : "%{hiera('g10b-puppet-master')}"
 puppet::port : 8140
 
-rundeck::host  : 'karajan'
-rundeck::port  : 4440
-rundeck::user  : 'rundeck'
-rundeck::group : 'rundeck'
+rundeck::host              : "%{hiera('g10b-orchestration')}"
+rundeck::port              : 4440
+rundeck::user              : 'rundeck'
+rundeck::group             : 'rundeck'
 rundeck::server_web_context: "/rundeck"
 rundeck::grails_server_url : "http://%{hiera('rundeck::host')}.%{::domain}:%{hiera('rundeck::port')}%{hiera('rundeck::server_web_context')}"
-
-g10b::webserver::pass:
-  - path: /puppet
-    url: "http://%{hiera('puppet::host')}.%{::domain}:%{hiera('puppet::port')}"
-  - path: /rundeck
-    url: "%{hiera('rundeck::grails_server_url')}"
-  - path: /gitlab
-    url: "http://%{hiera('gitlab::host')}.%{::domain}:%{hiera('gitlab::port')}/gitlab"
-  - path: /jenkins
-    url: "http://%{hiera('jenkins::host')}.%{::domain}:%{hiera('jenkins::port')}/jenkins"
-  - path: /mesos
-    url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
-  - path: /kibana
-    url: "http://%{hiera('g10b::elk_host')}.%{::domain}:%{hiera('g10b::elk::kibana_port')}/"

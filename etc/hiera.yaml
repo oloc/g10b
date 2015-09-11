@@ -3,7 +3,9 @@
   - yaml
 :hierarchy:
   - applications
+  - g10b
   - "%{::fqdn}"
+  - infra
   - common
 :yaml:
   :datadir: "/etc/puppet/environments/g10b/hieradata"

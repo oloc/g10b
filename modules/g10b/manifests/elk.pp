@@ -1,11 +1,19 @@
 class g10b::elk(
-  $kibana_user        = $g10b::elk::kibana_user,
-  $kibana_group       = $g10b::elk::kibana_group,
-  $kibana_port        = $g10b::elk::kibana_port,
-  $elasticsearch_port = $g10b::elk::elasticsearch_port,
+  $kibana_port         = $g10b::elk::kibana_port,
+  $kibana_user         = $g10b::elk::kibana_user,
+  $kibana_group        = $g10b::elk::kibana_group,
+  $elasticsearch_port  = $g10b::elk::elasticsearch_port,
+  $elasticsearch_user  = $g10b::elk::elasticsearch_user,
+  $elasticsearch_group = $g10b::elk::elasticsearch_group,
 ) {
 
-  class {'elasticsearch':}
+  $config_hash = {'ES_USER' => $elasticsearch_user,'ES_GROUP' => $elasticsearch_group,}
+
+  class {'elasticsearch':
+    manage_repo   => true,
+    repo_version  => '1.7',
+    init_defaults => $config_hash,
+  }
   elasticsearch::instance { 'es-01':
     ensure  => present,
     require => Class['elasticsearch'],
@@ -21,13 +29,10 @@ class g10b::elk(
     require    => Class['elasticsearch'],
   }
 
-  file {'/etc/pki/tls/private':
-    ensure  => directory,
-    require => File['/etc/pki/tls'],
-  }
-
   class {'::logstash':
-    require => File ['/etc/pki/tls/private']
+    manage_repo  => true,
+    repo_version => '1.5',
+    require      => File ['/etc/pki/tls/private']
   }
 
   logstash::configfile {'logstash-input.conf':
@@ -46,7 +51,6 @@ class g10b::elk(
     source => "puppet:///modules/${module_name}/logstash-output.conf",
     order  => 99,
   }
-
 
   class {'::kibana4':
     manage_user       => true,

@@ -13,7 +13,7 @@ Anyway, currently the project allows you automatically to:
 * Puppet-master configures itself
 * Puppet configures all machines
 
-Then Jenkins, GitLab, Rundeck, Mesos, Elasticsearch, Logstash, Kibana and Puppet are ready!
+Then Jenkins, GitLab, Rundeck, Mesos, Docker, Elasticsearch, Logstash, Kibana and Puppet are ready!
 
 ![Scheme](./docs/g10b.jpg)
 
@@ -38,16 +38,17 @@ You can access to the Jenkins, Gitlab, Rundeck, Mesos and Kibana in your browser
 * http://g10b.oloc (by default)
 
 ## Configuration
-The infrastructure is described in the __hieradata/infra.json__ file. 
+The infrastructure is described in the __hieradata/provision.json__ file. 
 
 The configuration of the servers is described in the puppet manifests and modules.
 
-If you modify the project settings, you have to add the DNS VM (g10b-gateway) as a resolver of your host (for example your laptop with virtualBox), regarding the IP addresses you configure in the *Vagrantfile* and in the *infra.json* (as the iplastdigit parameter). As default, the *start* initiate for you this command:
+If you modify the project settings, you have to add the DNS VM (g10b-gateway) as a resolver of your host (for example your laptop with virtualBox), regarding the IP addresses you configure in the *Vagrantfile* and in the *provision.json* (as the iplastdigit parameter). As default, the *start* initiate for you this command:
 
     echo 'nameserver 192.168.10.50' | sudo resolvconf -a *
 
 
 ## Versions
+* V0.7 - Add Docker and Docker Registry. Technical improvements: Hiera variables revision
 * V0.6 - Add ELK (ElasticSearch Logstash Kibana)
 * V0.5 - Technical version: Remove Import nodes. Add Environment directory to be Puppet-4-ready. Add Travis rake test.
 * V0.4 - Vagrant uses own boxes. Infrastructure is revised. Gateway and DNS are activated. Mesos is available.
@@ -60,7 +61,7 @@ If you modify the project settings, you have to add the DNS VM (g10b-gateway) as
 I do not possess a datacenter or a cloud, so I proceed with VMs. To help you if you are in troubles, here is my own configuration:
 
 * Operating System: Ubuntu 14.04.1 LTS, Trusty Tahr
-* Kernel: 3.13.0-39-generic
+* Kernel: 3.13.0-62-generic
 * MoBo: W54_55SU1,SUW
 * CPU: Intel(R) Core(TM) i7-4712MQ CPU @ 2.30GHz
 * Memory: 2x 8GiB SODIMM DDR3 Synchrone 1600 MHz (0,6 ns)
