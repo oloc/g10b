@@ -32,7 +32,7 @@ class g10b::elk(
   class {'::logstash':
     manage_repo  => true,
     repo_version => '1.5',
-    require      => File ['/etc/pki/tls/private']
+    require      => File ['/etc/pki/tls/private','/etc/pki/tls/certs']
   }
 
   logstash::configfile {'logstash-input.conf':
