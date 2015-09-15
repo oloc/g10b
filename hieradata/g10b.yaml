@@ -4,7 +4,7 @@ g10b::rundeck::group             : "%{hiera('rundeck::group')}"
 g10b::rundeck::server_web_context: "%{hiera('rundeck::server_web_context')}"
 g10b::rundeck::grails_server_url : "%{hiera('rundeck::grails_server_url')}"
 
-g10b::mesos::host  : "%{hiera('mesos::host')}"
+g10b::mesos::host  : "%{hiera('mesos::host')}.{::domain}"
 g10b::mesos::port  : "%{hiera('mesos::port')}"
 g10b::mesos::owner : "%{hiera('mesos::owner')}"
 g10b::mesos::group : "%{hiera('mesos::group')}"
