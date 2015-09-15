@@ -4,6 +4,7 @@ puppetlabs-apt
 puppetlabs-concat
 puppetlabs-git
 puppetlabs-ntp
+puppetlabs-java
 puppetlabs-apache
 puppetlabs-docker_platform
 #puppetlabs-mysql

@@ -7,4 +7,8 @@ class g10b::jenkins{
   $plugins  = hiera('jenkins::plugins')
   create_resources(jenkins::plugin, $plugins)
 
+  class {'::java':
+    distribution => 'jdk',
+  }
+
 }
