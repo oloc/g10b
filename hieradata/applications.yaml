@@ -10,6 +10,16 @@ gitlab::port : 80
 jenkins::host : "%{hiera('g10b-orchestration')}"
 jenkins::port : 8080
 
+jenkins::plugins :
+  ssh-credentials:
+    version: 'latest'
+  scm-api:
+    version: 'latest'
+  mailer:
+    version: 'latest'
+  git:
+    version: 'latest'
+
 kibana::host  : "%{hiera('g10b-metrology')}"
 kibana::port  : 5601
 kibana::user  : 'kibana'

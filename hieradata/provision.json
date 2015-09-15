@@ -19,7 +19,7 @@
 		"node": "g10b-orchestration",
 		"iplastdigit": "56",
 		"host": "karajan",
-		"memory": 1024,
+		"memory": 2048,
 		"cpu": 1,
 		"bootstrap": "agent"
 	},
