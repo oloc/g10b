@@ -1,7 +1,7 @@
 class g10b::jenkins{
 
   class {'::jenkins':
-    config_hash => { 'PREFIX'       => { 'value' => '/$NAME' },
+    config_hash => { 'PREFIX'       => { 'value' => '/jenkins' },
                      'JENKINS_ARGS' => { 'value' => '--webroot=/var/cache/$NAME/war --httpPort=$HTTP_PORT --ajp13Port=$AJP_PORT --prefix=$PREFIX' } }
   }->
   file {'/var/lib/jenkins/hudson.tasks.Maven.xml':
@@ -13,7 +13,7 @@ class g10b::jenkins{
   create_resources(jenkins::plugin, $plugins)
 
   jenkins::job {'petclinic-build':
-    config => file("${module_name}/petclinic.xml"),
+    config => file("${module_name}/petclinic-build.xml"),
   }
 
 }
