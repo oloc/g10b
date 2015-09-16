@@ -21,7 +21,7 @@ do
 done
 shift $(($OPTIND - 1))
 
-_echo "Stoping Puppet..."
+_echo "Stopping Puppet..."
 	service puppetmaster stop   | tee -a ${LogFile}
 	service puppetmaster status | tee -a ${LogFile}
 
