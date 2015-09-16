@@ -19,6 +19,12 @@ jenkins::plugins :
     version: 'latest'
   git:
     version: 'latest'
+  jquery:
+    version: 'latest'
+  parameterized-trigger:
+    version: 'latest'
+  build-pipeline-plugin:
+    version: 'latest'
 
 kibana::host  : "%{hiera('g10b-metrology')}"
 kibana::port  : 5601
