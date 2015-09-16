@@ -5,4 +5,12 @@ node 'karajan' {
   class {'g10b::mesos_master':}
   class {'g10b::jenkins':}
 
+  class {'::maven':}
+
+  if !defined(Class['::java']) {
+    class {'::java':
+      distribution => 'jdk',
+    }
+  }
+  
 }

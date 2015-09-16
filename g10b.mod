@@ -17,13 +17,12 @@ example42-network
 elasticsearch-elasticsearch
 #
 # Any
-#jfryman-nginx
-puppet-rundeck
-spuder-gitlab
+maestrodev-maven
 ajjahn-dns
 deric-mesos 
 markb-docker_registry
+puppet-rundeck
+spuder-gitlab
 elasticsearch-logstash
 elasticsearch-logstashforwarder
 lesaux-kibana4
-#biemond-wildfly
