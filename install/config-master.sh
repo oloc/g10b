@@ -37,47 +37,49 @@ _echo "Importing configuration..."
 	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
 
-if [ ${CleanEnv} ] ; then
-	_echo "CleanEnving of environment ${EnvName}..."
-	rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
-fi
-
-_echo "Environment ${EnvName} setting..."	
-	mkdir -p ${EnvDir}/${EnvName} | tee -a ${LogFile}
-	chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}
-	puppet config set environment ${EnvName}
-
-if [ ${RemoveOld} ] ; then
-	_echo "Removing old modules..."
-		puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
-		while  read Module; do
-			GrepResult=$(grep ${Module} modules.lst)
-			if [ $? != 0 ] ; then
-				_echo "puppet module uninstall ${Module}"
-				(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
+for EnvName in $(ls -1 *.${ModLstExt} | cut -d. -f1); do
+	if [ ${CleanEnv} ] ; then
+		_echo "CleanEnving of environment ${EnvName}..."
+		rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
+	fi
+	
+	_echo "Environment ${EnvName} setting..."	
+		mkdir -p ${EnvDir}/${EnvName} | tee -a ${LogFile}
+		chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}
+		puppet config set environment ${EnvName}
+	
+	if [ ${RemoveOld} ] ; then
+		_echo "Removing old modules..."
+			puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
+			while  read Module; do
+				GrepResult=$(grep ${Module} ${EnvName}.${ModLstExt})
+				if [ $? != 0 ] ; then
+					_echo "puppet module uninstall ${Module}"
+					(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
+				fi
+			done
+	fi
+	
+	_echo "Adding some modules..."
+		grep -v '^#' ${EnvName}.${ModLstExt} |
+		while read Module; do
+			_echo "puppet module install ${Module}"
+			(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
+			if [ ${ModuleUpdate} ] ; then
+				_echo "puppet module upgrade ${Module} --ignore-dependencies"
+				(( ! ${OffLine} )) && puppet module upgrade ${Module} --ignore-dependencies | tee -a ${LogFile}
 			fi
 		done
-fi
-
-_echo "Adding some modules..."
-	grep -v '^#' modules.lst |
-	while read Module; do
-		_echo "puppet module install ${Module}"
-		(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
-		if [ ${ModuleUpdate} ] ; then
-			_echo "puppet module upgrade ${Module} --ignore-dependencies"
-			(( ! ${OffLine} )) && puppet module upgrade ${Module} --ignore-dependencies | tee -a ${LogFile}
-		fi
+	
+		for Thingy in modules manifests hieradata
+		do
+			_echo "Importing ${ProjectName} ${Thingy}..."
+			mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                        | tee -a ${logfile}
+			cp -Rv ./${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/            | tee -a ${LogFile}
+			chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}   | tee -a ${LogFIle}
+		done
 	done
-
-	for Thingy in modules manifests hieradata
-	do
-		_echo "Importing ${ProjectName} ${Thingy}..."
-		mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                        | tee -a ${logfile}
-		cp -Rv ./${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/            | tee -a ${LogFile}
-		chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}   | tee -a ${LogFIle}
-	done
-
+	
 popd # pushd $(pwd)/..
 popd # pushd $(dirname $0)
 
