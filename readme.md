@@ -50,9 +50,9 @@ If you modify the project settings, you have to add the DNS VM (g10b-gateway) as
 All the applications of your lab can be described in the __app__ directory following some rules.
 * One directory per application, named with the name of the application
 * Application directory contains the 3 directories below:
-** modules
-** manifests
-** hieradata
+  * modules
+  * manifests
+  * hieradata
 * Application directory contains the file with the needed puppet module: __modules.lst__
 
 ## Versions
