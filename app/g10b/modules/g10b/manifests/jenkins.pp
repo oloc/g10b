@@ -12,6 +12,6 @@ class g10b::jenkins{
   create_resources(jenkins::plugin, $plugins)
 
   $jobs = hiera('jenkins::jobs')
-  create_resources(jenkins::jobs, $jobs)
+  create_resources(jenkins::job, $jobs)
 
 }
