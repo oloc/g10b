@@ -18,7 +18,6 @@ g10b::elk::kibana_port         : "%{hiera('kibana::port')}"
 g10b::elk::kibana_user         : "%{hiera('kibana::user')}"
 g10b::elk::kibana_group        : "%{hiera('kibana::group')}"
 
-
 g10b::webserver::pass:
   - path: /puppet
     url: "http://%{hiera('puppet::host')}.%{::domain}:%{hiera('puppet::port')}"

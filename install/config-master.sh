@@ -40,7 +40,7 @@ _echo "Importing configuration..."
 for AppName in $(ls -1 ${AppDir}); do
 	EnvName=${AppName}
 	if [ ${CleanEnv} ] ; then
-		_echo "CleanEnving of environment ${EnvName}..."
+		_echo "Cleaning of environment ${EnvName}..."
 		rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
 	fi
 	

@@ -26,6 +26,10 @@ jenkins::plugins :
   build-pipeline-plugin:
     version: 'latest'
 
+jenkins::jobs :
+  petclinic-build:
+    config: 'file("${module_name}/petclinic-build.xml")'
+
 kibana::host  : "%{hiera('g10b-metrology')}"
 kibana::port  : 5601
 kibana::user  : 'kibana'
