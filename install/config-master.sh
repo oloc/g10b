@@ -37,7 +37,8 @@ _echo "Importing configuration..."
 	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
 
-for EnvName in $(ls -1 *.${ModLstExt} | cut -d. -f1); do
+for AppName in $(ls -1 ${AppDir}); do
+	EnvName=${AppName}
 	if [ ${CleanEnv} ] ; then
 		_echo "CleanEnving of environment ${EnvName}..."
 		rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
@@ -52,7 +53,7 @@ for EnvName in $(ls -1 *.${ModLstExt} | cut -d. -f1); do
 		_echo "Removing old modules..."
 			puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
 			while  read Module; do
-				GrepResult=$(grep ${Module} ${EnvName}.${ModLstExt})
+				GrepResult=$(grep ${Module} ${AppDir}/${AppName}/modules.lst)
 				if [ $? != 0 ] ; then
 					_echo "puppet module uninstall ${Module}"
 					(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
@@ -61,7 +62,7 @@ for EnvName in $(ls -1 *.${ModLstExt} | cut -d. -f1); do
 	fi
 	
 	_echo "Adding some modules..."
-		grep -v '^#' ${EnvName}.${ModLstExt} |
+		grep -v '^#' ${AppDir}/${AppName}/modules.lst |
 		while read Module; do
 			_echo "puppet module install ${Module}"
 			(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
@@ -74,9 +75,9 @@ for EnvName in $(ls -1 *.${ModLstExt} | cut -d. -f1); do
 		for Thingy in modules manifests hieradata
 		do
 			_echo "Importing ${ProjectName} ${Thingy}..."
-			mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                        | tee -a ${logfile}
-			cp -Rv ./${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/            | tee -a ${LogFile}
-			chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}   | tee -a ${LogFIle}
+			mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                                | tee -a ${logfile}
+			cp -Rv ${AppDir}/${AppName}/${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/ | tee -a ${LogFile}
+			chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}           | tee -a ${LogFIle}
 		done
 	done
 	
@@ -87,7 +88,7 @@ _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
 chown -R ${DftUser}:${DftUser} ${confdir}
 
 _echo "Scheduling Puppet Agent..."
-puppet resource cron puppet-agent ensure=present user=root minute='*/5' command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
+puppet resource cron puppet-agent ensure=present user=root minute='*/15' command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
 
 _echo "Starting Puppet Server..."
 puppet resource service puppetmaster ensure=running enable=true
