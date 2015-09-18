@@ -1,4 +1,8 @@
-The puppet module logstashforwarder is a fork from https://github.com/elastic/puppet-logstashforwarder. 
+# logstashforwarder
+The puppet module logstashforwarder source is from the branch _g10b_:
+https://github.com/oloc/puppet-logstashforwarder/tree/g10b
+
+In fact this is a fork from https://github.com/elastic/puppet-logstashforwarder. 
 
 It includes the PR below:
 * https://github.com/elastic/puppet-logstashforwarder/pull/54
