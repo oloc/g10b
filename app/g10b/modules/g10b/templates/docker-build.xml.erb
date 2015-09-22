@@ -2,7 +2,22 @@
 <project>
   <description><%= @project%> - <%= @description%></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>App</name>
+          <description></description>
+          <defaultValue><%= @application%></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>DockerImage</name>
+          <description></description>
+          <defaultValue>base</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -15,9 +30,11 @@
         <name>*/<%= @git_branch%></name>
       </hudson.plugins.git.BranchSpec>
     </branches>
-    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+   <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CleanBeforeCheckout/>
+    </extensions>
   </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -28,6 +45,8 @@
   <builders>
     <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.31">
       <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.CreateImageCommand">
+        <dockerFolder>$WORKSPACE/app/${App}/dockerfiles/${DockerImage}</dockerFolder>
+        <imageTag>${DockerImage}</imageTag>
         <noCache>false</noCache>
         <rm>false</rm>
       </dockerCmd>

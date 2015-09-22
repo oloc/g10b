@@ -1,5 +1,6 @@
 define g10b::job(
   $project     = $module_name,
+  $application = $module_name,
   $jobname     = $title,
   $description = $title,
   $git_url     = undef,

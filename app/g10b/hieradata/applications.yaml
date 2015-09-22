@@ -25,18 +25,22 @@ jenkins::plugins:
 jenkins::jobs :
   petclinic-build:
     description: 'Petclinic build'
+    application: 'petclinic'
     git_url    : 'https://github.com/spring-projects/spring-petclinic.git'
     template   : 'maven-build.xml.erb'
   petclinic-cbase:
     description: 'Contener Base'
+    application: 'petclinic'    
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
   petclinic-capp:
     description: 'Contener application'
+    application: 'petclinic'    
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
   petclinic-cweb:
     description: 'Contener webserver'
+    application: 'petclinic'    
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
 
