@@ -30,17 +30,20 @@ jenkins::jobs :
     template   : 'maven-build.xml.erb'
   petclinic-cbase:
     description: 'Contener Base'
-    application: 'petclinic'    
+    application: 'petclinic'
+    docker_image : 'base'
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
   petclinic-capp:
     description: 'Contener application'
-    application: 'petclinic'    
+    application: 'petclinic'
+    docker_image : 'base'
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
   petclinic-cweb:
     description: 'Contener webserver'
-    application: 'petclinic'    
+    application: 'petclinic'
+    docker_image : 'base'
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
 
