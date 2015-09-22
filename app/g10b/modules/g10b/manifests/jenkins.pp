@@ -4,12 +4,8 @@ class g10b::jenkins{
     config_hash => { 'PREFIX' => { 'value' => '/jenkins' }, 'JENKINS_ARGS' => { 'value' => '--webroot=/var/cache/$NAME/war --httpPort=$HTTP_PORT --ajp13Port=$AJP_PORT --prefix=$PREFIX' } }
   }
 
-  $defaults = {
-    'version' => 'latest',
-    'require' => Class['jenkins']
-  }
   $plugins = hiera('jenkins::plugins')
-  create_resources(jenkins::plugin, $plugins, $defaults)
+  create_resources(jenkins::plugin, $plugins)
 
   file {'/var/lib/jenkins/hudson.tasks.Maven.xml':
     ensure  => present,

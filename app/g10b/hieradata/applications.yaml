@@ -12,13 +12,21 @@ jenkins::port : 8080
 
 jenkins::plugins:
   ssh-credentials:
+    version: 'latest'
   scm-api:
+    version: 'latest'
   mailer:
+    version: 'latest'
   git:
+    version: 'latest'
   jquery:
+    version: 'latest'
   parameterized-trigger:
+    version: 'latest'
   build-pipeline-plugin:
+    version: 'latest'
   docker-commons:
+    version: 'latest'
   docker-build-step:
     version: 'latest'
 
