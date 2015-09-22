@@ -1,6 +1,6 @@
 class g10b::cron {
 
-  cron { 'Puppet-Agent':
+  cron { 'puppet-agent':
     command  => '/usr/bin/puppet agent --onetime --no-daemonize --splay',
     user     => 'root',
     month    => '*',
