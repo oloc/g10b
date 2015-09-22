@@ -8,18 +8,18 @@ class g10b::jenkins{
   create_resources(jenkins::plugin, $plugins)
 
   file {'/var/lib/jenkins/hudson.tasks.Maven.xml':
-    ensure  => present,
-    source  => "puppet:///modules/${module_name}/hudson.tasks.Maven.xml",
+    ensure => present,
+    source => "puppet:///modules/${module_name}/hudson.tasks.Maven.xml",
   }
   file {'/var/lib/jenkins/org.jenkinsci.plugins.docker.commons.tools.DockerTool.xml':
-    ensure  => present,
-    source  => "puppet:///modules/${module_name}/org.jenkinsci.plugins.docker.commons.tools.DockerTool.xml",
+    ensure => present,
+    source => "puppet:///modules/${module_name}/org.jenkinsci.plugins.docker.commons.tools.DockerTool.xml",
   }
   file {'/var/lib/jenkins/org.jenkinsci.plugins.dockerbuildstep.DockerBuilder.xml':
     ensure => present,
     source => "puppet:///modules/${module_name}/org.jenkinsci.plugins.dockerbuildstep.DockerBuilder.xml",
   }
-  
+
   $jobs = hiera('jenkins::jobs')
   create_resources("${module_name}::job", $jobs)
 
