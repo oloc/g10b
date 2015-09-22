@@ -35,7 +35,7 @@ fi
 
 _echo "Importing configuration..."
 	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
-	echo "*.$(hostname -d)" >> ${confdir}/autosign.conf
+	echo "*.$(hostname -d)" > ${confdir}/autosign.conf
 
 for AppName in $(ls -1 ${AppDir}); do
 	EnvName=${AppName}
