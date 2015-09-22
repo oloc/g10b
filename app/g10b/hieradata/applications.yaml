@@ -10,25 +10,35 @@ gitlab::port : 80
 jenkins::host : "%{hiera('g10b-orchestration')}"
 jenkins::port : 8080
 
-jenkins::plugins :
+jenkins::plugins:
   ssh-credentials:
-    version: 'latest'
   scm-api:
-    version: 'latest'
   mailer:
-    version: 'latest'
   git:
-    version: 'latest'
   jquery:
-    version: 'latest'
   parameterized-trigger:
-    version: 'latest'
   build-pipeline-plugin:
+  docker-commons:
+  docker-build-step:
     version: 'latest'
 
 jenkins::jobs :
   petclinic-build:
-    config: 'file("${module_name}/petclinic-build.xml")'
+    description: 'Petclinic build'
+    git_url    : 'https://github.com/spring-projects/spring-petclinic.git'
+    template   : 'maven-build.xml.erb'
+  petclinic-cbase:
+    description: 'Contener Base'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    template   : 'docker-build.xml.erb'
+  petclinic-capp:
+    description: 'Contener application'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    template   : 'docker-build.xml.erb'
+  petclinic-cweb:
+    description: 'Contener webserver'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    template   : 'docker-build.xml.erb'
 
 kibana::host  : "%{hiera('g10b-metrology')}"
 kibana::port  : 5601

@@ -8,10 +8,13 @@ class g10b::jenkins{
     source => "puppet:///modules/${module_name}/hudson.tasks.Maven.xml",
   }
 
+  $defaults = {
+    'version' => 'latest',
+  }
   $plugins = hiera('jenkins::plugins')
-  create_resources(jenkins::plugin, $plugins)
+  create_resources(jenkins::plugin, $plugins, $defaults)
 
   $jobs = hiera('jenkins::jobs')
-  create_resources(jenkins::job, $jobs)
+  create_resources("${module_name}::job", $jobs)
 
 }
