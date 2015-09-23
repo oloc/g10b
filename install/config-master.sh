@@ -34,7 +34,8 @@ if [ ${Update} ] ; then
 fi
 
 _echo "Importing configuration..."
-	cp -Rv ./etc/* ${confdir}/ | tee -a ${LogFile}
+	rm ./etc/hieradata/secure.yaml | tee -a ${LogFile}
+	cp -Rv ./etc/* ${confdir}/     | tee -a ${LogFile}
 	echo "*.$(hostname -d)" > ${confdir}/autosign.conf
 
 for AppName in $(ls -1 ${AppDir}); do

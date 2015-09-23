@@ -7,5 +7,6 @@
   - "%{::fqdn}"
   - infra
   - common
+  - secure
 :yaml:
   :datadir: "/etc/puppet/hieradata"

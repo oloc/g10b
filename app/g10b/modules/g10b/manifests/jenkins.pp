@@ -1,4 +1,6 @@
-class g10b::jenkins{
+class g10b::jenkins(
+  $credentials = $g10b::credentials,
+){
 
   class {'::jenkins':
     config_hash => { 'PREFIX' => { 'value' => '/jenkins' }, 'JENKINS_ARGS' => { 'value' => '--webroot=/var/cache/$NAME/war --httpPort=$HTTP_PORT --ajp13Port=$AJP_PORT --prefix=$PREFIX' } }
@@ -18,6 +20,10 @@ class g10b::jenkins{
   file {'/var/lib/jenkins/org.jenkinsci.plugins.dockerbuildstep.DockerBuilder.xml':
     ensure => present,
     source => "puppet:///modules/${module_name}/org.jenkinsci.plugins.dockerbuildstep.DockerBuilder.xml",
+  }
+  file {'/var/lib/jenkins/credentials.xml':
+    ensure  => present,
+    content => template("${module_name}/credentials.xml.erb",
   }
 
   $jobs = hiera('jenkins::jobs')

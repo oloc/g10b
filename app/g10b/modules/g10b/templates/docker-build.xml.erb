@@ -46,12 +46,23 @@
     <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.31">
       <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.CreateImageCommand">
         <dockerFolder>$WORKSPACE/app/${App}/dockerfiles/${DockerImage}</dockerFolder>
-        <imageTag>${DockerImage}</imageTag>
+        <imageTag>oloc/${App}:${DockerImage}</imageTag>
         <noCache>false</noCache>
         <rm>false</rm>
       </dockerCmd>
     </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
+    <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.31">
+      <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.PushImageCommand">
+        <dockerRegistryEndpoint plugin="docker-commons@1.2">
+          <credentialsId>81a77cc6-6c2f-471d-93eb-f1f93137b3ac</credentialsId>
+        </dockerRegistryEndpoint>
+        <image>oloc/${App}</image>
+        <tag>${DockerImage}</tag>
+        <registry></registry>
+      </dockerCmd>
+    </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
   </builders>
+
   <publishers/>
   <buildWrappers/>
 </project>

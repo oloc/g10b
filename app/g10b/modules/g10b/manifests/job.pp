@@ -11,7 +11,7 @@ define g10b::job(
   include ::jenkins
 
   jenkins::job {$jobname:
-    config      => template("${module_name}/${template}"),
+    config => template("${module_name}/${template}"),
   }
 
 }
