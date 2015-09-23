@@ -19,7 +19,8 @@ class g10b::mesos(
   }
 
   apt::source { 'mesosphere':
-    location => "http://repos.mesosphere.io/${::lsbdistid} ${::lsbdistcodename}",
+    location => "http://repos.mesosphere.io/${::lsbdistid}",
+    release  => "${::lsbdistcodename}",
     repos    => 'main',
     key      => {
       'id'     => '81026D0004C44CF7EF55ADF8DF7D54CBE56151BF',

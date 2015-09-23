@@ -3,7 +3,7 @@
   - yaml
 :hierarchy:
   - applications
-  - g10b
+  - "%{::environment}"
   - "%{::fqdn}"
   - infra
   - common
