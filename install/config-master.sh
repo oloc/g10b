@@ -34,7 +34,7 @@ if [ ${Update} ] ; then
 fi
 
 _echo "Importing configuration..."
-	cp ./etc/* ${confdir}/ | tee -a ${LogFile}
+	cp -Rv ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" > ${confdir}/autosign.conf
 
 for AppName in $(ls -1 ${AppDir}); do
@@ -72,7 +72,7 @@ for AppName in $(ls -1 ${AppDir}); do
 			fi
 		done
 	
-		for Thingy in modules manifests hieradata
+		for Thingy in modules manifests
 		do
 			_echo "Importing ${ProjectName} ${Thingy}..."
 			mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                                | tee -a ${logfile}
@@ -83,6 +83,9 @@ for AppName in $(ls -1 ${AppDir}); do
 	
 popd # pushd $(pwd)/..
 popd # pushd $(dirname $0)
+
+_echo "puppet config set environment ${ProjectName}"
+puppet config set environment ${ProjectName}
 
 _echo "chown -R ${DftUser}:${DftUser} ${confdir}"
 chown -R ${DftUser}:${DftUser} ${confdir}
