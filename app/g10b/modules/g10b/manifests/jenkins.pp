@@ -23,7 +23,7 @@ class g10b::jenkins(
   }
   file {'/var/lib/jenkins/credentials.xml':
     ensure  => present,
-    content => template("${module_name}/credentials.xml.erb",
+    content => template("${module_name}/credentials.xml.erb"),
   }
 
   $jobs = hiera('jenkins::jobs')
