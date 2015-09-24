@@ -1,5 +1,9 @@
+# This is an example of how to define this secured file
+# The right values are only on the puppet-master system 
+# I suggest to adjust the rights of this file as closed as possible.
+#
 ---
-g10b::credentials:
+g10b::jenkins::credentials:
   name: 'hub.docker.com'
   list:
     id: 81a77cc6-6c2f-471d-93eb-f1f93137b3ac

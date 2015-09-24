@@ -1,5 +1,5 @@
 class g10b::jenkins(
-  $credentials = $g10b::credentials,
+  $credentials = $g10b::jenkins::credentials,
 ){
 
   class {'::jenkins':
