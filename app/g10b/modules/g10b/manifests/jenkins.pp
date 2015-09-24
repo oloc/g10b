@@ -1,5 +1,6 @@
 class g10b::jenkins(
   $credentials = $g10b::jenkins::credentials,
+  $views       = undef,
 ){
 
   class {'::jenkins':
@@ -28,5 +29,11 @@ class g10b::jenkins(
 
   $jobs = hiera('jenkins::jobs')
   create_resources("${module_name}::job", $jobs)
+
+  $views = hiera('jenkins::views')
+  file {'/var/lib/jenkins/config.xml':
+    ensure  => present,
+    content => template("${module_name}/config.xml.erb"),
+  }
 
 }

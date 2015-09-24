@@ -71,6 +71,10 @@ jenkins::jobs :
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'    
 
+jenkins::views :
+  - name    : 'petclinic'
+    firstjob: 'petclinic-start'
+
 kibana::host  : "%{hiera('g10b-metrology')}"
 kibana::port  : 5601
 kibana::user  : 'kibana'
