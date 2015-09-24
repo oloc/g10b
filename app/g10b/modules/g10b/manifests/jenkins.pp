@@ -1,6 +1,6 @@
 class g10b::jenkins(
+  $project     = $module_name,
   $credentials = $g10b::jenkins::credentials,
-  $views       = undef,
 ){
 
   class {'::jenkins':
