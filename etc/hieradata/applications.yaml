@@ -45,15 +45,21 @@ jenkins::jobs :
   petclinic-capp:
     description: 'Contener application'
     application: 'petclinic'
-    docker_image : 'base'
+    docker_image : 'middleware'
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
   petclinic-cweb:
     description: 'Contener webserver'
     application: 'petclinic'
-    docker_image : 'base'
+    docker_image : 'webserver'
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
+  petclinic-cdb:
+    description: 'Contener database'
+    application: 'petclinic'
+    docker_image : 'database'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    template   : 'docker-build.xml.erb'    
 
 kibana::host  : "%{hiera('g10b-metrology')}"
 kibana::port  : 5601
