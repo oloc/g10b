@@ -18,24 +18,7 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
-    <configVersion>2</configVersion>
-    <userRemoteConfigs>
-      <hudson.plugins.git.UserRemoteConfig>
-        <url><%= @git_url%></url>
-      </hudson.plugins.git.UserRemoteConfig>
-    </userRemoteConfigs>
-    <branches>
-      <hudson.plugins.git.BranchSpec>
-        <name>*/<%= @git_branch%></name>
-      </hudson.plugins.git.BranchSpec>
-    </branches>
-   <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <submoduleCfg class="list"/>
-    <extensions>
-      <hudson.plugins.git.extensions.impl.CleanBeforeCheckout/>
-    </extensions>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -59,11 +42,14 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.31">
-      <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.CreateImageCommand">
-        <dockerFolder>$WORKSPACE/app/${App}/dockerfiles/${DockerImage}</dockerFolder>
-        <imageTag>oloc/${App}:${DockerImage}</imageTag>
-        <noCache>false</noCache>
-        <rm>false</rm>
+      <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.PushImageCommand">
+        <dockerRegistryEndpoint plugin="docker-commons@1.2">
+          <url>https://hub.docker.com</url>
+          <credentialsId>81a77cc6-6c2f-471d-93eb-f1f93137b3ac</credentialsId>
+        </dockerRegistryEndpoint>
+        <image>oloc/${App}</image>
+        <tag>${DockerImage}</tag>
+        <registry></registry>
       </dockerCmd>
     </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
   </builders>

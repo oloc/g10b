@@ -1,0 +1,69 @@
+---
+jenkins::jobs :
+  petclinic-start:
+    description: 'This starter checks if any changes have been done in the repository.'
+    application: 'petclinic'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    template   : 'start.xml.erb'
+  petclinic-build:
+    description: 'Petclinic build'
+    application: 'petclinic'
+    git_url    : 'https://github.com/spring-projects/spring-petclinic.git'
+    triggers   : 'petclinic-start'
+    template   : 'maven-build.xml.erb'
+  petclinic-build-base:
+    description: 'Build Contener Base'
+    application: 'petclinic'
+    docker_image : 'base'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    triggers   : 'petclinic-start'
+    template   : 'docker-build.xml.erb'
+  petclinic-push-base:
+    description: 'Push Contener Base'
+    application: 'petclinic'
+    docker_image : 'base'
+    triggers   : 'petclinic-build-base'
+    template   : 'docker-push.xml.erb'
+  petclinic-build-app:
+    description: 'Build Contener application'
+    application: 'petclinic'
+    docker_image : 'middleware'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    triggers   : 'petclinic-build-base'
+    template   : 'docker-build.xml.erb'
+  petclinic-build-web:
+    description: 'Build Contener webserver'
+    application: 'petclinic'
+    docker_image : 'webserver'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    triggers   : 'petclinic-cbase'
+    template   : 'docker-build.xml.erb'
+  petclinic-build-db:
+    description: 'Build Contener database'
+    application: 'petclinic'
+    docker_image : 'database'
+    triggers   : 'petclinic-cbase'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    template   : 'docker-build.xml.erb'
+  petclinic-push-app:
+    description: 'Push Contener application'
+    application: 'petclinic'
+    docker_image : 'middleware'
+    triggers   : 'petclinic-push-base, petclinic-build-app, petclinic-build'
+    template   : 'docker-push.xml.erb'
+  petclinic-push-web:
+    description: 'Push Contener webserver'
+    application: 'petclinic'
+    docker_image : 'webserver'
+    triggers   : 'petclinic-push-base, petclinic-build-web'
+    template   : 'docker-push.xml.erb'
+  petclinic-push-db:
+    description: 'Push Contener database'
+    application: 'petclinic'
+    docker_image : 'database'
+    triggers   : 'petclinic-push-base, petclinic-build-db'
+    template   : 'docker-push.xml.erb'    
+
+jenkins::views :
+  - name    : 'petclinic'
+    firstjob: 'petclinic-start'

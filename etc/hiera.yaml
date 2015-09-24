@@ -3,6 +3,7 @@
   - yaml
 :hierarchy:
   - applications
+  - jenkins
   - "%{::environment}"
   - "%{::fqdn}"
   - infra

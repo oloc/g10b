@@ -30,51 +30,6 @@ jenkins::plugins:
   docker-build-step:
     version: 'latest'
 
-jenkins::jobs :
-  petclinic-start:
-    description: 'This starter checks if any changes have been done in the repository.'
-    application: 'petclinic'
-    git_url    : 'https://github.com/oloc/g10b.git'
-    template   : 'start.xml.erb'
-  petclinic-build:
-    description: 'Petclinic build'
-    application: 'petclinic'
-    git_url    : 'https://github.com/spring-projects/spring-petclinic.git'
-    triggers   : 'petclinic-start'
-    template   : 'maven-build.xml.erb'
-  petclinic-cbase:
-    description: 'Contener Base'
-    application: 'petclinic'
-    docker_image : 'base'
-    git_url    : 'https://github.com/oloc/g10b.git'
-    triggers   : 'petclinic-start'
-    template   : 'docker-build.xml.erb'
-  petclinic-capp:
-    description: 'Contener application'
-    application: 'petclinic'
-    docker_image : 'middleware'
-    git_url    : 'https://github.com/oloc/g10b.git'
-    triggers   : 'petclinic-cbase'
-    template   : 'docker-build.xml.erb'
-  petclinic-cweb:
-    description: 'Contener webserver'
-    application: 'petclinic'
-    docker_image : 'webserver'
-    git_url    : 'https://github.com/oloc/g10b.git'
-    triggers   : 'petclinic-cbase'
-    template   : 'docker-build.xml.erb'
-  petclinic-cdb:
-    description: 'Contener database'
-    application: 'petclinic'
-    docker_image : 'database'
-    triggers   : 'petclinic-cbase'
-    git_url    : 'https://github.com/oloc/g10b.git'
-    template   : 'docker-build.xml.erb'    
-
-jenkins::views :
-  - name    : 'petclinic'
-    firstjob: 'petclinic-start'
-
 kibana::host  : "%{hiera('g10b-metrology')}"
 kibana::port  : 5601
 kibana::user  : 'kibana'
