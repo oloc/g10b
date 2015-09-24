@@ -2,6 +2,8 @@ FROM oloc/petclinic:base
 MAINTAINER oloc
 # Update Ubuntu
 RUN apt-get update && apt-get -y upgrade
+# Install curl
+RUN apt-get -y install curl
 # Add puppet modules
 RUN puppet module install puppetlabs-tomcat
 RUN puppet module install puppetlabs-java
