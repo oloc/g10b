@@ -6,6 +6,7 @@ define g10b::job(
   $git_url      = undef,
   $git_branch   = 'master',
   $docker_image = undef,
+  $triggers     = undef,
   $template     = undef,
 ){
   include ::jenkins
