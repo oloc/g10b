@@ -4,9 +4,17 @@
 #
 ---
 g10b::jenkins::credentials:
-  name: 'hub.docker.com'
-  list:
-    id: 81a77cc6-6c2f-471d-93eb-f1f93137b3ac
-    desc: ''
-    user: oloc
-    pass: xxx
+  - name: 'hub.docker.com'
+    desc: 'Docker Registry'
+    list:
+      id: 81a77cc6-6c2f-471d-93eb-f1f93137b3ac
+      desc: ''
+      user: oloc
+      pass: xxx
+  - name: 'g10b.oloc'
+    desc: 'DevOps Project'
+    list:
+      id: 42
+      desc: 'This is a test'
+      user: oloc
+      pass: Passw0rd
