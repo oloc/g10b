@@ -7,7 +7,7 @@ tomcat::instance { 'tomcat8':
 }->
 tomcat::service { 'tomcat8':
   service_ensure => running,
-  catalina_base  => '/opt/apache-tomcat/tomcat8',
+  catalina_home  => '/opt/apache-tomcat/tomcat8',
 }
 
 file { '/opt/apache-tomcat/tomcat8/webapps':
