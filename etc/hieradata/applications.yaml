@@ -29,6 +29,8 @@ jenkins::plugins:
     version: 'latest'
   docker-build-step:
     version: 'latest'
+  throttle-concurrents:
+    version: 'latest'
 
 kibana::host  : "%{hiera('g10b-metrology')}"
 kibana::port  : 5601

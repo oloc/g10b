@@ -20,10 +20,11 @@ jenkins::jobs :
     publishers : 'petclinic-push-base'
     template   : 'docker-build.xml.erb'
   petclinic-push-base:
-    description: 'Push Contener Base'
-    application: 'petclinic'
-    docker_image : 'base'
-    template   : 'docker-push.xml.erb'
+    description : 'Push Contener Base'
+    application : 'petclinic'
+    docker_image: 'base'
+    concurrent  : 'Docker_Registry_Push'
+    template    : 'docker-push.xml.erb'
   petclinic-build-app:
     description: 'Build Contener application'
     application: 'petclinic'
@@ -49,21 +50,29 @@ jenkins::jobs :
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
   petclinic-push-app:
-    description: 'Push Contener application'
-    application: 'petclinic'
-    docker_image : 'middleware'
-    template   : 'docker-push.xml.erb'
+    description : 'Push Contener application'
+    application : 'petclinic'
+    docker_image: 'middleware'
+    concurrent  : 'Docker_Registry_Push'
+    template    : 'docker-push.xml.erb'
   petclinic-push-web:
-    description: 'Push Contener webserver'
-    application: 'petclinic'
-    docker_image : 'webserver'
-    template   : 'docker-push.xml.erb'
+    description : 'Push Contener webserver'
+    application : 'petclinic'
+    docker_image: 'webserver'
+    concurrent  : 'Docker_Registry_Push'
+    template    : 'docker-push.xml.erb'
   petclinic-push-db:
-    description: 'Push Contener database'
-    application: 'petclinic'
-    docker_image : 'database'
-    template   : 'docker-push.xml.erb'    
+    description : 'Push Contener database'
+    application : 'petclinic'
+    docker_image: 'database'
+    concurrent  : 'Docker_Registry_Push'
+    template    : 'docker-push.xml.erb'    
 
 jenkins::views :
   - name    : 'petclinic'
     firstjob: 'petclinic-start'
+
+jenkins::throttleconcurrents:
+  - name    : 'Docker_Registry_Push'
+    per_node: 1
+    total   : 1

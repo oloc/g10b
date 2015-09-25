@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.throttleconcurrents.ThrottleJobProperty_-DescriptorImpl plugin="throttle-concurrents@1.8.4">
+  <categories>
+    <% @throttleconcurrents.each do |categorie| -%>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty_-ThrottleCategory>
+      <maxConcurrentPerNode><%= @categorie['per_node'] %></maxConcurrentPerNode>
+      <maxConcurrentTotal><%= @categorie['total'] %></maxConcurrentTotal>
+      <categoryName><%= @categorie['name'] %></categoryName>
+      <nodeLabeledPairs/>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty_-ThrottleCategory>
+    <%- end -%>
+  </categories>
+</hudson.plugins.throttleconcurrents.ThrottleJobProperty_-DescriptorImpl>
