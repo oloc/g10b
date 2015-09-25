@@ -11,11 +11,14 @@ Anyway, currently the project allows you automatically to:
 * Bootstap installation of Puppet master
 * Puppet-master configures itself
 * Puppet configures all machines
-* Feed Puppet-master with modules and manifests for g10b itself and others applications
+* Feed Puppet-master with modules and manifests for g10b itself and others applications (as an example I take the famous petclinic)
 
 Then Jenkins, GitLab, Rundeck, Mesos, Docker, Elasticsearch, Logstash, Kibana and Puppet are ready!
 
 ![Scheme](./docs/g10b.jpg)
+
+
+![Pipeline](./docs/jenkins_pipeline.jpg)
 
 ## Prerequisites
 To use this tools, you need a hosting plateform with:
