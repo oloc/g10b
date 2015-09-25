@@ -8,6 +8,7 @@ define g10b::job(
   $docker_image = undef,
   $triggers     = undef,
   $publishers   = undef,
+  $concurrent   = undef,
   $template     = undef,
 ){
   include ::jenkins
