@@ -11,6 +11,6 @@ tomcat::service { 'tomcat8':
 }
 
 tomcat::war { 'petclinic.war':
-  catalina_base => '/opt/apache-tomcat/tomcat8/webapps/petclinic/',
+  catalina_base => '/opt/apache-tomcat/tomcat8/',
   war_source    => 'http://karajan.oloc:8080/jenkins/view/petclinic/job/petclinic-build/ws/target/petclinic.war',
 }
