@@ -63,7 +63,7 @@
         <dockerFolder>$WORKSPACE/app/${App}/dockerfiles/${DockerImage}</dockerFolder>
         <imageTag>oloc/${App}:${DockerImage}</imageTag>
         <noCache>false</noCache>
-        <rm>false</rm>
+        <rm>true</rm>
       </dockerCmd>
     </org.jenkinsci.plugins.dockerbuildstep.DockerBuilder>
   </builders>

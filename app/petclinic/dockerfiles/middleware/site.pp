@@ -14,7 +14,7 @@ file { '/opt/apache-tomcat/tomcat8/webapps':
   ensure => directory,
 }
 tomcat::war { 'petclinic.war':
-  catalina_base => '/opt/apache-tomcat/tomcat8/',
+  catalina_base => '/opt/apache-tomcat/tomcat8',
   app_base      => 'webapps',
-  war_source    => 'http://karajan.oloc:8080/jenkins/view/petclinic/job/petclinic-build/ws/target/petclinic.war',
+  war_source    => 'http://192.168.10.56:8080/jenkins/view/petclinic/job/petclinic-build/ws/target/petclinic.war',
 }
