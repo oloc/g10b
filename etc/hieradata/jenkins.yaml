@@ -17,6 +17,7 @@ jenkins::jobs :
     docker_image : 'base'
     git_url    : 'https://github.com/oloc/g10b.git'
     triggers   : 'petclinic-start'
+    publishers : 'petclinic-push-base'
     template   : 'docker-build.xml.erb'
   petclinic-push-base:
     description: 'Push Contener Base'
@@ -30,6 +31,7 @@ jenkins::jobs :
     docker_image : 'middleware'
     git_url    : 'https://github.com/oloc/g10b.git'
     triggers   : 'petclinic-build-base'
+    publishers : 'petclinic-push-app'
     template   : 'docker-build.xml.erb'
   petclinic-build-web:
     description: 'Build Contener webserver'
@@ -37,31 +39,30 @@ jenkins::jobs :
     docker_image : 'webserver'
     git_url    : 'https://github.com/oloc/g10b.git'
     triggers   : 'petclinic-cbase'
+    publishers : 'petclinic-push-web'
     template   : 'docker-build.xml.erb'
   petclinic-build-db:
     description: 'Build Contener database'
     application: 'petclinic'
     docker_image : 'database'
     triggers   : 'petclinic-cbase'
+    publishers : 'petclinic-push-db'
     git_url    : 'https://github.com/oloc/g10b.git'
     template   : 'docker-build.xml.erb'
   petclinic-push-app:
     description: 'Push Contener application'
     application: 'petclinic'
     docker_image : 'middleware'
-    triggers   : 'petclinic-push-base, petclinic-build-app, petclinic-build'
     template   : 'docker-push.xml.erb'
   petclinic-push-web:
     description: 'Push Contener webserver'
     application: 'petclinic'
     docker_image : 'webserver'
-    triggers   : 'petclinic-push-base, petclinic-build-web'
     template   : 'docker-push.xml.erb'
   petclinic-push-db:
     description: 'Push Contener database'
     application: 'petclinic'
     docker_image : 'database'
-    triggers   : 'petclinic-push-base, petclinic-build-db'
     template   : 'docker-push.xml.erb'    
 
 jenkins::views :
