@@ -9,13 +9,14 @@ pushd $(pwd)/$(dirname $0) 2>/dev/null
 . ./install.cfg
 . ./install.lib
 
-while getopts "crumb:" Option
+while getopts "crumvb:" Option
 do
 	case ${Option} in
 	c|C) typeset -i CleanEnv=1 ;;
     r|R) typeset -i RemoveOld=1 ;;
 	u|U) typeset -i Update=1 ;;
 	m|M) typeset -i ModuleUpdate=1 ;;
+    v|V) typeset Verbose='v' ;;
 	b|B) typeset Branch="$OPTARG" ;;
 	esac
 done
@@ -35,8 +36,8 @@ fi
 
 _echo "Importing configuration..."
     _echo "Avoid the importation of the ${PrivateHiera}."
-	rm ${PrivateHiera}         | tee -a ${LogFile}
-	cp -Rv ./etc/* ${confdir}/ | tee -a ${LogFile}
+	rm ${PrivateHiera}                  | tee -a ${LogFile}
+	cp -R${Verbose} ./etc/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" > ${confdir}/autosign.conf
 
 for AppName in $(ls -1 ${AppDir}); do
@@ -77,9 +78,9 @@ for AppName in $(ls -1 ${AppDir}); do
 		for Thingy in modules manifests
 		do
 			_echo "Importing ${ProjectName} ${Thingy}..."
-			mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                                | tee -a ${logfile}
-			cp -Rv ${AppDir}/${AppName}/${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/ | tee -a ${LogFile}
-			chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}           | tee -a ${LogFIle}
+			mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                                         | tee -a ${logfile}
+			cp -R${Verbose} ${AppDir}/${AppName}/${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/ | tee -a ${LogFile}
+			chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}                    | tee -a ${LogFIle}
 		done
 	done
 	
