@@ -6,8 +6,8 @@ tomcat::instance { 'tomcat8':
   source_url    => 'http://mirror.nexcess.net/apache/tomcat/tomcat-8/v8.0.8/bin/apache-tomcat-8.0.8.tar.gz'
 }->
 tomcat::service { 'tomcat8':
-  ensure        => running,
-  catalina_base => '/opt/apache-tomcat/tomcat8',
+  service_ensure => running,
+  catalina_base  => '/opt/apache-tomcat/tomcat8',
 }
 
 tomcat::war { 'petclinic.war':

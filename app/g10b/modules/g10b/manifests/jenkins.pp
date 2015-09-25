@@ -38,7 +38,7 @@ class g10b::jenkins(
 
   $categories = hiera('jenkins::throttleconcurrents')
   file {'/var/lib/jenkins/hudson.plugins.throttleconcurrents.ThrottleJobProperty.xml':
-    ensure => present,
+    ensure  => present,
     content => template("${module_name}/hudson.plugins.throttleconcurrents.ThrottleJobProperty.xml.erb"),
   }
 }
