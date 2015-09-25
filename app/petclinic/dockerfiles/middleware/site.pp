@@ -1,12 +1,16 @@
 class { 'tomcat': } ->
 class { 'java': } ->
-tomcat::instance { 'install':
-  source_url => 'http://mirrors.ae-online.de/apache/tomcat/tomcat-7/v7.0.62/bin/apache-tomcat-7.0.62.tar.gz'
-} ->
-exec { 'run':
-  command => '/opt/apache-tomcat/bin/catalina.sh start'
-} ->
-tomcat::war { 'all.war':
-  catalina_base => '/opt/apache-tomcat',
-  war_source    => 'http://dl.bintray.com/mh/meow/all-1.0.0-GA.war',
+
+tomcat::instance { 'tomcat8':
+  catalina_base => '/opt/apache-tomcat/tomcat8',
+  source_url    => 'http://mirror.nexcess.net/apache/tomcat/tomcat-8/v8.0.8/bin/apache-tomcat-8.0.8.tar.gz'
+}->
+tomcat::service { 'tomcat8':
+  ensure        => running,
+  catalina_base => '/opt/apache-tomcat/tomcat8',
+}
+
+tomcat::war { 'petclinic.war':
+  catalina_base => '/opt/apache-tomcat/tomcat8/webapps/petclinic/',
+  war_source    => 'http://karajan.oloc:8080/jenkins/view/petclinic/job/petclinic-build/ws/target/petclinic.war',
 }
