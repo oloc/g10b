@@ -3,7 +3,7 @@ class { 'java': } ->
 
 tomcat::instance { 'tomcat8':
   catalina_base => '/opt/apache-tomcat/tomcat8',
-  source_url    => 'http://mirror.nexcess.net/apache/tomcat/tomcat-8/v8.0.8/bin/apache-tomcat-8.0.8.tar.gz'
+  source_url    => 'http://mirrors.ircam.fr/pub/apache/tomcat/tomcat-8/v8.0.26/bin/apache-tomcat-8.0.26.tar.gz'
 }->
 tomcat::service { 'tomcat8':
   service_ensure => running,
