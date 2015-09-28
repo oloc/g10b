@@ -37,25 +37,25 @@ fi
 _echo "Importing configuration..."
     _echo "Avoid the importation of the ${PrivateHiera}."
 	rm ${PrivateHiera}                  | tee -a ${LogFile}
-	cp -R${Verbose} ./${confdir}/* ${confdir}/ | tee -a ${LogFile}
-	echo "*.$(hostname -d)" > ${confdir}/autosign.conf
+	cp -R${Verbose} ./${confdir}/* /${confdir}/ | tee -a ${LogFile}
+	echo "*.$(hostname -d)" > /${confdir}/autosign.conf
 
-for EnvName in $(ls -1 ${EnvDir}); do
+for EnvName in $(ls -1 ./${EnvDir}); do
 	if [ ${CleanEnv} ] ; then
 		_echo "Cleaning of environment ${EnvName}..."
-		rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
+		rm -Rf ./${EnvDir}/${EnvName} | tee -a ${LogFile}
 	fi
 	
 	_echo "Environment ${EnvName} setting..."	
-		mkdir -p ${EnvDir}/${EnvName} | tee -a ${LogFile}
-		chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}
+		mkdir -p /${EnvDir}/${EnvName} | tee -a ${LogFile}
+		chown -R ${DftUser}:${DftUser} /${EnvDir}/${EnvName}
 		puppet config set environment ${EnvName}
 	
 	if [ ${RemoveOld} ] ; then
 		_echo "Removing old modules..."
 			puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
 			while  read Module; do
-				GrepResult=$(grep ${Module} ${EnvDir}/${EnvName}/modules.lst)
+				GrepResult=$(grep ${Module} ./${EnvDir}/${EnvName}/modules.lst)
 				if [ $? != 0 ] ; then
 					_echo "puppet module uninstall ${Module}"
 					(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
@@ -64,7 +64,7 @@ for EnvName in $(ls -1 ${EnvDir}); do
 	fi
 	
 	_echo "Adding some modules..."
-		grep -v '^#' ${EnvDir}/${EnvName}/modules.lst |
+		grep -v '^#' ./${EnvDir}/${EnvName}/modules.lst |
 		while read Module; do
 			_echo "puppet module install ${Module}"
 			(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
@@ -77,9 +77,9 @@ for EnvName in $(ls -1 ${EnvDir}); do
 		for Thingy in modules manifests
 		do
 			_echo "Importing ${ProjectName} ${Thingy}..."
-			mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                                           | tee -a ${logfile}
-			cp -R${Verbose} ./${EnvDir}/${EnvName}/${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/ | tee -a ${LogFile}
-			chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}                      | tee -a ${LogFIle}
+			mkdir -p /${EnvDir}/${EnvName}/${Thingy}/                                           | tee -a ${logfile}
+			cp -R${Verbose} ./${EnvDir}/${EnvName}/${Thingy}/* /${EnvDir}/${EnvName}/${Thingy}/ | tee -a ${LogFile}
+			chown -R ${DftUser}:${DftUser} /${EnvDir}/${EnvName}/${Thingy}                      | tee -a ${LogFIle}
 		done
 	done
 	
