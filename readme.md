@@ -41,9 +41,10 @@ You can access to the Jenkins, Gitlab, Rundeck, Mesos and Kibana in your browser
 * http://g10b.oloc (by default)
 
 ## Configuration
-The infrastructure is described in the __hieradata/provision.json__ file. 
+The infrastructure is described in the __provision/provision.json__ file. 
 The applications are described in the __app__ directory.
-The configuration of the servers is described in the puppet manifests and modules of the application g10b.
+The environments are described in the __etc/puppet/environments__ directory.
+The configuration of the lab is described in the puppet manifests and modules of the environment g10b.
 
 If you modify the project settings, you have to add the DNS VM (g10b-gateway) as a resolver of your host (for example your laptop with virtualBox), regarding the IP addresses you configure in the *Vagrantfile* and in the *provision.json* (as the iplastdigit parameter). As default, the *start* initiate for you this command:
 
@@ -52,11 +53,14 @@ If you modify the project settings, you have to add the DNS VM (g10b-gateway) as
 ## Applications description
 All the applications of your lab can be described in the __app__ directory following some rules.
 * One directory per application, named with the name of the application
-* Application directory contains the 3 directories below:
+
+## Environments description
+All the environments of your lab can be described in the __etc/puppet/environments__ directory following some rules.
+* One directory per environment, named with the name of the environment.
+* Environment directory contains the 2 directories below:
   * modules
   * manifests
-  * hieradata
-* Application directory contains the file with the needed puppet module: __modules.lst__
+* Environment directory contains the file with the needed puppet module: __modules.lst__
 
 ## Versions
 * V0.8 - Add petclinic as an exemple in the Jenkins. Technical improvement: Application notion. g10b is considered as an application.
