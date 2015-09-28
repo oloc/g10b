@@ -5,7 +5,7 @@ tomcat::instance { 'tomcat8':
 }->
 tomcat::service { 'tomcat8':
   service_ensure => running,
-}
+}->
 tomcat::war { 'petclinic.war':
   catalina_base => '/opt/apache-tomcat',
   war_source    => 'http://192.168.10.56:8080/jenkins/view/petclinic/job/petclinic-build/ws/target/petclinic.war',
