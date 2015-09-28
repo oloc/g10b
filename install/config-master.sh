@@ -89,8 +89,8 @@ popd # pushd $(dirname $0)
 _echo "puppet config set environment ${ProjectName}"
 puppet config set environment ${ProjectName}
 
-_echo "chown -R ${DftUser}:${DftUser} ${confdir}"
-chown -R ${DftUser}:${DftUser} ${confdir}
+_echo "chown -R ${DftUser}:${DftUser} /${confdir}"
+chown -R ${DftUser}:${DftUser} /${confdir}
 
 _echo "Scheduling Puppet Agent..."
 puppet resource cron puppet-agent ensure=present user=root minute='*/15' command='/usr/bin/puppet agent --onetime --no-daemonize --splay'
