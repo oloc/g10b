@@ -37,11 +37,10 @@ fi
 _echo "Importing configuration..."
     _echo "Avoid the importation of the ${PrivateHiera}."
 	rm ${PrivateHiera}                  | tee -a ${LogFile}
-	cp -R${Verbose} ./etc/* ${confdir}/ | tee -a ${LogFile}
+	cp -R${Verbose} ./${confdir}/* ${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" > ${confdir}/autosign.conf
 
-for AppName in $(ls -1 ${AppDir}); do
-	EnvName=${AppName}
+for EnvName in $(ls -1 ${EnvDir}); do
 	if [ ${CleanEnv} ] ; then
 		_echo "Cleaning of environment ${EnvName}..."
 		rm -Rf ${EnvDir}/${EnvName} | tee -a ${LogFile}
@@ -56,7 +55,7 @@ for AppName in $(ls -1 ${AppDir}); do
 		_echo "Removing old modules..."
 			puppet module list --tree | awk -F" " '{print $2}' | grep '-' |
 			while  read Module; do
-				GrepResult=$(grep ${Module} ${AppDir}/${AppName}/modules.lst)
+				GrepResult=$(grep ${Module} ${EnvDir}/${EnvName}/modules.lst)
 				if [ $? != 0 ] ; then
 					_echo "puppet module uninstall ${Module}"
 					(( ! ${OffLine} )) && puppet module uninstall ${Module} | tee -a ${LogFile}
@@ -65,7 +64,7 @@ for AppName in $(ls -1 ${AppDir}); do
 	fi
 	
 	_echo "Adding some modules..."
-		grep -v '^#' ${AppDir}/${AppName}/modules.lst |
+		grep -v '^#' ${EnvDir}/${EnvName}/modules.lst |
 		while read Module; do
 			_echo "puppet module install ${Module}"
 			(( ! ${OffLine} )) && puppet module install ${Module} | tee -a ${LogFile}
@@ -79,7 +78,7 @@ for AppName in $(ls -1 ${AppDir}); do
 		do
 			_echo "Importing ${ProjectName} ${Thingy}..."
 			mkdir -p ${EnvDir}/${EnvName}/${Thingy}/                                         | tee -a ${logfile}
-			cp -R${Verbose} ${AppDir}/${AppName}/${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/ | tee -a ${LogFile}
+			cp -R${Verbose} ${EnvDir}/${EnvName}/${Thingy}/* ${EnvDir}/${EnvName}/${Thingy}/ | tee -a ${LogFile}
 			chown -R ${DftUser}:${DftUser} ${EnvDir}/${EnvName}/${Thingy}                    | tee -a ${LogFIle}
 		done
 	done
