@@ -3,7 +3,7 @@ jenkins::jobs :
   petclinic-start:
     description: 'This starter checks if any changes have been done in the repository.'
     application: 'petclinic'
-    git_url    : 'https://github.com/oloc/g10b.git'
+    git_url    : 'https://github.com/oloc/g10b-petclinic.git'
     template   : 'start.xml.erb'
   petclinic-build:
     description: 'Petclinic build'
