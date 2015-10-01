@@ -4,6 +4,6 @@ class g10b::app{
   file {'/etc/puppet/hieradata/jenkins.yaml':
     ensure  => present,
     content => template("${module_name}/jenkins.yaml.erb"),
-  }	
+  }
 
 }
