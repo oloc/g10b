@@ -21,7 +21,7 @@ node 'repositories' {
 	ports            => ['5000'],
 	expose           => ['5000'],
 	volumes          => [$registry, '/var/log'],
-	extra_parameters => ["STORAGE_PATH=${registry}"]
+	extra_parameters => ["STORAGE_PATH=${registry}"],
 	require          => File[$registry],
   }
 
