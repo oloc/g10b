@@ -20,7 +20,7 @@ class g10b::mesos(
 
   apt::source { 'mesosphere':
     #location => "http://repos.mesosphere.io/${::lsbdistid}", - ${::lsbdistid} retrieve an Ubuntu instead of ubuntu.
-    location => "http://repos.mesosphere.io/ubuntu",
+    location => 'http://repos.mesosphere.io/ubuntu',
     release  => $::lsbdistcodename,
     repos    => 'main',
     key      => {
@@ -28,7 +28,7 @@ class g10b::mesos(
       'server' => 'keyserver.ubuntu.com',
     },
     include  => {
-      'src' => true,
+      'src' => false,
       'deb' => true,
     },
     before   => Class['apt::update'],
