@@ -17,12 +17,12 @@ node 'repositories' {
   }
 
   docker::run{'docker_registry':
-	image            => 'registry',
-	ports            => ['5000'],
-	expose           => ['5000'],
-	volumes          => [$registry, '/var/log'],
-	extra_parameters => ["STORAGE_PATH=${registry}"],
-	require          => File[$registry],
+  image            => 'registry',
+  ports            => ['5000'],
+  expose           => ['5000'],
+  volumes          => [$registry, '/var/log'],
+  extra_parameters => ["STORAGE_PATH=${registry}"],
+  require          => File[$registry],
   }
 
   file{$registry:
