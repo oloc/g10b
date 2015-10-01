@@ -5,7 +5,7 @@ $host='karajan.oloc'
 group { 'Mesos Group':
   ensure => present,
   name   => $group,
-  before   => Class['mesos::slave'],
+  before => Class['mesos::slave'],
 }
 
 user { 'Mesos User':
@@ -14,7 +14,7 @@ user { 'Mesos User':
   comment => 'mesos server',
   groups  => $group,
   home    => "/home/${owner}",
-  before   => Class['mesos::slave'],
+  before  => Class['mesos::slave'],
 }
 
 apt::source { 'mesosphere':
