@@ -1,0 +1,85 @@
+---
+jenkins::jobs :
+<%- if ! @applications -%>
+  no-app:
+    description: 'Your lab is empty.'
+<%- else -%>
+  <% @applications.each do |app| -%>
+  <%= app['name'] %>-start:
+    description: 'This starter checks if any changes have been done in the repository.'
+    application: <%= app['name'] %>
+    git_url    : 'https://github.com/oloc/g10b.git'
+    template   : 'start.xml.erb'
+  <%= app['name'] %>-build:
+    description: '<%= app['name'] %> build'
+    application: <%= app['name'] %>
+    git_url    : <%= app['git_url'] %>
+    triggers   : '<%= app['name'] %>-start'
+    template   : 'maven-build.xml.erb'
+  <%= app['name'] %>-build-base:
+    description: 'Build Contener Base'
+    application: <%= app['name'] %>
+    docker_image : 'base'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    triggers   : '<%= app['name'] %>-start'
+    publishers : '<%= app['name'] %>-push-base'
+    template   : 'docker-build.xml.erb'
+  <%= app['name'] %>-push-base:
+    description : 'Push Contener Base'
+    application : <%= app['name'] %>
+    docker_image: 'base'
+    concurrent  : 'Docker_Registry_Push'
+    template    : 'docker-push.xml.erb'
+  <%= app['name'] %>-build-app:
+    description: 'Build Contener application'
+    application: <%= app['name'] %>
+    docker_image : 'middleware'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    triggers   : '<%= app['name'] %>-build-base'
+    publishers : '<%= app['name'] %>-push-app'
+    template   : 'docker-build.xml.erb'
+  <%= app['name'] %>-build-web:
+    description: 'Build Contener webserver'
+    application: <%= app['name'] %>
+    docker_image : 'webserver'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    triggers   : '<%= app['name'] %>-build-base'
+    publishers : '<%= app['name'] %>-push-web'
+    template   : 'docker-build.xml.erb'
+  <%= app['name'] %>-build-db:
+    description: 'Build Contener database'
+    application: <%= app['name'] %>
+    docker_image : 'database'
+    triggers   : '<%= app['name'] %>-build-base'
+    publishers : '<%= app['name'] %>-push-db'
+    git_url    : 'https://github.com/oloc/g10b.git'
+    template   : 'docker-build.xml.erb'
+  <%= app['name'] %>-push-app:
+    description : 'Push Contener application'
+    application : <%= app['name'] %>
+    docker_image: 'middleware'
+    concurrent  : 'Docker_Registry_Push'
+    template    : 'docker-push.xml.erb'
+  <%= app['name'] %>-push-web:
+    description : 'Push Contener webserver'
+    application : <%= app['name'] %>
+    docker_image: 'webserver'
+    concurrent  : 'Docker_Registry_Push'
+    template    : 'docker-push.xml.erb'
+  <%= app['name'] %>-push-db:
+    description : 'Push Contener database'
+    application : <%= app['name'] %>
+    docker_image: 'database'
+    concurrent  : 'Docker_Registry_Push'
+    template    : 'docker-push.xml.erb'    
+
+jenkins::views :
+  - name    : <%= app['name'] %>
+    firstjob: '<%= app['name'] %>-start'
+  <%- end -%>
+<%- end -%>
+
+jenkins::throttleconcurrents:
+  - name    : 'Docker_Registry_Push'
+    per_node: 1
+    total   : 1

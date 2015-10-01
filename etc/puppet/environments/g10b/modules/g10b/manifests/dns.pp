@@ -50,6 +50,9 @@ class g10b::dns(
     'rundeck':
       zone => $::domain,
       data => "karajan.${::domain}";
+    'mesos':
+      zone => $::domain,
+      data => "karajan.${::domain}";
     'gitlab':
       zone => $::domain,
       data => "repositories.${::domain}";

@@ -98,4 +98,7 @@ puppet resource cron puppet-agent ensure=present user=root minute='*/15' command
 _echo "Starting Puppet Server..."
 puppet resource service puppetmaster ensure=running enable=true
 
+_echo "puppet agent --verbose --test --waitforcert 5"
+puppet agent --verbose --test --waitforcert 5
+
 _echo "Puppet master configuration of server $(hostname -f) is done."
