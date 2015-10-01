@@ -20,14 +20,14 @@
 		"iplastdigit": "56",
 		"host": "karajan",
 		"memory": 2048,
-		"cpu": 1,
+		"cpu": 2,
 		"bootstrap": "agent"
 	},
 	{
 		"node": "g10b-repositories",
 		"iplastdigit": "57",
 		"host": "repositories",
-		"memory": 2048,
+		"memory": 1024,
 		"cpu": 1,
 		"bootstrap": "agent"
 	},

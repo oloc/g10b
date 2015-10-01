@@ -21,7 +21,8 @@ maestrodev-maven
 ajjahn-dns
 deric-mesos 
 puppet-rundeck
-spuder-gitlab
 elasticsearch-logstash
 #elasticsearch-logstashforwarder
 lesaux-kibana4
+# To greedy for a personnal sources repository. I let it as an example.
+#spuder-gitlab

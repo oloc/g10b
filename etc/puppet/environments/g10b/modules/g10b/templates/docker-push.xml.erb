@@ -55,7 +55,7 @@
     <org.jenkinsci.plugins.dockerbuildstep.DockerBuilder plugin="docker-build-step@1.31">
       <dockerCmd class="org.jenkinsci.plugins.dockerbuildstep.cmd.PushImageCommand">
         <dockerRegistryEndpoint plugin="docker-commons@1.2">
-          <url>https://hub.docker.com</url>
+          <url>https://<%= @docker_registry_host%></url>
           <credentialsId>81a77cc6-6c2f-471d-93eb-f1f93137b3ac</credentialsId>
         </dockerRegistryEndpoint>
         <image>oloc/${App}</image>

@@ -13,6 +13,8 @@ define g10b::job(
 ){
   include ::jenkins
 
+
+  $docker_registry_host = hiera('docker_registry::host')
   jenkins::job {$jobname:
     config => template("${module_name}/${template}"),
   }
