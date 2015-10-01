@@ -8,7 +8,7 @@ jenkins::jobs :
   <%= app['name'] %>-start:
     description: 'This starter checks if any changes have been done in the repository.'
     application: '<%= app['name'] %>'
-    git_url    : 'https://github.com/oloc/g10b.git'
+    git_url    : '<%= app['git_url'] %>'
     template   : 'start.xml.erb'
   <%= app['name'] %>-build:
     description: '<%= app['name'] %> build'
