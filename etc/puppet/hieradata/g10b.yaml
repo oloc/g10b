@@ -1,4 +1,7 @@
 ---
+g10b::docker::host: "%{hiera('docker_registry::host')}"
+g10b::docker::port: "%{hiera('docker_registry::port')}"
+
 g10b::rundeck::user              : "%{hiera('rundeck::user')}"
 g10b::rundeck::group             : "%{hiera('rundeck::group')}"
 g10b::rundeck::server_web_context: "%{hiera('rundeck::server_web_context')}"
