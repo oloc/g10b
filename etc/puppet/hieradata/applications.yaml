@@ -3,8 +3,8 @@ applications:
   - name   : 'petclinic'
     git_url: 'https://github.com/oloc/g10b-petclinic.git'
 
-#docker_registry::host: "%{hiera('g10b-repositories')}.%{::domain}"
-docker_registry::host: 'hub.docker.com'
+docker_registry::host: "%{hiera('g10b-repositories')}.%{::domain}"
+#docker_registry::host: 'hub.docker.com'
 docker_registry::port: 5000
 
 elasticsearch::host  : "%{hiera('g10b-metrology')}"

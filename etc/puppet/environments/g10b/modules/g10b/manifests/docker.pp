@@ -4,7 +4,7 @@ class g10b::docker(
 ){
   class {'::docker':
 	tcp_bind         => 'tcp://127.0.0.1:4243',
-	extra_parameters => ["--insecure-registry ${host}.${::domain}:${port}"],
+	extra_parameters => ["--insecure-registry ${host}:${port}"],
   }
 
 }
