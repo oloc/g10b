@@ -76,7 +76,7 @@ jenkins::jobs :
 
 <% @applications.each do |app| -%>
 jenkins::views :
-  - name    : <%= app['name'] %>
+  - name    : '<%= app['name'] %>'
     firstjob: '<%= app['name'] %>-start'
 <%- end -%>
 <%- end -%>
