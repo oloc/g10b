@@ -19,7 +19,6 @@
   <quietPeriod>5</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <%- if @views -%>
-  <% @views.each do |view| -%>
   <views>
     <hudson.model.AllView>
       <owner class="hudson" reference="../../.."/>
@@ -28,6 +27,7 @@
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
     </hudson.model.AllView>
+  <% @views.each do |view| -%>
     <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.8">
       <owner class="hudson" reference="../../.."/>
       <name><%= view['name'] %></name>
@@ -49,8 +49,8 @@
       <refreshFrequency>3</refreshFrequency>
       <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
     </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
-  </views>
   <%- end -%>
+  </views>
   <%- else -%>
   <view/>
   <%- end -%>

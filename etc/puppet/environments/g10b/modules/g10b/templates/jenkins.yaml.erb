@@ -72,7 +72,9 @@ jenkins::jobs :
     docker_image: 'database'
     concurrent  : 'Docker_Registry_Push'
     template    : 'docker-push.xml.erb'    
+<%- end -%>
 
+<% @applications.each do |app| -%>
 jenkins::views :
   - name    : <%= app['name'] %>
     firstjob: '<%= app['name'] %>-start'
