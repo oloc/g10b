@@ -74,8 +74,8 @@ jenkins::jobs :
     template    : 'docker-push.xml.erb'    
 <%- end -%>
 
-<% @applications.each do |app| -%>
 jenkins::views :
+<% @applications.each do |app| -%>
   - name    : '<%= app['name'] %>'
     firstjob: '<%= app['name'] %>-start'
 <%- end -%>
