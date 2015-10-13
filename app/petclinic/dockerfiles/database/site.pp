@@ -9,4 +9,5 @@ mysql::db { 'petclinic':
   grant          => ['SELECT', 'UPDATE'],
   sql            => '/root/initDB.sql',
   import_timeout => 900,
+  require        =>  Class['mysql::server'],
 }
