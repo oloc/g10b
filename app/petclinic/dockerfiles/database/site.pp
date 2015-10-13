@@ -3,7 +3,9 @@ class {'::mysql::server':}
 notify{"ipaddress=${::ipaddress}":}
 
 # Ugly workaround to be sure mysql service is started
-exec{'/usr/sbin/service mysql start':}->
+exec{'/usr/sbin/service mysql start':
+  require        =>  Class['mysql::server'],
+}->
 mysql::db { 'petclinic':
   user           => 'myuser',
   password       => 'mypass',
@@ -11,5 +13,4 @@ mysql::db { 'petclinic':
   grant          => ['SELECT', 'UPDATE'],
   sql            => '/root/initDB.sql',
   import_timeout => 900,
-  require        =>  Class['mysql::server'],
 }
