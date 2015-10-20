@@ -1,4 +1,12 @@
-class {'::mysql::server':}
+$override_options = {
+	mysqld => {
+		bind-address => undef,
+	}
+}
+
+class {'::mysql::server':
+  override_options => $override_options,
+}
 
 notify{"ipaddress=${::ipaddress}":}
 
@@ -13,4 +21,7 @@ mysql::db { 'petclinic':
   grant          => ['SELECT', 'UPDATE'],
   sql            => '/root/initDB.sql',
   import_timeout => 900,
+}->
+exec{'/usr/sbin/service mysql restart':
+  require        =>  Class['mysql::server'],
 }

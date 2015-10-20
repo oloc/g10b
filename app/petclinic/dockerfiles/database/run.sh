@@ -4,6 +4,7 @@
 mv /sbin/initctl /sbin/oldinitctl
 echo -e '#!/bin/bash\nif [ $1 == "--version" ]\nthen\n  echo "initctl (upstart 1.12.1)"\nfi\n/sbin/oldinitctl "$@"' > /sbin/initctl
 chmod 755 /sbin/initctl
+echo -e '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
 
 puppet apply /root/site.pp
 # The container will run as long as the script is running,
