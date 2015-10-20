@@ -9,7 +9,7 @@ exec{'/usr/sbin/service mysql start':
 mysql::db { 'petclinic':
   user           => 'myuser',
   password       => 'mypass',
-  host           => $::ipaddress,
+  host           => $::hostname,
   grant          => ['SELECT', 'UPDATE'],
   sql            => '/root/initDB.sql',
   import_timeout => 900,
