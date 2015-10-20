@@ -1,7 +1,13 @@
 $override_options = {
-	mysqld => {
-		bind-address => undef,
-	}
+  mysqld => {
+    bind-address => undef,
+  },
+  mysqld_safe => {
+    log-error => '/var/log/mysql/error.log',
+    nice      => 0,
+    pid-file  => '/var/run/mysqld/mysqld.pid',
+    socket    => '/var/run/mysqld/mysqld.sock',    
+  },
 }
 
 class {'::mysql::server':
@@ -17,7 +23,7 @@ exec{'/usr/sbin/service mysql start':
 mysql::db { 'petclinic':
   user           => 'myuser',
   password       => 'mypass',
-  host           => $::hostname,
+  host           => '%',
   grant          => ['SELECT', 'UPDATE'],
   sql            => '/root/initDB.sql',
   import_timeout => 900,
