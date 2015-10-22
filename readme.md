@@ -4,6 +4,15 @@ Many companies want a lab, a kind of research workspace. And so do some people. 
 
 In my opinion a such lab should be an Infra-as-code Lab. So I decide to code my own lab. The goal of this project is to launch an installer and wait and see for the result. The side effect is that I can install it again and again, I can test improvements easily without fearing a crash. And in fact if I crash my lab I just have to reinstall my master branch. 
 
+For this project I had several goals:
+* learn a configuration management tool: I chose to learn Puppet
+* learn a new language: I chose to learn Ruby
+* use a community software factory: I chose to use [Jenkins](http://jenkins-ci.org/)
+* use a piece of metrology: I chose to use the [EleasticSearch-Logstash-Kibana stack](http://elastic.co/)
+* use a new piece of technology: I chose to use [Docker](http://docker.io/)
+* make it open source, and learn how to use Git and GitHub
+
+# What is done?
 As a starter, Vagrant provisions the VMs and bootstraps a basic installation (puppet master or puppet agent). Puppet master installs itself and with the recurring appliance (*puppet agent --test*) installs the others servers.
 
 Anyway, currently the project allows you automatically to:
@@ -61,6 +70,19 @@ All the environments of your lab can be described in the __etc/puppet/environmen
   * modules
   * manifests
 * Environment directory contains the file with the needed puppet module: __modules.lst__
+
+## What if you want to tweak it?##
+In order to help me to test some solutions avoiding to deploy all VMS, I have create a tool __install/config-master.sh__. The different arguments help to deploy, to clean, to update or to remove old puppet modules, even to update from a specific branch.
+
+    sudo ./g10b/install/config-master.sh <arguments>
+
+Without arguments, you just redeploy the G10B you have previously pull. The differents arguments are:    
+* -c : clean
+* -r : remove old puppet modules
+* -u : update (pull the master branch or the specific branch of the -b argument )
+* -m : force the update of the puppet modules with a --ignore-dependencies arguments
+* -v : verbose
+* -b <branch> : specific git branch to pull
 
 ## Versions
 * V0.8 - Add petclinic as an exemple in the Jenkins. Technical improvement: Application notion. g10b is considered as an application.
