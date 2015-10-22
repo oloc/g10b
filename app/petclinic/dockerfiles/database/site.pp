@@ -6,7 +6,7 @@ $override_options = {
     log-error => '/var/log/mysql/error.log',
     nice      => 0,
     pid-file  => '/var/run/mysqld/mysqld.pid',
-    socket    => '/var/run/mysqld/mysqld.sock',    
+    socket    => '/var/run/mysqld/mysqld.sock',
   },
 }
 
