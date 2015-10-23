@@ -3,16 +3,8 @@ class g10b::logstashforwarder(
   $logstash_port = $g10b::logstash_port,
 ){
 
-  $file_crt = '/etc/pki/tls/certs/logstash-forwarder.crt'
-  file {$file_crt:
-    path   => $file_crt,
-    source => "puppet:///modules/${module_name}/logstash-forwarder.crt",
-  }
-  $file_key = '/etc/pki/tls/private/logstash-forwarder.key'
-  file {$file_key:
-    path   => $file_key,
-    source => "puppet:///modules/${module_name}/logstash-forwarder.key",
-  }
+  $file_crt = "/etc/pki/tls/certs/${::domain}.crt"
+  $file_key = "/etc/pki/tls/private/${::domain}.key"
 
   class {'::logstashforwarder':
     servers     => ["${elk_host}.${::domain}:${logstash_port}"],

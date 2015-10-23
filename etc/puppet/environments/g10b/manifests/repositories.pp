@@ -20,7 +20,8 @@ node 'repositories' {
   image   => 'registry',
   ports   => ['5000:5000'],
   expose  => ['5000'],
-  volumes => [$registry, '/var/log'],
+  volumes => [$registry, '/var/log', '/etc/pki/tls:/certs'],
+  env     => ['REGISTRY_HTTP_TLS_CERTIFICATE'="/certs/${::domain}.crt", 'REGISTRY_HTTP_TLS_KEY'="/certs/${::domain}.key"],
   require => File[$registry],
   }
 
