@@ -32,6 +32,11 @@ class g10b::mesos(
       'deb' => true,
     },
     before   => Class['apt::update'],
+  }->
+  class {'::mesos':
+    ensure         => present,
+    listen_address => $::ipaddress_eth1,
+    use_syslog     => true,
   }
 
 }
