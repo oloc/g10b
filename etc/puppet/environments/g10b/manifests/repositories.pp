@@ -17,10 +17,10 @@ node 'repositories' {
   }
 
   docker::run{'docker_registry':
-  image   => 'registry',
+  image   => 'registry:2',
   ports   => ['5000:5000'],
   expose  => ['5000'],
-  volumes => [$registry, '/var/log', '/etc/pki/tls:/certs'],
+  volumes => ['/var/lib:/var/lib/registry', '/var/log', '/etc/pki/tls/certs:/certs'],
   env     => ["REGISTRY_HTTP_TLS_CERTIFICATE=/certs/${::domain}.crt", "REGISTRY_HTTP_TLS_KEY=/certs/${::domain}.key"],
   require => File[$registry],
   }
