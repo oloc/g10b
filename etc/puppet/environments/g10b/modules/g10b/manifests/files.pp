@@ -26,8 +26,8 @@ class g10b::files {
     group  => 'root',
   }
 
-  $crt_dir = "/etc/pki/tls/certs"
-  file {"$crt_dir/${::domain}.crt":
+  $crt_dir = '/etc/pki/tls/certs'
+  file {"${crt_dir}/${::domain}.crt":
     ensure => present,
     mode   => '0644',
     source => "puppet:///modules/${module_name}/${::domain}.crt",
