@@ -33,12 +33,9 @@ class g10b::shinken(
     unless  => "/bin/ls -l /usr/lib/python2.7/dist-packages/shinken",
     require => Package['python-pip','python-pycurl'],
   }
-  exec{'/usr/bin/shinken install webui':
-    unless  => "/usr/bin/shinken inventory | grep webui 2>/dev/null",
-    require => Package['shinken'],
-  }
-  exec{'/usr/bin/shinken install auth-cfg-password':
-    unless  => "/usr/bin/shinken inventory | grep auth-cfg-password 2>/dev/null",
+  
+  $modules= ['webui', 'auth-cfg-password', 'linux-ssh', 'linux-snmp']
+  g10b::shinken_mod {$modules:
     require => Package['shinken'],
   }
 
