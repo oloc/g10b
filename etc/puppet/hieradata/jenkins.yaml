@@ -1,4 +1,4 @@
-# Manage by Puppet.
+# This file is managed by Puppet. DO NOT EDIT.
 # Do not change anything here but in the other concerned hiera files.
 ---
 jenkins::jobs :

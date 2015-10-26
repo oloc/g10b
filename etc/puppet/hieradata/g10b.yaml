@@ -1,4 +1,4 @@
-# Manage by Puppet.
+# This file is managed by Puppet. DO NOT EDIT.
 # Do not change anything here but in the other concerned hiera files.
 ---
 g10b::docker::host: "%{hiera('docker_registry::host')}"
@@ -23,6 +23,9 @@ g10b::elk::kibana_port         : "%{hiera('kibana::port')}"
 g10b::elk::kibana_user         : "%{hiera('kibana::user')}"
 g10b::elk::kibana_group        : "%{hiera('kibana::group')}"
 
+g10b::shinken::user : "%{hiera('shinken::user')}"
+g10b::shinken::group: "%{hiera('shinken::user')}"
+
 g10b::webserver::pass:
   - path: /puppet
     url: "http://%{hiera('puppet::host')}.%{::domain}:%{hiera('puppet::port')}"
@@ -36,6 +39,8 @@ g10b::webserver::pass:
     url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
   - path: /kibana
     url: "http://%{hiera('kibana::host')}.%{::domain}:%{hiera('kibana::port')}/"
+  - path: /shinken
+    url: "http://%{hiera('shinken::host')}.%{::domain}:%{hiera('shinken::port')}/"
   - path: /elasticsearch
     url: "http://%{hiera('elasticsearch::host')}.%{::domain}:%{hiera('elasticsearch::port')}/"
   - path: /marvel
