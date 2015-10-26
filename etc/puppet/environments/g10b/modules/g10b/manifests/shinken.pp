@@ -30,7 +30,7 @@ class g10b::shinken(
     require => User[$user],
   }->
   exec{'/usr/bin/pip install shinken':
-    unless  => "/bin/ls -l /usr/lib/python2.7/dist-packages/shinken",
+    unless  => '/bin/ls -l /usr/lib/python2.7/dist-packages/shinken',
     require => Package['python-pip','python-pycurl'],
   }
   
