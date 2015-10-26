@@ -1,0 +1,6 @@
+# Manage by Puppet.
+# Do not change anything here but in the other concerned hiera files.
+---
+jenkins::jobs :
+  no-app:
+    description: 'Your lab is empty.'

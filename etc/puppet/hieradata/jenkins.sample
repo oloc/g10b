@@ -1,3 +1,5 @@
+# This is an example. You can remove it.
+# Do not change anything here, that will do any effect.
 ---
 jenkins::jobs :
   petclinic-start:
