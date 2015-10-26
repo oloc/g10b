@@ -34,3 +34,7 @@ g10b::webserver::pass:
     url: "http://%{hiera('mesos::host')}.%{::domain}:%{hiera('mesos::port')}/"
   - path: /kibana
     url: "http://%{hiera('kibana::host')}.%{::domain}:%{hiera('kibana::port')}/"
+  - path: /bigdesk
+    url: "http://%{hiera('elasticsearch::host')}.%{::domain}:%{hiera('elasticsearch::port')}/_plugin/bigdesk"
+  - path: /head
+    url: "http://%{hiera('elasticsearch::host')}.%{::domain}:%{hiera('elasticsearch::port')}/_plugin/head"
