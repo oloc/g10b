@@ -1,3 +1,5 @@
+# Manage by Puppet.
+# Do not change anything here but in the other concerned hiera files.
 ---
 g10b::docker::host: "%{hiera('docker_registry::host')}"
 g10b::docker::port: "%{hiera('docker_registry::port')}"
