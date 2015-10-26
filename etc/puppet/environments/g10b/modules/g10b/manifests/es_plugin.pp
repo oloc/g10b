@@ -9,5 +9,5 @@ define g10b::es_plugin (
     module_dir => $module_dir,
     instances  => $instances,
     require    => Class['elasticsearch'],
-  }	
+  }
 }
