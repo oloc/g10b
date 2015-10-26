@@ -22,7 +22,7 @@ Anyway, currently the project allows you automatically to:
 * Puppet configures all machines
 * Feed Puppet-master with modules and manifests for g10b itself and others applications (as an example I take the famous petclinic)
 
-Then Jenkins, GitLab, Rundeck, Mesos, Docker, Elasticsearch, Logstash, Kibana and Puppet are ready!
+Then Jenkins, GitLab, Rundeck, Mesos, Docker, Elasticsearch, Logstash, Kibana, shinken and Puppet are ready!
 
 ![Scheme](./docs/g10b.jpg)
 
@@ -85,6 +85,7 @@ Without arguments, you just redeploy the G10B you have previously pull. The diff
 * -b <branch> : specific git branch to pull
 
 ## Versions
+* V0.9 - Add Shinken. Many technical improvements.
 * V0.8 - Add petclinic as an exemple in the Jenkins. Technical improvement: Application notion. g10b is considered as an application.
 * V0.7 - Add Docker and Docker Registry. Technical improvements: Hiera variables revision.
 * V0.6 - Add ELK (ElasticSearch Logstash Kibana)
