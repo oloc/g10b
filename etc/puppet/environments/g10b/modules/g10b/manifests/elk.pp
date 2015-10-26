@@ -18,16 +18,9 @@ class g10b::elk(
     ensure  => present,
     require => Class['elasticsearch'],
   }
-  elasticsearch::plugin{'mobz/elasticsearch-head':
-    module_dir => 'head',
-    instances  => 'es-01',
-    require    => Class['elasticsearch'],
-  }
-  elasticsearch::plugin{'lukas-vlcek/bigdesk':
-    module_dir => 'bigdesk',
-    instances  => 'es-01',
-    require    => Class['elasticsearch'],
-  }
+
+  $plugins = hiera('elasticsearch::plugins')
+  create_resources("${module_name}::es_plugin", $plugins)
 
   class {'::logstash':
     manage_repo  => true,
