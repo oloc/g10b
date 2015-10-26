@@ -36,7 +36,6 @@ class g10b::mesos(
   class {'::mesos':
     ensure         => present,
     listen_address => $::ipaddress_eth1,
-    use_syslog     => true,
   }
 
 }
