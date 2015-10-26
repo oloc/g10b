@@ -25,7 +25,7 @@ elasticsearch::plugins:
     module_dir: 'bigdesk'
     instances :
      - 'es-01'
-  elasticsearch/marvel:
+  elasticsearch/marvel/latest:
     module_dir: 'marvel'
     instances :
      - 'es-01'
