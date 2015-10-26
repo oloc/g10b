@@ -10,22 +10,17 @@ class g10b::elk(
   $config_hash = {'ES_USER' => $elasticsearch_user,'ES_GROUP' => $elasticsearch_group,}
 
   class {'elasticsearch':
-    manage_repo   => true,
-    repo_version  => '1.7',
-    init_defaults => $config_hash,
+    manage_repo           => true,
+    repo_version          => '1.7',
+    init_defaults         => $config_hash,
+    instances_hiera_merge => true,
+    plugins_hiera_merge   => true,
   }
-  elasticsearch::instance { 'es-01':
-    ensure  => present,
-    require => Class['elasticsearch'],
-  }
-
-  $plugins = hiera('elasticsearch::plugins')
-  create_resources("${module_name}::es_plugin", $plugins)
 
   class {'::logstash':
     manage_repo  => true,
     repo_version => '1.5',
-    require      => File ['/etc/pki/tls/private','/etc/pki/tls/certs']
+    require      => File ['/etc/pki/tls/private','/etc/pki/tls/certs'],
   }
 
   logstash::configfile {'logstash-input.conf':

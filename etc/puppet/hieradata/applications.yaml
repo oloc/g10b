@@ -12,13 +12,23 @@ elasticsearch::port  : 9200
 elasticsearch::user  : 'elasticsearch'
 elasticsearch::group : 'elasticsearch'
 
+elasticsearch::instances:
+  es-01:
+    status: 'running'
+
 elasticsearch::plugins:
   mobz/elasticsearch-head:
     module_dir: 'head'
+    instances :
+     - 'es-01'
   lukas-vlcek/bigdesk:
     module_dir: 'bigdesk'
+    instances :
+     - 'es-01'
   elasticsearch/marvel:
     module_dir: 'marvel'
+    instances :
+     - 'es-01'
 
 gitlab::host : "%{hiera('g10b-repositories')}"
 gitlab::port : 80
