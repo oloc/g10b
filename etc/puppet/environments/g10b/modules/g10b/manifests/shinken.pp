@@ -30,8 +30,8 @@ class g10b::shinken(
     pip     => 'present',
   }
   python::pip { 'shinken' :
-    pkgname => 'shinken',
     ensure  => '2.4',
+    pkgname => 'shinken',
     timeout => 1800,
   }
 
