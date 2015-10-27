@@ -26,14 +26,14 @@ class g10b::shinken(
 
 
   class { 'python' :
-    version    => 'system',
-    pip        => 'present',
+    version => 'system',
+    pip     => 'present',
   }
   python::pip { 'shinken' :
-  pkgname       => 'shinken',
-  ensure        => '2.4',
-  timeout       => 1800,
- }
+    pkgname => 'shinken',
+    ensure  => '2.4',
+    timeout => 1800,
+  }
 
   exec{'shinken_init':
     command => '/usr/bin/shinken --init',
