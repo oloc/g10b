@@ -55,12 +55,12 @@ class g10b::shinken(
     mode   => '0644',
     source => "puppet:///modules/${module_name}/webui2.cfg",
   }
-  file { '/etc/shinken/brokers/broker-master.cfg'
+  file { '/etc/shinken/brokers/broker-master.cfg':
     ensure => file,
     mode   => '0644',
     source => "puppet:///modules/${module_name}/broker-master.cfg",
   }
-  
+
   service{ 'shinken':
     ensure     => running,
     enable     => true,
