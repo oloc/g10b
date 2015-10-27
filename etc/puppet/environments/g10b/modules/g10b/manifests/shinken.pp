@@ -21,32 +21,28 @@ class g10b::shinken(
     group  => $group,
   }
 
-  $packages= ['python-pip', 'python-pycurl', 'mongodb', 'python-pymongo']
+  $packages = hiera('shinken::packages')
   g10b::undef_package { $packages: }
 
-  package { 'shinken':
-    ensure  => latest,
-    before  => File['/etc/shinken/shinken.cfg'],
-    require => User[$user],
-  }->
-  exec{'/usr/bin/pip install shinken':
+  exec{'shinken_install_init':
+    command => '/usr/bin/pip install shinken==2.4 && /usr/bin/shinken --init'
     unless  => '/bin/ls -l /usr/lib/python2.7/dist-packages/shinken',
     require => Package['python-pip','python-pycurl'],
   }
   
-  $modules= ['webui', 'auth-cfg-password', 'linux-ssh', 'linux-snmp']
+  $modules = hiera('shinken::modules')
   g10b::shinken_mod {$modules:
-    require => Package['shinken'],
+    require => Exec['shinken_install_init'],
   }
 
   file { '/etc/shinken/shinken.cfg':
     ensure => file,
     mode   => '0644',
   }
-  file { '/etc/shinken/modules/webui.cfg':
+  file { '/etc/shinken/modules/webui2.cfg':
     ensure => file,
     mode   => '0644',
-    source => "puppet:///modules/${module_name}/webui.cfg",
+    source => "puppet:///modules/${module_name}/webui2.cfg",
   }
 
   service{ 'shinken':

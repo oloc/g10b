@@ -85,3 +85,25 @@ shinken::host : "%{hiera('g10b-metrology')}"
 shinken::port : 7767
 shinken::user : 'shinken'
 shinken::group: 'shinken'
+
+shinken::packages:
+  - 'python-pip'
+  - 'python-pycurl'
+  - 'python-cherrypy3'
+  - 'python-crypto'
+  - 'monitoring-plugins-standard'
+  - 'mongodb'
+  - 'python-pymongo'
+
+shinken::modules:
+  - 'mod-mongodb'
+  - 'snapshot-mongodb'
+  - 'retention-mongodb'
+  - 'webui2'
+  - 'auth-cfg-password'
+  - 'graphite'
+  - 'ui-graphite'
+  - 'ssh'
+  - 'http'
+  - 'linux-ssh'
+  - 'linux-snmp'
