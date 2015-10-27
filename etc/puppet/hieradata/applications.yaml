@@ -87,11 +87,10 @@ shinken::user : 'shinken'
 shinken::group: 'shinken'
 
 shinken::packages:
-  - 'python-pip'
   - 'python-pycurl'
   - 'python-cherrypy3'
   - 'python-crypto'
-  - 'monitoring-plugins-standard'
+  - 'nagios-plugins-standard'
   - 'mongodb'
   - 'python-pymongo'
 
