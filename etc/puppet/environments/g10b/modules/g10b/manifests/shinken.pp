@@ -24,15 +24,26 @@ class g10b::shinken(
   $packages = hiera('shinken::packages')
   g10b::undef_package { $packages: }
 
-  exec{'shinken_install_init':
-    command => '/usr/bin/pip install shinken==2.4 && /usr/bin/shinken --init'
+
+  class { 'python' :
+    version    => 'system',
+    pip        => 'present',
+  }
+  python::pip { 'shinken' :
+  pkgname       => 'shinken',
+  ensure        => '2.4',
+  timeout       => 1800,
+ }
+
+  exec{'shinken_init':
+    command => '/usr/bin/shinken --init',
     unless  => '/bin/ls -l /usr/lib/python2.7/dist-packages/shinken',
-    require => Package['python-pip','python-pycurl'],
+    require => Pip['shinken'],
   }
   
   $modules = hiera('shinken::modules')
   g10b::shinken_mod {$modules:
-    require => Exec['shinken_install_init'],
+    require => Exec['shinken_init'],
   }
 
   file { '/etc/shinken/shinken.cfg':
@@ -44,7 +55,12 @@ class g10b::shinken(
     mode   => '0644',
     source => "puppet:///modules/${module_name}/webui2.cfg",
   }
-
+  file { '/etc/shinken/brokers/broker-master.cfg'
+    ensure => file,
+    mode   => '0644',
+    source => "puppet:///modules/${module_name}/broker-master.cfg",
+  }
+  
   service{ 'shinken':
     ensure     => running,
     enable     => true,

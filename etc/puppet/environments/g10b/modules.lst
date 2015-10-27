@@ -11,6 +11,7 @@ puppetlabs-docker_platform
 #puppetlabs-dashboard
 #
 # Approved modules
+stankevich-python
 rtyler-jenkins
 ghoneycutt-dnsclient
 example42-network
