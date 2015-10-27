@@ -1,11 +1,20 @@
 #!/bin/bash
 
+_resolvconf() {
+	Address=$1
+	Action=$2
+	cat /etc/resolvconf/interface-order | grep -v '^*' | while read Line
+	do
+		echo "nameserver ${Address}" | sudo resolvconf ${Action} ${Line}
+	done
+}
+
 # Must be remove for the setup
-echo 'nameserver 192.168.10.50' | sudo resolvconf -d *
+_resolvconf '192.168.10.50' -d
 
 pushd $(pwd)/$(dirname $0)/provision
 time vagrant up
 vagrant status
 popd
 
-echo 'nameserver 192.168.10.50' | sudo resolvconf -a *
+_resolvconf '192.168.10.50' -a
