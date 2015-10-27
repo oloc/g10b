@@ -33,12 +33,12 @@ class g10b::shinken(
     ensure  => '2.4',
     pkgname => 'shinken',
     timeout => 1800,
+    before  => Exec['shinken_init']
   }
 
   exec{'shinken_init':
     command => '/usr/bin/shinken --init',
     unless  => '/bin/ls -l /usr/lib/python2.7/dist-packages/shinken',
-    require => Pip['shinken'],
   }
   
   $modules = hiera('shinken::modules')
