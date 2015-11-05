@@ -80,29 +80,3 @@ rundeck::user              : 'rundeck'
 rundeck::group             : 'rundeck'
 rundeck::server_web_context: "/rundeck"
 rundeck::grails_server_url : "http://%{hiera('rundeck::host')}.%{::domain}:%{hiera('rundeck::port')}%{hiera('rundeck::server_web_context')}"
-
-shinken::host : "%{hiera('g10b-metrology')}"
-shinken::port : 7767
-shinken::user : 'shinken'
-shinken::group: 'shinken'
-
-shinken::packages:
-  - 'python-pycurl'
-  - 'python-cherrypy3'
-  - 'python-crypto'
-  - 'nagios-plugins-standard'
-  - 'mongodb'
-  - 'python-pymongo'
-
-shinken::modules:
-  - 'mod-mongodb'
-  - 'snapshot-mongodb'
-  - 'retention-mongodb'
-  - 'webui2'
-  - 'auth-cfg-password'
-  - 'graphite'
-  - 'ui-graphite'
-  - 'ssh'
-  - 'http'
-  - 'linux-ssh'
-  - 'linux-snmp'
