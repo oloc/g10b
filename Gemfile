@@ -1,15 +1,13 @@
 source "https://rubygems.org"
 
-group :development do
-  gem "puppet-blacksmith"
-end
+puppetversion = ENV.key?('PUPPET_VERSION') ? "#{ENV['PUPPET_VERSION']}" : ['>= 3.0.0','< 4.0']
+gem 'puppet', puppetversion
+gem 'puppetlabs_spec_helper', '>= 0.1.0'
+gem 'puppet-syntax'
+gem 'rspec-puppet-facts', :require => false
 
-group :test do
-  gem "rake"
-  gem "puppet", ENV['PUPPET_VERSION'] || '~> 3.7.0'
-  gem "puppet-lint"
-  gem "rspec-puppet", :git => 'https://github.com/rodjek/rspec-puppet.git'
-  gem "puppet-syntax"
-  gem "puppetlabs_spec_helper"
-  gem 'rspec', '< 2.99'
-end
+gem 'puppet-lint', '~> 1.0'
+gem 'rspec', '~> 3.0'
+gem 'rspec-its', '~> 1.0'
+gem 'rspec-collection_matchers', '~> 1.0'
+gem 'metadata-json-lint'
