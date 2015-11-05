@@ -3,5 +3,5 @@ node 'metrology' {
   class {'g10b::ssh':}
 
   class {'g10b::elk':}
-  class {'g10b::shinken':}
+  class {'shinken':}
 }
