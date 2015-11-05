@@ -5,22 +5,32 @@ bundler_args: --without development --jobs=3 --retry=3
 sudo: false
 
 rvm:
-  - 1.8.7
+# Almost deprecated
+#  - 1.8.7
   - 1.9.3
   - 2.0.0
   - 2.1
 
 env:
-  - PUPPET_VERSION="~> 2.7.0"
-  - PUPPET_VERSION="~> 3.1.0"
-  - PUPPET_VERSION="~> 3.2.0"
-  - PUPPET_VERSION="~> 3.3.0"
-  - PUPPET_VERSION="~> 3.4.0"
+# Almost deprecated
+#  - PUPPET_VERSION="~> 2.7.0"
+#  - PUPPET_VERSION="~> 3.1.0"
+#  - PUPPET_VERSION="~> 3.2.0"
+#  - PUPPET_VERSION="~> 3.3.0"
+#  - PUPPET_VERSION="~> 3.4.0"
   - PUPPET_VERSION="~> 3.5.0"
+  - PUPPET_VERSION="~> 3.6.0"
+  - PUPPET_VERSION="~> 3.7.0"
+  - PUPPET_VERSION="~> 3.8.0"
 
 before_install: rm Gemfile.lock || true
-
-script: bundle exec rake test
+install: bundle install
+script:
+ - 'bundle exec rake validate'
+ - 'bundle exec rake lint'
+ - 'bundle exec rake syntax'
+ - 'bundle exec rake template'
+ - 'bundle exec rake spec'
 
 matrix:
   exclude:
