@@ -43,7 +43,7 @@ _echo "Importing configuration..."
 for EnvName in $(ls -1 ./${EnvDir}); do
 	if [ ${CleanEnv} ] ; then
 		_echo "Cleaning of environment ${EnvName}..."
-		rm -Rf ./${EnvDir}/${EnvName} | tee -a ${LogFile}
+		rm -Rf /${EnvDir}/${EnvName} | tee -a ${LogFile}
 	fi
 	
 	_echo "Environment ${EnvName} setting..."	
