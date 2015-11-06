@@ -80,3 +80,8 @@ rundeck::user              : 'rundeck'
 rundeck::group             : 'rundeck'
 rundeck::server_web_context: "/rundeck"
 rundeck::grails_server_url : "http://%{hiera('rundeck::host')}.%{::domain}:%{hiera('rundeck::port')}%{hiera('rundeck::server_web_context')}"
+
+shinken::host : "%{hiera('g10b-metrology')}"
+shinken::port : 7767
+shinken::user : 'shinken'
+shinken::group: 'shinken'
