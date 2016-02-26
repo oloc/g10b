@@ -49,6 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.vm.box_url = "https://vagrantcloud.com/oloc/boxes/ubuntu-14.04-64-puppet-agent/versions/0.0.5/providers/virtualbox.box"
         config.vm.provision :shell, :inline => "rm -Rf ./#{Project}"
         config.vm.provision :shell, :inline => "sudo puppet config set environment #{Project}"
+        config.vm.provision :shell, :inline => "sudo puppet agent -t"
       end
 
       if node[:bootstrap] == 'master'
