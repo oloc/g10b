@@ -6,7 +6,7 @@ node 'repositories' {
   class { 'gitlab':
     external_url => "http://${::fqdn}/gitlab",
   }
-
+  class { 'postfix': }
   class {'::docker':
     tcp_bind => 'tcp://127.0.0.1:4243',
   }
