@@ -36,7 +36,7 @@ fi
 
 _echo "Importing configuration..."
     _echo "Avoid the importation of the ${PrivateHiera}."
-	rm ${PrivateHiera}                  | tee -a ${LogFile}
+	rm ${PrivateHiera}                          | tee -a ${LogFile}
 	cp -R${Verbose} ./${confdir}/* /${confdir}/ | tee -a ${LogFile}
 	echo "*.$(hostname -d)" > /${confdir}/autosign.conf
 
@@ -48,6 +48,7 @@ for EnvName in $(ls -1 ./${EnvDir}); do
 	
 	_echo "Environment ${EnvName} setting..."	
 		mkdir -p /${EnvDir}/${EnvName} | tee -a ${LogFile}
+		cp -R${Verbose} ./${EnvDir}/${EnvName}/modules.lst /${EnvDir}/${EnvName}/ | tee -a ${LogFile}
 		chown -R ${DftUser}:${DftUser} /${EnvDir}/${EnvName}
 		puppet config set environment ${EnvName}
 	
