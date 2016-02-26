@@ -36,8 +36,8 @@ fi
 
 _echo "Importing configuration..."
     _echo "Avoid the importation of the ${PrivateHiera}."
-	rm ${PrivateHiera}                          | tee -a ${LogFile}
-	cp -R${Verbose} ./${confdir}/* /${confdir}/ | tee -a ${LogFile}
+	[ -s ${PrivateHiera} ] && rm ${PrivateHiera} | tee -a ${LogFile}
+	cp -R${Verbose} ./${confdir}/* /${confdir}/  | tee -a ${LogFile}
 	echo "*.$(hostname -d)" > /${confdir}/autosign.conf
 
 for EnvName in $(ls -1 ./${EnvDir}); do
