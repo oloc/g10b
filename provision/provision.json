@@ -1,59 +1,42 @@
 [
-	{
-		"node": "g10b-puppet-master",
-		"iplastdigit": "55",
-		"host": "puppet",
-		"memory": 1024,
-		"cpu": 1,
-		"bootstrap": "master"
-	},
-	{
-		"node": "g10b-gateway",
-		"iplastdigit": "50",
-		"host": "octopussy",
-		"memory": 1024,
-		"cpu": 1,
-		"bootstrap": "agent"
-	},	
-	{
-		"node": "g10b-orchestration",
-		"iplastdigit": "56",
-		"host": "karajan",
-		"memory": 2048,
-		"cpu": 2,
-		"bootstrap": "agent"
-	},
-	{
-		"node": "g10b-repositories",
-		"iplastdigit": "57",
-		"host": "repositories",
-		"memory": 1024,
-		"cpu": 1,
-		"bootstrap": "agent"
-	},
-	{
-		"node": "g10b-metrology",
-		"iplastdigit": "58",
-		"host": "metrology",
-		"memory": 2048,
-		"cpu": 1,
-		"bootstrap": "agent"
-	},
-	{
-		"node": "g10b-testing",
-		"iplastdigit": "59",
-		"host": "testing",
-		"memory": 1024,
-		"cpu": 1,
-		"bootstrap": "agent"
-	},
-	{
-		"node": "g10b-production",
-		"iplastdigit": "60",
-		"host": "production",
-		"memory": 1024,
-		"cpu": 1,
-		"bootstrap": "agent"
-	}
-
+  {
+    "node": "g10b-puppet-master",
+    "iplastdigit": "55",
+    "host": "puppet",
+    "memory": 1024,
+    "cpu": 1,
+    "bootstrap": "master"
+  },
+  {
+    "node": "g10b-gateway",
+    "iplastdigit": "50",
+    "host": "octopussy",
+    "memory": 1024,
+    "cpu": 1,
+    "bootstrap": "agent"
+  },
+  {
+    "node": "g10b-orchestration",
+    "iplastdigit": "56",
+    "host": "karajan",
+    "memory": 2048,
+    "cpu": 2,
+    "bootstrap": "agent"
+  },
+  {
+    "node": "g10b-repositories",
+    "iplastdigit": "57",
+    "host": "repositories",
+    "memory": 1024,
+    "cpu": 1,
+    "bootstrap": "agent"
+  },
+  {
+    "node": "g10b-metrology",
+    "iplastdigit": "58",
+    "host": "metrology",
+    "memory": 2048,
+    "cpu": 1,
+    "bootstrap": "agent"
+  }
 ]
