@@ -31,7 +31,7 @@ pushd $(pwd)/..
 if [ ${Update} ] ; then
 	_echo "Update with branch ${Branch} in progress..."
 	env GIT_SSL_NO_VERIFY=true git checkout ${Branch}
-	env GIT_SSL_NO_VERIFY=true git pull
+	env GIT_SSL_NO_VERIFY=true git pull --rebase
 fi
 
 _echo "Importing configuration..."
