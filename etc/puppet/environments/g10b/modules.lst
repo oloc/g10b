@@ -25,6 +25,5 @@ puppet-rundeck
 elasticsearch-logstash
 #elasticsearch-logstashforwarder
 lesaux-kibana4
-# To greedy for a personnal sources repository. I let it as an example.
-#spuder-gitlab
+vshn-gitlab
 oloc-shinken

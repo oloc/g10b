@@ -3,14 +3,9 @@ node 'repositories' {
 
   $registry = '/var/lib/docker/registry'
 
-# To greedy for a personnal sources repository. I let it as an example.
-#  class { 'gitlab':
-#    puppet_manage_config => true,
-#    gitlab_branch        => '7.0.0',
-#    external_url         => "http://${::fqdn}/gitlab",
-#    # admin@local.host
-#    # 5iveL!fe
-#  }
+  class { 'gitlab':
+    external_url => "http://${::fqdn}/gitlab",
+  }
 
   class {'::docker':
     tcp_bind => 'tcp://127.0.0.1:4243',
