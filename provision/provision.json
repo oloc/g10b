@@ -4,7 +4,7 @@
     "iplastdigit": "55",
     "host": "puppet",
     "memory": 1024,
-    "cpu": 1,
+    "cpus": 1,
     "bootstrap": "master"
   },
   {
@@ -12,7 +12,7 @@
     "iplastdigit": "50",
     "host": "octopussy",
     "memory": 1024,
-    "cpu": 1,
+    "cpus": 1,
     "bootstrap": "agent"
   },
   {
@@ -20,7 +20,7 @@
     "iplastdigit": "56",
     "host": "karajan",
     "memory": 2048,
-    "cpu": 2,
+    "cpus": 2,
     "bootstrap": "agent"
   },
   {
@@ -28,7 +28,7 @@
     "iplastdigit": "57",
     "host": "repositories",
     "memory": 1024,
-    "cpu": 1,
+    "cpus": 1,
     "bootstrap": "agent"
   },
   {
@@ -36,7 +36,7 @@
     "iplastdigit": "58",
     "host": "metrology",
     "memory": 2048,
-    "cpu": 1,
+    "cpus": 1,
     "bootstrap": "agent"
   }
 ]
